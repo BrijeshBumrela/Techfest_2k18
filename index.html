@@ -1,0 +1,155 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+	<!-- Title -->
+	<title>TechnoBot-IIIT Sricity</title>
+	<link rel="shortcut icon" href="images/title-logo.png" />
+	
+	
+	
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	
+
+	<!-- CSS FILES  -->
+	<link rel="stylesheet" type="text/css" href="css/front.css">
+	<link rel="stylesheet" type="text/css" href="css/about.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/front-text-effect.css">
+	<link rel="stylesheet" href="FlipClock-master/compiled/flipclock.css"> <!-- flip-clock css-->
+	<link rel="stylesheet" type="text/css" href="css/scroll-down-anchor.css"> <!--  scroll-down-anchor  -->
+	
+	
+	<!-- JS FILES -->
+	<script src="js/menu.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- flip-clock js-->
+	<script src="FlipClock-master/compiled/flipclock.js"></script> <!-- flip-clock js-->
+	<script type="text/javascript">
+		var clock;
+		
+		$(document).ready(function() {
+			var clock;
+
+			clock = $('.clock').FlipClock({
+				clockFace: 'DailyCounter',
+				autoStart: false,
+				callbacks: {
+					stop: function() {
+						$('.message').html('The clock has stopped!')
+					}
+				}
+			});
+					
+			clock.setTime(220880);
+			clock.setCountdown(true);
+			clock.start();
+
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$(".menu").click(function(){
+		$(this).parent().toggleClass("close");
+		});
+	</script>
+					
+
+					
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+		  $("a").on('click', function(event) {
+			if (this.hash !== "") {
+			  event.preventDefault();
+			  var hash = this.hash;
+			  $('html, body').animate({
+				scrollTop: $(hash).offset().top
+			  }, 800, function(){
+				window.location.hash = hash;
+			  });
+			} 
+		  });
+		});
+	
+	</script>
+					
+	
+</head>
+
+
+<body>
+
+																<!-- Menu bar -->
+	<div class="base">
+	
+	   <div class="menu">
+		  <div class="icon">
+			 <div class="bar"></div>
+		  </div>
+	   </div>
+	   
+	   <div class="icons">
+		  <i class="fa fa-user" aria-hidden="true"></i>
+		  <i class="fa fa-calendar-o" aria-hidden="true"></i>
+		  <i class="fa fa-tachometer" aria-hidden="true"></i>
+	   </div>
+	   
+	   <div class="section">
+		  <div class="cover1">
+			 <div class="cover2">
+				<a class="content" href="#calender"></a>
+			 </div>
+		  </div>
+	   </div>
+	   
+	   <a class="section-static top" href="#profile"></a>
+	   <a class="section-static bottom" href="#dashboard"></a>
+	   
+	</div>
+	
+	
+	
+
+
+																	<!--   front -->
+	
+	<div class="first">
+		<div class="wrap">
+			<div class="image">
+			
+				<div class="text">
+					
+						<section>TechnoBot</section> 
+						<section> 
+						  <span>-Biggest Techfest of IIIT Sricity</span>
+						</section>
+						
+						<hr>
+						
+					
+				</div>
+				
+																<!--  countdown clock -->	
+	
+				<div class = "align-clock">
+					<div class="clock" style="margin:2em;"></div>
+					<div class="message"></div>	
+				</div>
+										
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+																<!-- About section -->
+	<div class="second"></div>
+
+
+</body>
+
+</html>
