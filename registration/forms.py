@@ -12,4 +12,4 @@ class UserForm(forms.ModelForm):
 class MoreUserDataForm(forms.ModelForm):
     class Meta:
         model = data.models.MoreUserData
-        fields = ['college_name', 'github_id', 'hackerrank_id', 'codechef_id', 'codeforces_id']
+        fields = ['profile_pic','college_name', 'github_id', 'hackerrank_id', 'codechef_id', 'codeforces_id']

@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', main_page.views.index),
     path('', main_page.views.redirect_to_index, name="home"),
-    path('registration/', include('registration.urls'))
+    path('registration/', include('registration.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

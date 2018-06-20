@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Hello {{ user.username }}</h2>
+<a href="{% url 'registration:logout' %}">Logout</a><br><br>
+{% if additional_info_check %}
+    {% if not user.profile_pic %}
+        You haven't set a profile pic yet. <a href="{% url 'accounts:edit_additional_info' %}">Click Here</a> to set one
+    {% else %}
+        Great. You are all all done
+    {% endif %}
+{% else %}
+    Your Account seems to be missing some critical info. <a href="{% url 'accounts:edit_additional_info' %}">Click here</a> to add missing information
+{% endif %}
+</body>
+</html>

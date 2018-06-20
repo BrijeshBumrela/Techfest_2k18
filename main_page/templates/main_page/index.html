@@ -113,7 +113,7 @@
 	
 	
 	{% if username %}
-       Hello {{ username }}   <a href="">Profile</a>  <a href="{% url 'registration:logout' %}">Logout</a>
+       Hello {{ username }}   <a href=" {% url 'accounts:profile_home' %}">Profile</a>  <a href="{% url 'registration:logout' %}">Logout</a>
 
     {% else %}
        Hi. Please <a href="{% url 'registration:login' %}">Login</a> or <a href="{% url 'registration:signup' %}">Create an Account</a>
