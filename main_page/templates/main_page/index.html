@@ -112,10 +112,15 @@
 	</div>
 	
 	
-	
+	{% if username %}
+       Hello {{ username }}   <a href="">Profile</a>  <a href="{% url 'registration:logout' %}">Logout</a>
 
+    {% else %}
+       Hi. Please <a href="{% url 'registration:login' %}">Login</a> or <a href="{% url 'registration:signup' %}">Create an Account</a>
 
-																	<!--   front -->
+    {% endif %}
+
+                                                                <!--   front -->
 	
 	<div class="first">
 		<div class="wrap">
