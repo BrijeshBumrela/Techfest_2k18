@@ -6,13 +6,6 @@ from django.contrib.auth.decorators import login_required
 import os.path
 
 
-def get_after_static_path(S):
-    S = S.split('/')
-    S = S[S.index('static') + 1:]
-    P = ''
-    for i in S:
-        P = os.path.join(P, i)
-    return P
 
 
 # Create your views here.
@@ -29,8 +22,8 @@ def profile_home(request):
     if hasattr(request.user, 'moreuserdata'):
         additional_info_check = True
         S = str(request.user.moreuserdata.profile_pic)
-        if S != '':
-            User["profile_pic"] = get_after_static_path(S)
+        if S is not '':
+            User["profile_pic"] = request.user.moreuserdata.profile_pic.url
 
     return render(request, "accounts/profile_home.html", {"additional_info_check": additional_info_check, "user": User})
 
@@ -61,7 +54,7 @@ def edit_additional_info(request):
 
     else:
         if hasattr(request.user, 'moreuserdata'):
-            new_form = MoreUserData(instance=request.user.moreuserdata)
+            new_form = MoreUserDataForm(instance=request.user.moreuserdata)
 
         else:
             new_form = MoreUserDataForm()

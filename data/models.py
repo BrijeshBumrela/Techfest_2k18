@@ -7,8 +7,8 @@ import os.path
 
 # Create your models here.
 def get_profilepic_upload_url(instance, filename):
-    location = "accounts/static/uploads/profile_pictures"
-    return os.path.join(location, instance.user.username)
+    location = "profile_pictures"
+    return os.path.join(location, str(instance.user.id))
 
 
 class MoreUserData(models.Model):
