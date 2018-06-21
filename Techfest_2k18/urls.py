@@ -26,6 +26,7 @@ urlpatterns = [
     path('', main_page.views.redirect_to_index, name="home"),
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
+    path('auth/', include('social_django.urls', namespace='social'))
 ]
 
 if settings.DEBUG:
