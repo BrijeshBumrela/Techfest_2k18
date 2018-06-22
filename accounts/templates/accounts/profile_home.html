@@ -6,8 +6,15 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Hello {{ user.username }}</h2>
-<a href="{% url 'registration:logout' %}">Logout</a><br><br>
+<nav>
+    <a>Logo</a> |
+    <a>Events</a> |
+    <a>Teams</a> |
+    <a href="{% url 'accounts:edit_additional_info' %}">Edit Profile</a> |
+    <a href="{% url 'accounts:profile_home' %}">Hello {{ user.username }}</a> |
+    <a href="{% url 'registration:logout' %}">Logout</a><br><br>
+
+</nav>
 {% if additional_info_check %}
     {% if not user.profile_pic %}
         You haven't set a profile pic yet. <a href="{% url 'accounts:edit_additional_info' %}">Click Here</a> to set one

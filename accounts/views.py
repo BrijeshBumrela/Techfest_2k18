@@ -51,7 +51,7 @@ def edit_additional_info(request):
                 MUD.profile_pic = request.FILES["profile_pic"]
 
             MUD.save()
-            return redirect('home')
+            return redirect('accounts:profile_home')
 
         else:
             return render(request, "accounts/edit_additional_info.html", {"data_form": user_data_form})
