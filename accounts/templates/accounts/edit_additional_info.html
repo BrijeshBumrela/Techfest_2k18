@@ -18,7 +18,11 @@
                 </td>
                 <td>
                     {{ field }}
+                    {% if field.help_text %}
+                        <br><span style="color: blue;font-size: medium">{{ field.help_text }}</span>
+                    {% endif %}
                 </td>
+
                 <td style="color: red;font-weight: bold">
                     {{ field.errors }}
                 </td>
