@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import forms
 from django.contrib.auth.models import User
-from django.contrib.auth import login,logout
+from django.contrib.auth import login, logout
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ def signup(request):
             new_user.last_name = new_user_form.cleaned_data["last_name"]
             new_user.save()
 
-            login(request,new_user)
+            login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect(to="home")
 
         else:

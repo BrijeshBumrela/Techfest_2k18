@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 import os.path
 
 
-
-
 # Create your views here.
 
 def redirect_to_profile_home(request):
@@ -35,14 +33,20 @@ def edit_additional_info(request):
         user_data_form = MoreUserDataForm(request.POST, request.FILES)
         if user_data_form.is_valid():
 
-            MUD = MoreUserData(
-                user=request.user,
-                college_name=user_data_form.cleaned_data["college_name"],
-                github_id=user_data_form.cleaned_data["github_id"],
-                hackerrank_id=user_data_form.cleaned_data["hackerrank_id"],
-                codechef_id=user_data_form.cleaned_data["codechef_id"],
-                codeforces_id=user_data_form.cleaned_data["codeforces_id"]
-            )
+            MUD = None
+            if hasattr(request.user, 'moreuserdata'):
+                MUD = request.user.moreuserdata
+            else:
+                MUD = MoreUserData()
+                MUD.user = request.user
+                # MUD.secret_key = Some_Secret_Key_Generator_Function
+
+            MUD.college_name = user_data_form.cleaned_data["college_name"]
+            MUD.github_id = user_data_form.cleaned_data["github_id"]
+            MUD.hackerrank_id = user_data_form.cleaned_data["hackerrank_id"]
+            MUD.codechef_id = user_data_form.cleaned_data["codechef_id"]
+            MUD.codeforces_id = user_data_form.cleaned_data["codeforces_id"]
+
             if "profile_pic" in request.FILES:
                 MUD.profile_pic = request.FILES["profile_pic"]
 

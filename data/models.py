@@ -16,8 +16,8 @@ class MoreUserData(models.Model):
     user = models.OneToOneField(to=User, primary_key=True, on_delete=models.CASCADE)
     secret_key_length = 15
     secret_key_min_length = MinLengthValidator(secret_key_length)
-    secret_key = models.CharField(verbose_name="Secret Key", unique=True, max_length=secret_key_length,
-                                  validators=[secret_key_min_length])
+    secret_key = models.CharField(verbose_name="Secret Key", max_length=secret_key_length,
+                                  validators=[secret_key_min_length],blank=True)
     profile_pic = models.ImageField(verbose_name="Profile Picture", upload_to=get_profilepic_upload_url, blank=True,
                                     help_text="Please upload a Profile Picture")
     college_name = models.CharField(verbose_name="College Name", max_length=100)
