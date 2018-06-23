@@ -1,21 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Login.css' %}">
 </head>
 <body>
-<h2>Simple Basic Login Page</h2>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-<hr>
-Or If You Prefer...
-<hr>
-<form method="post">
-   {% csrf_token %}
-   {{ form.as_p }}
-   <button type="submit">Login</button>
-</form>
-
+	<h2>Simple Basic Login Page</h2>
+		<form method="post">
+		   {% csrf_token %}
+		   {{ form.as_p }}
+		   <button type="submit">Login</button>
+		</form>
 </body>
 </html>
