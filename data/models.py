@@ -1,4 +1,6 @@
 from django.db import models
+from django.dispatch import receiver
+import django.db.models.signals as signals
 
 from django.contrib.auth.models import User
 
@@ -20,7 +22,7 @@ class MoreUserData(models.Model):
                                   validators=[secret_key_min_length], blank=True)
     profile_pic = models.ImageField(verbose_name="Profile Picture", upload_to=get_profilepic_upload_url, blank=True,
                                     help_text="Please upload a Profile Picture")
-    description = models.TextField(verbose_name="About You", blank=True, help_text="Write A Few Lines About Yourself" )
+    description = models.TextField(verbose_name="About You", blank=True, help_text="Write A Few Lines About Yourself")
     college_name = models.CharField(verbose_name="College Name", max_length=100)
     github_id = models.CharField(verbose_name="Github Username", max_length=50, blank=True)
     hackerrank_id = models.CharField(verbose_name="Hackerrank Username", max_length=50, blank=True)
@@ -31,8 +33,29 @@ class MoreUserData(models.Model):
         return self.user.username
 
 
+@receiver(signals.post_delete, sender=MoreUserData)
+def delete_profile_pic_on_model_delete(sender, instance, **kwargs):
+    """
+    Deletes Profile Pic from the file system once that user is deleted
+    :param sender: Sender Model = MoreUserData
+    :param instance: particular instance of Model
+    :param kwargs: Handled by decorator
+    :return:
+    """
+    if str(instance.profile_pic) != '':
+        if os.path.isfile(instance.profile_pic.path):
+            os.remove(instance.profile_pic.path)
+
+
+def get_event_logo_upload_url(instance, filename):
+    location = "events"
+    return os.path.join(location, str(instance.name), "logos", "logo.png")
+
+
 class Event(models.Model):
-    name = models.CharField(verbose_name="Event Name", max_length=50 , unique=True)
+    name = models.CharField(verbose_name="Event Name", max_length=50, unique=True)
+    event_logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
+                                   help_text="Please Upload A Logo For This Event")
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
     description = models.TextField(verbose_name="Description")
@@ -41,6 +64,12 @@ class Event(models.Model):
     organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=False,
                                         help_text="Please Select 1 or more users as Organisers")
     participants = models.ManyToManyField(to=MoreUserData, related_name="participating_events", blank=True, )
+
+    priority = models.IntegerField(verbose_name="Priority", default=0,
+                                   help_text="Events will be ordered Based on priority. Higher Priority events appear first in list")
+
+    class Meta:
+        ordering = ['-priority']
 
     def __str__(self):
         return self.name
