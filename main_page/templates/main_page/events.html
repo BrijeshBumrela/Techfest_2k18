@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Events</title>
 </head>
 <body>
 
+{% for event in events %}
+    <hr>
+    {{ event.logo.value }}<br>
+    {{ event.name.value }}<br>
+    {{ event.description.value }}<br>
+    {{ event.start_date_time.value }}<br>
+    {{ event.end_date_time.value }}<br>
+{% endfor %}
 </body>
 </html>

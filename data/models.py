@@ -54,7 +54,7 @@ def get_event_logo_upload_url(instance, filename):
 
 class Event(models.Model):
     name = models.CharField(verbose_name="Event Name", max_length=50, unique=True)
-    event_logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
+    logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
                                    help_text="Please Upload A Logo For This Event")
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")

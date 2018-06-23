@@ -20,10 +20,6 @@ def redirect_to_index(request):
 
 
 def display_events(request):
-    events = list()
-    for i in data.models.Event.objects.all():
-        combined_event_info = dict()
-        combined_event_info["event_form"] = data.forms.BriefEventForm(instance=i)
+    events = [data.forms.BriefEventForm(instance=i) for i in data.models.Event.objects.all()]
 
-
-
+    return render(request, "main_page/events.html", {"events": events})
