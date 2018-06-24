@@ -55,7 +55,7 @@ def get_event_logo_upload_url(instance, filename):
 class Event(models.Model):
     name = models.CharField(verbose_name="Event Name", max_length=50, unique=True)
     logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
-                                   help_text="Please Upload A Logo For This Event")
+                             help_text="Please Upload A Logo For This Event")
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
     description = models.TextField(verbose_name="Description")
@@ -70,6 +70,10 @@ class Event(models.Model):
 
     class Meta:
         ordering = ['-priority']
+
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
