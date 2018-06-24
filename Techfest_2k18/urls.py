@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', main_page.views.index),
     path('', main_page.views.redirect_to_index, name="home"),
-    path('events',main_page.views.display_events, name="events"),
+    path('events', main_page.views.display_events, name="events"),
+    path('events/event/<slug:event_name>', main_page.views.event_info, name="event info"),
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
     path('auth/', include('social_django.urls', namespace='social'))

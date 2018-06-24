@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ event.name }}<br>
+{% if logo %}
+Logo Url : {{ logo }}<br>
+{% else %}
+No Logo Available<br>
+{% endif %}
+
+{{ event.start_date_time }}<br>
+{{ event.end_date_time }}<br>
+<hr>
+Description :<br>
+{{ event.description }}
+<hr>
+Rules: <br>
+{{ event.rules }}
+<hr>
+Prizes: <br>
+{{ event.prize }}
+<hr>
+Organisers : <br>
+
+{% for O in organisers %}
+    {{ O.user.get_full_name }}
+{% endfor %}
+<br><br>
+Here we can also add more parameters for organisers like profile pictures username etc..
+</body>
+</html>

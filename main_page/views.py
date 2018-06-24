@@ -38,4 +38,8 @@ def event_info(request, event_name):
     event_name = event_name.lower()
 
     event = get_object_or_404(data.models.Event, name=event_name)
-    return render(request, "main_page/event_info.html", {"event": event})
+    event_organisers = event.organisers.all()
+    logo = None
+    if str(event.logo) != "" :
+        logo = event.logo.url
+    return render(request, "main_page/event_info.html", {"event": event, "organisers": event_organisers , "logo":logo})

@@ -1,3 +1,6 @@
+{% load static %}
+{% load events_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +12,11 @@
 {% for event in events %}
     <hr>
     {% if event.logo %}
-    {{ event.logo}}<br>
+    Logo Url : {{ event.logo}}<br>
     {% else %}
     No Logo Available <br>
     {% endif %}
-    {{ event.out_form.name.value }}<br>
+    <a href="{% url 'event info' event.out_form.name.value|strtoslug  %}">{{ event.out_form.name.value }}</a><br>
     {{ event.out_form.description.value }}<br>
     {{ event.out_form.start_date_time.value }}<br>
     {{ event.out_form.end_date_time.value }}<br>
