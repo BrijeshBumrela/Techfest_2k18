@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 import data.models
 import data.forms
@@ -20,6 +20,22 @@ def redirect_to_index(request):
 
 
 def display_events(request):
-    events = [data.forms.BriefEventForm(instance=i) for i in data.models.Event.objects.all()]
+    events = list()
+    for i in data.models.Event.objects.all():
+        event = {"out_form": data.forms.BriefEventForm(instance=i)}
+        if str(i.logo) == "":
+            event["logo"] = None
+        else:
+            event["logo"] = i.logo.url
+
+        events.append(event)
 
     return render(request, "main_page/events.html", {"events": events})
+
+
+def event_info(request, event_name):
+    event_name = event_name.replace('-', ' ')
+    event_name = event_name.lower()
+
+    event = get_object_or_404(data.models.Event, name=event_name)
+    return render(request, "main_page/event_info.html", {"event": event})

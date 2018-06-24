@@ -8,11 +8,15 @@
 
 {% for event in events %}
     <hr>
-    {{ event.logo.value }}<br>
-    {{ event.name.value }}<br>
-    {{ event.description.value }}<br>
-    {{ event.start_date_time.value }}<br>
-    {{ event.end_date_time.value }}<br>
+    {% if event.logo %}
+    {{ event.logo}}<br>
+    {% else %}
+    No Logo Available <br>
+    {% endif %}
+    {{ event.out_form.name.value }}<br>
+    {{ event.out_form.description.value }}<br>
+    {{ event.out_form.start_date_time.value }}<br>
+    {{ event.out_form.end_date_time.value }}<br>
 {% endfor %}
 </body>
 </html>
