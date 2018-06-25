@@ -9,11 +9,3 @@ def index(request):
 
 def redirect_to_index(request):
     return redirect(to="/index")
-
-
-def skeleton(request):
-    return render(request, "main_page/skeleton.html")
-
-
-def index2(request):
-    return render(request, "main_page/index_2.html")
