@@ -7,7 +7,7 @@ import os.path
 #For encryption
 import hashlib
 #The QR code file
-from . import QRcode.py
+from . import QRcode
 
 
 # Create your views here.
@@ -88,5 +88,5 @@ def edit_additional_info(request):
         return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
         
         
-QRgenerator(string)
+#QRgenerator(string)
  
