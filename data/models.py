@@ -14,7 +14,7 @@ def get_profilepic_upload_url(instance, filename):
 
 class MoreUserData(models.Model):
     user = models.OneToOneField(to=User, primary_key=True, on_delete=models.CASCADE)
-    secret_key_length = 15
+    secret_key_length = 32
     secret_key_min_length = MinLengthValidator(secret_key_length)
     secret_key = models.CharField(verbose_name="Secret Key", max_length=secret_key_length,
                                   validators=[secret_key_min_length],blank=True)
