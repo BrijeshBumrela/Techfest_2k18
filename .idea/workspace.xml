@@ -2,181 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ee0fad9-3f1f-43db-bb06-938bf98ab684" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Techfest_2k18.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Techfest_2k18.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/anchor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/animate.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/et-line.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/flipclock.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fonts/slick.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fonts/slick.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fonts/slick.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fonts/slick.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/animate.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/et-line.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/ionicons.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/owl.theme.default.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/uikit-rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/imp/uikit.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/ionicons.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/owl.theme.default.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/style-c.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/swiper.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/uikit-rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/uikit-rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/uikit.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/uikit.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Linearicons-Free.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Linearicons-Free.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Linearicons-Free.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Linearicons-Free.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Linearicons-Free.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/et-line.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/et-line.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/et-line.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/et-line.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/ionicons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/ionicons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/ionicons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about-carousel/p1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about-carousel/p2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about-carousel/p3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about/ia1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about/ia2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about/ia3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about/ia4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/bg/bg-img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/bg/inner_cover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/bg/slider.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/bg/tickets.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brands/b1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brands/b2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brands/b3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brands/b4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brands/b5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/calender/ctf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/calender/fcw.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/calender/mmg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/calender/rvc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/comments/c1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/comments/c2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/comments/c3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/bot.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/c22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/ctf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/elk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/fcw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/hct.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/log.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/mmg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/rcc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/events/rvc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/icons/icon-fb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/icons/icon-gplus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/icons/icon-top.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/icons/icon-twitter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/icons/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/sponsors/sp1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/sponsors/sp2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/sponsors/sp3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap-progressbar.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/flipclock.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/.DS_Store.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/GETTING_STARTED.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/JavaScript_docs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/TimelineLite.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/TimelineMax.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/TweenLite.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/TweenMax.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/easing/EasePack.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/jquery.gsap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/AttrPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/BezierPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/CSSPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/CSSRulePlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/ColorPropsPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/DirectionalRotationPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/EaselPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/KineticPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/RaphaelPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/RoundPropsPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/ScrollToPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/greensock/plugins/TextPlugin.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/iscroll.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery-1.9.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery-2.1.0.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery-anchor.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery-migrate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.countdown.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.counterup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.countupcircle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.lettering-0.6.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/jquery.superscrollorama.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/parallax.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/polyfill.requestAnimationFrame.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/popper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/swiper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/uikit-icons.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/uikit-icons.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/uikit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/uikit.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/waypoints.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/wow.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/base/_base.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/base/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_blog_box.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_contact.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_counter.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_cover.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_event_box.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_icon_boxes.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_price_box.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_progressbar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_speaker.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_tabs.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/components/_testimonial.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/layout/_footer.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/layout/_header.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scss/main.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_page/templates/main_page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main_page/templates/main_page/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -189,7 +16,7 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -198,6 +25,11 @@
         <option value="HTML File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>assets</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -218,13 +50,13 @@
         <option value="$PROJECT_DIR$/../accounts/templates/accounts/edit_info.html" />
         <option value="$PROJECT_DIR$/../registration/forms.py" />
         <option value="$PROJECT_DIR$/../accounts/templates/accounts/edit_additional_info.html" />
-        <option value="$PROJECT_DIR$/../main_page/templates/main_page/index.html" />
         <option value="$PROJECT_DIR$/../accounts/urls.py" />
         <option value="$PROJECT_DIR$/../accounts/templates/accounts/profile_home.html" />
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/../data/models.py" />
         <option value="$PROJECT_DIR$/../accounts/views.py" />
+        <option value="$PROJECT_DIR$/../main_page/templates/main_page/index.html" />
       </list>
     </option>
   </component>
@@ -236,7 +68,10 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
+      <path value="$PROJECT_DIR$/../Alternate/Techfest_2k18/main_page/static/FlipClock-master/package.json" />
       <path value="$PROJECT_DIR$/main_page/static/FlipClock-master/package.json" />
+      <path value="$PROJECT_DIR$/../backup/Techfest_2k18/main_page/static/FlipClock-master/package.json" />
+      <path value="$PROJECT_DIR$/../front_old_Techfest-2k18/FlipClock-master/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -250,22 +85,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Techfest_2k18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Alternate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Techfest_2k18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Alternate" type="462c0819:PsiDirectoryNode" />
-              <item name="Techfest_2k18" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Problems">
           <expand>
@@ -277,11 +96,28 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Techfest_2k18" type="b2602c69:ProjectViewProjectNode" />
+              <item name="College Website Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Techfest_2k18" type="b2602c69:ProjectViewProjectNode" />
+              <item name="College Website Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Techfest_2k18" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -407,7 +243,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16837482" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -420,7 +256,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.328594" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +299,6 @@
     <entry file="file://$PROJECT_DIR$/../data/views.py" />
     <entry file="file://$PROJECT_DIR$/../accounts/templates/accounts/edit_additional_info.html" />
     <entry file="file://$PROJECT_DIR$/../registration/views.py" />
-    <entry file="file://$PROJECT_DIR$/../main_page/templates/main_page/index.html" />
     <entry file="file://$PROJECT_DIR$/../accounts/urls.py" />
     <entry file="file://$PROJECT_DIR$/../registration/models.py" />
     <entry file="file://$PROJECT_DIR$/../main_page/models.py" />
@@ -472,5 +307,7 @@
     <entry file="file://$PROJECT_DIR$/../data/models.py" />
     <entry file="file://$PROJECT_DIR$/settings.py" />
     <entry file="file://$PROJECT_DIR$/urls.py" />
+    <entry file="file://$PROJECT_DIR$/../main_page/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/../main_page/templates/main_page/index.html" />
   </component>
 </project>
