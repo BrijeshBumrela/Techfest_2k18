@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav>
+    <a>Logo</a> |
+    <a>Events</a> |
+    <a>Teams</a> |
+    <a href="{% url 'accounts:edit_additional_info' %}">Edit Profile</a> |
+    <a href="{% url 'accounts:profile_home' %}">Hello {{ user.username }}</a> |
+    <a href="{% url 'registration:logout' %}">Logout</a><br><br>
+
+</nav>
+{% if additional_info_check %}
+    {% if not user.profile_pic %}
+        You haven't set a profile pic yet. <a href="{% url 'accounts:edit_additional_info' %}">Click Here</a> to set one
+    {% else %}
+        Great. You are all all done
+    {% endif %}
+{% else %}
+    Your Account seems to be missing some critical info. <a href="{% url 'accounts:edit_additional_info' %}">Click here</a> to add missing information
+{% endif %}
+</body>
+</html>
