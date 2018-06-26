@@ -77,3 +77,29 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def get_event_catalogue_upload_url(instance, filename):
+    return os.path.join("events", instance.event.name, "catalogue", filename)
+
+
+class EventCatalogue(models.Model):
+    event = models.OneToOneField(to=Event, primary_key=True, on_delete=models.CASCADE)
+    image1 = models.ImageField(verbose_name="Image 1", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional). This is primary image that will appear on main page")
+    image2 = models.ImageField(verbose_name="Image 2", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional)")
+    image3 = models.ImageField(verbose_name="Image 3", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional)")
+    image4 = models.ImageField(verbose_name="Image 4", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional)")
+    image5 = models.ImageField(verbose_name="Image 5", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional)")
+    image6 = models.ImageField(verbose_name="Image 6", upload_to=get_event_catalogue_upload_url, blank=True,
+                               help_text="Upload Image 1 for this Event. (optional)")
+
+    class Meta:
+        ordering = ['-event']
+
+    def __str__(self):
+        return self.event.name + "Catalogue"
