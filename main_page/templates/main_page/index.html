@@ -72,11 +72,23 @@
         <div class="collapse navbar-collapse flex-sm-row-reverse" id="headernav">
 
             {% if username %}
-                <!-- Instead of Login,signup , display Profile and Logout-->
-            {% else %}
+                <!-- User authenticated .Instead of Login,signup , display Profile and Logout-->
                 <div class="navbar-header">
                     <ul class="nav nav-pills navbar-nav menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+                    </ul>
+                </div>
+            {% else %}
+                <!-- user not authenticated. Display Signup and Login -->
+                <div class="navbar-header">
+                    <ul class="nav nav-pills navbar-nav menu">
+<<<<<<< HEAD
                         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+=======
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign-up</a></li>
+>>>>>>> 3fa683408d9fa6c01dce0151850e20381a9c4b07
                         <li><a href="{% url 'registration:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                 </div>
@@ -84,22 +96,22 @@
 
             <ul class=" nav nav-pills navbar-nav menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home"><strong>Home</strong></a>
+                    <a class="nav-link" href="{% url 'home' %}#home"><strong>Home</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#about"><strong>About</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#about"><strong>About</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#events"><strong>Events</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#events"><strong>Events</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#comments"><strong>Comments</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#comments"><strong>Comments</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#calender"><strong>Event-Calender</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#calender"><strong>Event-Calender</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#sponsors"><strong>Sponsors</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#sponsors"><strong>Sponsors</strong></a>
                 </li>
 
             </ul>
