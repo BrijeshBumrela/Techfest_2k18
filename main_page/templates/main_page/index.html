@@ -78,25 +78,19 @@
                 <!-- User authenticated .Instead of Login,signup , display Profile and Logout-->
                 <div class="navbar-header">
 			
-			<button class="uk-button-default" type="button">
-				<ul class="nav nav-pills navbar-nav menu">
-		  			<li>
-						<a href="#">
-							<span class="glyphicon glyphicon-user"></span>
-							<b> Hi ! {{ username }}</b>
-						</a>
-					</li>
-			</button>
-				
-			<div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
-				<ul class="uk-nav uk-dropdown-nav">
-					<li><a href="{% url 'accounts:profile_home' %}" class="uk-background-primary uk-light uk-padding uk-panel" style="border-radius:10px 10px 10px 10px;padding:10px;" ><font color="white"><strong>Your Profile</strong></font></a></li>
-					<li><a href="#" style="padding:10px;"><strong>Your TecnoCoins</strong></a></li>
-					<li><a href="#" style="padding:10px;"><strong>Notifications</strong></a></li>
-					<li class="uk-nav-divider"></li>
-					<li><a href="{% url 'registration:logout' %}" style="padding:10px;"><strong>Log Out</strong></a></li>
-				</ul>
-			</div>
+			<button class="uk-button-default" type="button"><ul class="nav nav-pills navbar-nav menu">
+			  <li><a href="#"><span class="glyphicon glyphicon-user"></span><b> Hi ! User</b></a></li></button>
+				<div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+					<ul class="uk-nav uk-dropdown-nav">
+						<li class="li-nav"><img src="assets/img/icons/icon-user.png"><a href="#"><strong>Your Profile</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="assets/img/icons/icon-coin.png"><a href="#" style="padding:10px;"><strong>Your TecnoCoins</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="assets/img/icons/icon-bell.png"><a href="#" style="padding:10px;"><strong>Notifications</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="assets/img/icons/icon-logout.png"><a href="#" style="padding:10px;"><strong>Log Out</strong></a></li>
+					</ul>
+				</div>
 
 		</div>
             {% else %}
