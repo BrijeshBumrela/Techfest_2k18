@@ -1,0 +1,49 @@
+body
+{
+	background-image: url("../images/back.gif");
+}
+.text
+{
+	margin-top: 40px;
+	margin-left: 70px;
+	float: left;
+}
+.main
+{
+	font-size: 80px;	
+	margin-left: 50px;
+	color: white;
+	font-family:Impact, Charcoal, sans-serif;
+}
+.child
+{
+
+	color: white;
+	font-size: 40px;
+	margin-bottom: 80px;
+}
+.login
+{
+	margin-right: 140px;
+	margin-top: 80px;
+	float: right;
+	background-color: rgb(169, 184, 209);
+	border: 3px solid blue;
+	text-align: center;
+	border-radius: 5px;
+    width: 300px;  
+    padding-bottom: 45px;	
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.social-login
+{
+	margin-top: 0px;
+}
+.google
+{
+	margin-right: 0px;
+}
+.git
+{
+	margin-left: 10px;
+}

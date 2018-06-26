@@ -1,21 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TechnoBot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Login.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png'}" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
 </head>
 <body>
-<h2>Simple Basic Login Page</h2>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-<hr>
-Or If You Prefer...
-<hr>
-<form action="" method="post">
-   {% csrf_token %}
-   {{ form.as_p }}
-   <button type="submit">Login</button>
-</form>
+	<div class="text">
+		<p class="main">TECHNOBOT</p>
+		<p class="child">LOGIN.PARTICIPATE.WIN</p>
+	</div>
+	<div class="login">
+		<h2>LOGIN</h2>
+		<form action="" method="post">
+		   {% csrf_token %}
+		   {{ form.as_p }}<br>
+		   <button class="btn btn-primary btn-lg" type="submit">LOGIN</button>
+		</form><br><br>
+		<hr>
+			Or If You Prefer...
+		<hr>
+		<div class="social-login">
+			<a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google google" style="font-size:48px;color:red"></i></a>
+			<span>OR</span>
+			<a href="{% url 'social:begin' 'github' %}"><i class="fa fa-github git" style="font-size:45px"></i></a><br>
+		</div>
+	</div>
 
 </body>
 </html>
