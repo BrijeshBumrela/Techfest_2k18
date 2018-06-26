@@ -27,7 +27,12 @@
 }
 
 
+.li-nav:hover
+{
+	background-color:rgb(66, 200, 244);
+	border-radius:10px 10px 10px 10px;padding:10px;
 
+}
 
 img.half_fade {
    
