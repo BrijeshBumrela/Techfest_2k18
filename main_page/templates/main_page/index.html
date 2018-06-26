@@ -79,16 +79,16 @@
                 <div class="navbar-header">
 			
 			<button class="uk-button-default" type="button"><ul class="nav nav-pills navbar-nav menu">
-			  <li><a href="#"><span class="glyphicon glyphicon-user"></span><b> Hi ! User</b></a></li></button>
+			  <li><a href="{% url 'accounts:profile_home' %}"><span class="glyphicon glyphicon-user"></span><b> Hi ! {{ username }}</b></a></li></button>
 				<div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
 					<ul class="uk-nav uk-dropdown-nav">
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-user.png' %}"><a href="#"><strong>Your Profile</strong></a></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-user.png' %}"><a href="{% url 'accounts:profile_home' %}"><strong>My Profile</strong></a></li>
 						<li class="uk-nav-divider"></li>
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-coin.png' %}"><a href="#" style="padding:10px;"><strong>Your TecnoCoins</strong></a></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-coin.png' %}"><a href="#" style="padding:10px;"><strong>My TecnoCoins</strong></a></li>
 						<li class="uk-nav-divider"></li>
 						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-bell.png' %}"><a href="#" style="padding:10px;"><strong>Notifications</strong></a></li>
 						<li class="uk-nav-divider"></li>
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-logout.png' %}"><a href="#" style="padding:10px;"><strong>Log Out</strong></a></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-logout.png' %}"><a href="{% url 'registration:logout' %}" style="padding:10px;"><strong>Log Out</strong></a></li>
 					</ul>
 				</div>
 
