@@ -1,4 +1,5 @@
 {% load static %}
+{% load events_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +42,10 @@
     <link href="{% static 'main_page/css/anchor.css' %}" rel="stylesheet" type="text/css">
     <!-- flip-clock js-->
 
-    <!-- UIkit CSS -->
+    <!-- UIkit CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
 
 
     <!-- UIkit JS -->
@@ -72,34 +76,52 @@
         <div class="collapse navbar-collapse flex-sm-row-reverse" id="headernav">
 
             {% if username %}
-                <!-- Instead of Login,signup , display Profile and Logout-->
+                <!-- User authenticated .Instead of Login,signup , display Profile and Logout-->
+                <div class="navbar-header">
+			
+			<button class="uk-button-default" type="button"><ul class="nav nav-pills navbar-nav menu">
+			  <li><a href="{% url 'accounts:profile_home' %}"><span class="glyphicon glyphicon-user"></span><b> Hi ! {{ username }}</b></a></li></button>
+				<div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+					<ul class="uk-nav uk-dropdown-nav">
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-user.png' %}"><a href="{% url 'accounts:profile_home' %}"><strong>My Profile</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-coin.png' %}"><a href="#" style="padding:10px;"><strong>My TecnoCoins</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-bell.png' %}"><a href="#" style="padding:10px;"><strong>Notifications</strong></a></li>
+						<li class="uk-nav-divider"></li>
+						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-logout.png' %}"><a href="{% url 'registration:logout' %}" style="padding:10px;"><strong>Log Out</strong></a></li>
+					</ul>
+				</div>
+
+		</div>
             {% else %}
+                <!-- user not authenticated. Display Signup and Login -->
                 <div class="navbar-header">
                     <ul class="nav nav-pills navbar-nav menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="{% url 'registration:signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="{% url 'registration:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                 </div>
             {% endif %}
 
             <ul class=" nav nav-pills navbar-nav menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home"><strong>Home</strong></a>
+                    <a class="nav-link" href="{% url 'home' %}#home"><strong>Home</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#about"><strong>About</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#about"><strong>About</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#events"><strong>Events</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#events"><strong>Events</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#comments"><strong>Comments</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#comments"><strong>Comments</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#calender"><strong>Event-Calender</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#calender"><strong>Event-Calender</strong></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#sponsors"><strong>Sponsors</strong></a>
+                    <a class="nav-link " href="{% url 'home' %}#sponsors"><strong>Sponsors</strong></a>
                 </li>
 
             </ul>
@@ -309,7 +331,11 @@
                         </div>
                     </div>
 
-                    <img class="half_fade" src="{% static 'main_page/img/events/rvc.jpg' %}" alt="" uk-cover>
+                    {% if events.0.prime_image %}
+                        <img class="half_fade" src="{{ events.0.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
                 <li style="border-radius:10px 10px 10px 10px ! important;">
@@ -338,8 +364,11 @@
                             </div>
                         </div>
                     </div>
-                    <img class="half_fade" src="{% static 'main_page/img/events/mmg.jpg' %}" alt="" uk-cover>
-
+                    {% if events.1.prime_image %}
+                        <img class="half_fade" src="{{ events.1.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
                 <li style="border-radius:10px 10px 10px 10px ! important;">
@@ -360,8 +389,11 @@
                         </div>
 
                     </div>
-                    <img class="half_fade" src="{% static 'main_page/img/events/bot.jpg' %}" alt="" uk-cover>
-
+                    {% if events.2.prime_image %}
+                        <img class="half_fade" src="{{ events.2.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
             </ul>
@@ -455,121 +487,27 @@
     <div class="row justify-content-center no-gutters"
          uk-scrollspy="target: > div; cls:uk-animation-fade; delay: 500; ; repeat: true">
 
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/ctf.jpg' %}" alt="Capture The Flag" style="">
-                    <div class="info_box">
-                        <h5 class="name">Capture The Flag</h5>
+        {% for event in events %}
 
+            <div class="col-md-3 col-sm-6">
+                <a href="{% url 'event info' event.name|strtoslug  %}">
+                <div class="speaker_box">
+                    <div class="speaker_img">
+                        {% if event.prime_image %}
+                            <img src="{{ event.prime_image }}" alt="{{ event.name }}" style="">
+                        {% else %}
+                            <img src="{{ event_coming_soon_image }}" alt="{{ event.name }}" style="">
+                        {% endif %}
+                        <div class="info_box">
+                            <h5 class="name">{{ event.name }}</h5>
+
+                        </div>
                     </div>
                 </div>
+                </a>
             </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/rvc.jpg' %}" alt="Reverse Coding">
-                    <div class="info_box">
-                        <h5 class="name">Reverse Coding</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/elk.jpg' %}" alt="Elecktra">
-                    <div class="info_box">
-                        <h5 class="name">Elecktra</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/c22.jpg' %}" alt="Hack The Code">
-                    <div class="info_box">
-                        <h5 class="name">Hack The Code</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/mmg.jpg' %}" alt="The Cascader">
-                    <div class="info_box">
-                        <h5 class="name">The Cascader</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/hct.png' %}" alt="MedTech Hackathon">
-                    <div class="info_box">
-                        <h5 class="name">MedTech Hackathon</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/bot.jpg' %}" alt="Top Bot">
-                    <div class="info_box">
-                        <h5 class="name">Top Bot</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/fcw.jpg' %}" alt="Appathon">
-                    <div class="info_box">
-                        <h5 class="name">Appathon</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/log.jpg' %}" alt="Parivarkarsha">
-                    <div class="info_box">
-                        <h5 class="name">Parivarkarsha</h5>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-3 col-sm-6">
-            <div class="speaker_box">
-                <div class="speaker_img">
-                    <img src="{% static 'main_page/img/events/rcc.jpg' %}" alt="RC Car Event">
-                    <div class="info_box">
-                        <h5 class="name">RC Car Event</h5>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
 
     </div>
@@ -797,85 +735,35 @@
 
                 <tbody>
                 <!-- Event-1 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/rvc.jpg' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Reverse Coding</h3>
-                            <h5 class="name">08 AM - 11 AM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-2 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/mmg.jpg' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Mimeograph</h3>
-                            <h5 class="name">11:30 AM - 01:00 PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-3 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/ctf.png' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Capture The Flag</h3>
-                            <h5 class="name">02:00PM - 04:30PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-4 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/fcw.png' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">First Come Well Served</h3>
-                            <h5 class="name">05 PM - 07:00 PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
+                {% for event in events %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'event info' event.name|strtoslug  %}">
+                                {% if event.logo %}
+                                    <img src="{{ event.logo }}" alt="event">
+                                {% else %}
+                                    <img src="{{ default_logo }}" alt="event">
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td class="event_date">
+                            {{ event.calender.date }}<sup>{{ event.calender.datesuperscript }}</sup>
+                            <span>{{ events.0.calender.month }}</span>
+                        </td>
+                        <td>
+                            <div class="event_place">
+                                <h3 class="name">{{ event.name }}</h3>
+                                <h5 class="name">Starts At : {{ event.calender.hour }} {{ event.calender.timeblock }}</h5>
+                                <h6 class="name">Duration : {{ event.calender.diff }}</h6>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'event info' event.name|strtoslug  %}" class="btn btn-primary btn-rounded"><strong>Register Now</strong></a>
+                        </td>
+                        <td class="buy_link"></td>
+                    </tr>
+                {% endfor %}
+
 
                 </tbody>
 

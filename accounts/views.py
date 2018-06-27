@@ -68,6 +68,7 @@ def edit_additional_info(request):
             MUD.hackerrank_id = user_data_form.cleaned_data["hackerrank_id"]
             MUD.codechef_id = user_data_form.cleaned_data["codechef_id"]
             MUD.codeforces_id = user_data_form.cleaned_data["codeforces_id"]
+            MUD.description = user_data_form.cleaned_data["description"]
 
             if "profile_pic" in request.FILES:
                 MUD.profile_pic = request.FILES["profile_pic"]
@@ -90,3 +91,8 @@ def edit_additional_info(request):
         
 #QRgenerator(string)
  
+
+
+@login_required
+def register_user_for_event(request) :
+    pass
