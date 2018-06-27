@@ -331,7 +331,11 @@
                         </div>
                     </div>
 
-                    <img class="half_fade" src="{% static 'main_page/img/events/rvc.jpg' %}" alt="" uk-cover>
+                    {% if events.0.prime_image %}
+                        <img class="half_fade" src="{{ events.0.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
                 <li style="border-radius:10px 10px 10px 10px ! important;">
@@ -360,8 +364,11 @@
                             </div>
                         </div>
                     </div>
-                    <img class="half_fade" src="{% static 'main_page/img/events/mmg.jpg' %}" alt="" uk-cover>
-
+                    {% if events.1.prime_image %}
+                        <img class="half_fade" src="{{ events.1.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
                 <li style="border-radius:10px 10px 10px 10px ! important;">
@@ -382,8 +389,11 @@
                         </div>
 
                     </div>
-                    <img class="half_fade" src="{% static 'main_page/img/events/bot.jpg' %}" alt="" uk-cover>
-
+                    {% if events.2.prime_image %}
+                        <img class="half_fade" src="{{ events.2.prime_image }}" alt="" uk-cover>
+                    {% else %}
+                        <img class="half_fade" src="{{ event_coming_soon_image }}" alt="" uk-cover>
+                    {% endif %}
 
                 </li>
             </ul>
