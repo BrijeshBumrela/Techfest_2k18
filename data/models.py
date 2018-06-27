@@ -102,4 +102,4 @@ class EventCatalogue(models.Model):
         ordering = ['-event']
 
     def __str__(self):
-        return self.event.name + "Catalogue"
+        return self.event.name + " Catalogue"
