@@ -99,7 +99,7 @@ class EventCatalogue(models.Model):
                                help_text="Upload Image 1 for this Event. (optional)")
 
     class Meta:
-        ordering = ['-event']
+        ordering = ['event']
 
     def __str__(self):
         return self.event.name + " Catalogue"
