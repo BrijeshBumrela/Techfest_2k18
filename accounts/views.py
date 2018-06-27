@@ -87,15 +87,7 @@ def edit_additional_info(request):
             new_form = MoreUserDataForm()
 
         return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
-<<<<<<< HEAD
         
         
 #QRgenerator(string)
  
-=======
-
-
-@login_required
-def register_user_for_event(request) :
-    pass
->>>>>>> events
