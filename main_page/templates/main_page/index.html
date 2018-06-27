@@ -735,85 +735,35 @@
 
                 <tbody>
                 <!-- Event-1 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/rvc.jpg' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Reverse Coding</h3>
-                            <h5 class="name">08 AM - 11 AM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-2 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/mmg.jpg' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Mimeograph</h3>
-                            <h5 class="name">11:30 AM - 01:00 PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-3 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/ctf.png' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">Capture The Flag</h3>
-                            <h5 class="name">02:00PM - 04:30PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
-                <!-- Event-4 in calender -->
-                <tr>
-                    <td>
-                        <img src="{% static 'main_page/img/calender/fcw.png' %}" alt="event">
-                    </td>
-                    <td class="event_date">
-                        26
-                        <span>September</span>
-                    </td>
-                    <td>
-                        <div class="event_place">
-                            <h3 class="name">First Come Well Served</h3>
-                            <h5 class="name">05 PM - 07:00 PM</h5>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-rounded"><strong>Sign Up / Register Now</strong></a>
-                    </td>
-                    <td class="buy_link"></td>
-                </tr>
+                {% for event in events %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'event info' event.name|strtoslug  %}">
+                                {% if event.logo %}
+                                    <img src="{{ event.logo }}" alt="event">
+                                {% else %}
+                                    <img src="{{ default_logo }}" alt="event">
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td class="event_date">
+                            {{ event.calender.date }}<sup>{{ event.calender.datesuperscript }}</sup>
+                            <span>{{ events.0.calender.month }}</span>
+                        </td>
+                        <td>
+                            <div class="event_place">
+                                <h3 class="name">{{ event.name }}</h3>
+                                <h5 class="name">Starts At : {{ event.calender.hour }} {{ event.calender.timeblock }}</h5>
+                                <h6 class="name">Duration : {{ event.calender.diff }}</h6>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'event info' event.name|strtoslug  %}" class="btn btn-primary btn-rounded"><strong>Register Now</strong></a>
+                        </td>
+                        <td class="buy_link"></td>
+                    </tr>
+                {% endfor %}
+
 
                 </tbody>
 
