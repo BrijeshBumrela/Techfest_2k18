@@ -28,7 +28,7 @@ def create_events(number_of_events=10):
     """Creates Sample Events"""
     for i in range(number_of_events):
         try:
-            event = models.Event(name="Sample Event" + str(i),
+            event = models.Event(name="Sample Event " + str(i),
                                  start_date_time=timezone.now(),
                                  end_date_time=timezone.now(),
                                  description="Sample Event",
