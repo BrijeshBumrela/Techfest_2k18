@@ -23,6 +23,7 @@ def index(request):
         events.append(E)
 
     render_dict["events"] = events
+    render_dict["event_coming_soon_image"] = '/media/events/defaults/coming_soon.jpg'
     return render(request, "main_page/index.html", render_dict)
 
 
