@@ -1,0 +1,81 @@
+body
+{
+	background-image: url("../images//s-back1.jpg");
+}
+.signup
+{
+	float: left;
+	color: white;
+	text-align: center;
+	border-radius: 15px;
+	box-shadow: 5px 10px 100px lightblue;
+	width:650px;
+	margin-top: 25px;
+	margin-left: 50px;
+	padding-bottom: 80px;
+
+}
+.button
+{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.button1
+{
+	background-color: white; 
+	padding: 15px 62px;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.button1:hover
+{
+	background-color: #4CAF50; /* Green */
+	color: white;
+}
+.button2
+{
+	background-color: white; 
+	padding: 15px 57.5px;
+    color: black; 
+    border: 2px solid rgb(113, 56, 193);
+}
+.button2:hover
+{
+	background-color: rgb(113, 56, 193); /* Green */
+	color: white;
+}
+h4 
+{ 
+	width:300px;
+	text-align:center; 
+	border-bottom: 1px solid blue; 
+	line-height:0.1em;
+	margin-left: 150px;
+	margin:20px 100 20px; 
+} 
+h4 span 
+{ 
+	border-radius: 5px;
+	background:red;
+	padding:0 15px; 
+}
+.text
+{
+	color:white;
+	text-align: center;
+	width: 400px;
+	float: right;
+	
+	margin-top: 65px;
+	margin-right: 90px;
+}
+.main
+{
+	font-size: 60px;
+}
