@@ -21,6 +21,11 @@ No Logo Available<br>
     {{ registerform }}
     <input type="submit" value="Register">
 </form>
+<form action="{% url 'accounts:un_register_for_event' event_slug %}" method="post">
+    {% csrf_token %}
+    {{ registerform }}
+    <input type="submit" value="De-Register">
+</form>
 {% else %}
 You must sign in to be able to register
 {% endif %}

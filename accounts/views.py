@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse
-from data.models import MoreUserData
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
 from registration.forms import MoreUserDataForm
 from django.contrib.auth.decorators import login_required
@@ -99,19 +99,73 @@ def register_user_for_event(request, event_name):
     except ValueError:
         return render(request, "accounts/invalid_request.html")
 
+    if not hasattr(request.user, 'moreuserdata'):
+        return render(request, "accounts/invalid_request.html", {
+            "message": "Your Profile is missing some critical information. Please go to your profile and fill out the missing information before registering for the event",
+            "links": ["incomplete_profile"]})
+
     event_name = event_name.lower().replace('-', ' ')
     if request.method == 'POST':
         register_form = EventRegisterForm(request.POST)
 
         if register_form.is_valid():
             if request.user.username == register_form.cleaned_data["username"]:
-                pass
+                if event_name == register_form.cleaned_data["event"]:
+                    event = get_object_or_404(Event, name=event_name)
+                    if request.user.moreuserdata in event.participants.all():
+                        return render(request, "accounts/invalid_request.html",
+                                      {"message": "You are already registered for this event"})
+                    else:
+                        event.participants.add(request.user.moreuserdata)
+                else:
+                    return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
             else:
-                return render(request, "accounts/invalid_request.html")
+                return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
         else:
-            return render(request, "accounts/invalid_request.html")
+            return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
 
-        return render(request, "accounts/registeration_complete.html",
+        return render(request, "accounts/registration_complete.html",
                       {"username": register_form["username"].value(), "event": register_form['event'].value()})
     else:
-        return render(request, "accounts/invalid_request.html")
+        return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+
+
+
+
+@login_required
+def un_register_user_for_event(request, event_name):
+    event_slug = event_name
+    try:
+        event_name = str(event_name)
+    except ValueError:
+        return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+
+    if not hasattr(request.user, 'moreuserdata'):
+        return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+
+    event_name = event_name.lower().replace('-', ' ')
+    if request.method == 'POST':
+        register_form = EventRegisterForm(request.POST)
+
+        if register_form.is_valid():
+            if request.user.username == register_form.cleaned_data["username"]:
+                if event_name == register_form.cleaned_data["event"]:
+                    event = get_object_or_404(Event, name=event_name)
+                    if request.user.moreuserdata in event.participants.all():
+                        event.participants.remove(request.user.moreuserdata)
+
+                    else:
+                        return render(request, "accounts/invalid_request.html",
+                                      {"message": "You are anyway not participating in this event"})
+
+                else:
+                    return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+            else:
+                return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+        else:
+            return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+
+        return render(request, "accounts/un_registration_complete.html",
+                      {"username": register_form["username"].value(), "event": register_form['event'].value(),"event_slug":event_slug})
+    else:
+        return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
