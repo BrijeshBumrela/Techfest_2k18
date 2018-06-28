@@ -43,6 +43,7 @@ def get_required_date_time_data(start_date, end_date,utc_start_date,utc_end_date
 
     rettime_block = "AM"
     rethour = start_date.hour
+    retmin = start_date.minute
 
     if start_date.hour > 12:
         rethour -= 12
@@ -77,6 +78,7 @@ def get_required_date_time_data(start_date, end_date,utc_start_date,utc_end_date
             "datesuperscript": retdatesupscript,
             "timeblock": rettime_block,
             "hour": rethour,
+            "minute": retmin,
             "diff": retfinaldiff
             }
 
