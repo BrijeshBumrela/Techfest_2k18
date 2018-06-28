@@ -50,6 +50,18 @@ body
 	background-color: rgb(113, 56, 193); /* Green */
 	color: white;
 }
+.button3
+{
+	background-color: white; 
+	padding: 15px 57.5px;
+    color: black; 
+    border: 2px solid rgb(113, 56, 193);
+}
+.button3:hover
+{
+	background-color: rgb(113, 56, 193); /* Green */
+	color: white;
+}
 h4 
 { 
 	width:300px;
