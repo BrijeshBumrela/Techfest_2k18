@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 import os.path
 from django.core.validators import MaxLengthValidator, MinLengthValidator
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -52,8 +53,13 @@ def get_event_logo_upload_url(instance, filename):
     return os.path.join(location, str(instance.name), "logos", "logo.png")
 
 
+def event_name_slug_validator(event_name):
+    if '-' in str(event_name):
+        raise ValidationError("- not Allowed in event name as they will clash with event name slug")
+
+
 class Event(models.Model):
-    name = models.CharField(verbose_name="Event Name", max_length=50, unique=True)
+    name = models.CharField(verbose_name="Event Name", max_length=50, unique=True, validators=[event_name_slug_validator], help_text="All characters allowed except '-' as this may collide with slug of event name")
     logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
                              help_text="Please Upload A Logo For This Event")
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
