@@ -15,6 +15,16 @@ No Logo Available<br>
 {{ event.start_date_time }}<br>
 {{ event.end_date_time }}<br>
 <hr>
+{% if authenticated %}
+<form action="{% url 'accounts:register_for_event' event_slug %}" method="post">
+    {% csrf_token %}
+    {{ registerform }}
+    <input type="submit" value="Register">
+</form>
+{% else %}
+You must sign in to be able to register
+{% endif %}
+<hr>
 Description :<br>
 {{ event.description }}
 <hr>

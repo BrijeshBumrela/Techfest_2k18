@@ -4,6 +4,7 @@ import data.models
 import data.forms
 import datetime
 import pytz
+from .forms import EventRegisterForm
 
 # Create your views here.
 
@@ -127,12 +128,20 @@ def display_events(request):
 
 
 def event_info(request, event_name):
-    event_name = event_name.replace('-', ' ')
     event_name = event_name.lower()
+    event_slug = event_name
+    event_name = event_name.replace('-', ' ')
+
 
     event = get_object_or_404(data.models.Event, name=event_name)
     event_organisers = event.organisers.all()
     logo = None
     if str(event.logo) != "":
         logo = event.logo.url
-    return render(request, "main_page/event_info.html", {"event": event, "organisers": event_organisers, "logo": logo})
+
+    if request.user.is_authenticated :
+        registerform = EventRegisterForm({"username":request.user.username,"event":event_name})
+        return render(request, "main_page/temp_event_info.html", {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True, "registerform":registerform, "event_slug":event_slug})
+
+    else :
+        return render(request, "main_page/temp_event_info.html", {"event": event, "organisers": event_organisers, "logo": logo})

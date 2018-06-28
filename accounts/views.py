@@ -1,29 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from data.models import MoreUserData
 from django.contrib.auth.models import User
 from registration.forms import MoreUserDataForm
 from django.contrib.auth.decorators import login_required
+from main_page.forms import EventRegisterForm
 import os.path
-#For encryption
+# For encryption
 import hashlib
-#The QR code file
+# The QR code file
 from . import QRcode
-
 
 # Create your views here.
 
 
 string = ''
 
+
 def MD5encrypt(str1):
-	str1=str(str1)
-	str2='ksbdyemxl'
-	str3='snaoheiwmsceqf'
-	str4=str2+str1+str3
-	
-	result = hashlib.md5(str4.encode())
-	
-	return result.hexdigest()
+    str1 = str(str1)
+    str2 = 'ksbdyemxl'
+    str3 = 'snaoheiwmsceqf'
+    str4 = str2 + str1 + str3
+
+    result = hashlib.md5(str4.encode())
+
+    return result.hexdigest()
 
 
 def redirect_to_profile_home(request):
@@ -57,11 +58,10 @@ def edit_additional_info(request):
             else:
                 MUD = MoreUserData()
                 MUD.user = request.user
-                #Encryption
+                # Encryption
                 MUD.secret_key = MD5encrypt(request.user.username)
-                #Using the variable string to send to qrcode
+                # Using the variable string to send to qrcode
                 string = str(MUD.secret_key)
-                
 
             MUD.college_name = user_data_form.cleaned_data["college_name"]
             MUD.github_id = user_data_form.cleaned_data["github_id"]
@@ -87,12 +87,31 @@ def edit_additional_info(request):
             new_form = MoreUserDataForm()
 
         return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
-        
-        
-#QRgenerator(string)
- 
+
+
+# QRgenerator(string)
 
 
 @login_required
-def register_user_for_event(request) :
-    pass
+def register_user_for_event(request, event_name):
+    try:
+        event_name = str(event_name)
+    except ValueError:
+        return render(request, "accounts/invalid_request.html")
+
+    event_name = event_name.lower().replace('-', ' ')
+    if request.method == 'POST':
+        register_form = EventRegisterForm(request.POST)
+
+        if register_form.is_valid():
+            if request.user.username == register_form.cleaned_data["username"]:
+                pass
+            else:
+                return render(request, "accounts/invalid_request.html")
+        else:
+            return render(request, "accounts/invalid_request.html")
+
+        return render(request, "accounts/registeration_complete.html",
+                      {"username": register_form["username"].value(), "event": register_form['event'].value()})
+    else:
+        return render(request, "accounts/invalid_request.html")
