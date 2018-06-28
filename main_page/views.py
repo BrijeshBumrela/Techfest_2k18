@@ -135,4 +135,4 @@ def event_info(request, event_name):
     logo = None
     if str(event.logo) != "":
         logo = event.logo.url
-    return render(request, "main_page/event_info.html", {"event": event, "organisers": event_organisers, "logo": logo})
+    return render(request, "main_page/temp_event_info.html", {"event": event, "organisers": event_organisers, "logo": logo})
