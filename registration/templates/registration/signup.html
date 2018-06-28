@@ -18,7 +18,7 @@
                 <div>
                         {{ signup_form.non_field_errors }}
                 </div>
-                <table>
+                {% comment %}<table>
                     {% for field in signup_form %}
                         <tr>
                             <td>
@@ -43,7 +43,44 @@
                             </td>
                             <td></td>
                         </tr>
-                </table>
+                </table>{% endcomment %}
+                <div>
+                    <span>{{ signup_form.first_name.errors }}</span>
+                    <span><label for="{{ form.first_name.id_for_label }}">First Name :</label></span>
+                    <span>{{ signup_form.first_name }}</span>
+                    <span>{{ signup_form.first_name.field.help_text }}</span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.last_name.errors }}</span>
+                    <span><label for="{{ form.last_name.id_for_label }}">Last Name :</label></span>
+                    <span>{{ signup_form.last_name }}</span>
+                    <span>{{ signup_form.last_name.field.help_text }}</span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.email.errors }}</span>
+                    <span><label for="{{ form.email.id_for_label }}">Email :</label></span>
+                    <span>{{ signup_form.email }}</span>
+                    <span>{{ signup_form.email.field.help_text }}</span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.username.errors }}</span>
+                    <span><label for="{{ form.username.id_for_label }}">username :</label></span>
+                    <span>{{ signup_form.username }}</span>
+                    <span>{{ signup_form.username.field.help_text }}</span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.password.errors }}</span>
+                    <span><label for="{{ form.password.id_for_label }}">Password :</label></span>
+                    <span>{{ signup_form.password }}</span>
+                    <span>{{ signup_form.password.field.help_text }}</span>
+                </div>
+
+
+
             </form>
             <h4><span>OR</span></h4>
             <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="button button1"><i class="fa fa-google" style="font-size:36px"></i>oogle</button></a>
