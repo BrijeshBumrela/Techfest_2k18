@@ -23,7 +23,7 @@ month_to_word = {1: "Janury",
                  }
 
 
-def get_required_date_time_data(start_date, end_date,utc_start_date,utc_end_date):
+def get_required_date_time_data(start_date, end_date, utc_start_date, utc_end_date):
     if not isinstance(start_date, datetime.datetime):
         raise ValueError("Received start-date is not an instance of datetime.datetime")
 
@@ -93,7 +93,7 @@ def index(request):
     events = list()
     for event in data.models.Event.objects.all():
         E = {"name": event.name.title()}
-        if str(event.logo) :
+        if str(event.logo):
             E["logo"] = event.logo.url
         if hasattr(event, 'eventcatalogue'):
             if str(event.eventcatalogue.image1):
@@ -102,7 +102,8 @@ def index(request):
         localtimezone = pytz.timezone('Asia/Kolkata')
         local_start_date_time = event.start_date_time.astimezone(localtimezone)
         local_end_date_time = event.start_date_time.astimezone(localtimezone)
-        E["calender"] = get_required_date_time_data(local_start_date_time, local_end_date_time, event.start_date_time,event.end_date_time)
+        E["calender"] = get_required_date_time_data(local_start_date_time, local_end_date_time, event.start_date_time,
+                                                    event.end_date_time)
         events.append(E)
 
     render_dict["events"] = events
@@ -134,16 +135,29 @@ def event_info(request, event_name):
     event_slug = event_name
     event_name = event_name.replace('-', ' ')
 
-
     event = get_object_or_404(data.models.Event, name=event_name)
     event_organisers = event.organisers.all()
     logo = None
     if str(event.logo) != "":
         logo = event.logo.url
 
-    if request.user.is_authenticated :
-        registerform = EventRegisterForm({"username":request.user.username,"event":event_name})
-        return render(request, "main_page/temp_event_info.html", {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True, "registerform":registerform, "event_slug":event_slug})
+    if request.user.is_authenticated:
+        registerform = EventRegisterForm({"username": request.user.username, "event": event_name})
+        if hasattr(request.user, "moreuserdata"):
+            if event.participants.all().filter(pk=request.user.moreuserdata.user_id).exists():
+                return render(request, "main_page/temp_event_info.html",
+                              {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+                               "registerform": registerform, "event_slug": event_slug, "registered": True})
 
-    else :
-        return render(request, "main_page/temp_event_info.html", {"event": event, "organisers": event_organisers, "logo": logo})
+            else:
+                return render(request, "main_page/temp_event_info.html",
+                              {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+                               "registerform": registerform, "event_slug": event_slug, "registered": False})
+
+        return render(request, "main_page/temp_event_info.html",
+                      {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+                       "registerform": registerform, "event_slug": event_slug})
+
+    else:
+        return render(request, "main_page/temp_event_info.html",
+                      {"event": event, "organisers": event_organisers, "logo": logo})

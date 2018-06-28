@@ -91,6 +91,10 @@ def edit_additional_info(request):
 
 # QRgenerator(string)
 
+@login_required
+def display_user_registered_events(request):
+    pass
+
 
 @login_required
 def register_user_for_event(request, event_name):
