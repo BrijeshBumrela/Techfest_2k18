@@ -3,6 +3,7 @@ from data.models import MoreUserData
 from django.contrib.auth.models import User
 from registration.forms import MoreUserDataForm
 from django.contrib.auth.decorators import login_required
+from main_page.forms import EventRegisterForm
 import os.path
 # For encryption
 import hashlib
@@ -93,8 +94,24 @@ def edit_additional_info(request):
 
 @login_required
 def register_user_for_event(request, event_name):
-    if request.method == 'POST':
+    try:
+        event_name = str(event_name)
+    except ValueError:
+        return render(request, "accounts/invalid_request.html")
 
-        return render(request, "accounts/registeration_complete.html",{"username"})
+    event_name = event_name.lower().replace('-', ' ')
+    if request.method == 'POST':
+        register_form = EventRegisterForm(request.POST)
+
+        if register_form.is_valid():
+            if request.user.username == register_form.cleaned_data["username"]:
+                pass
+            else:
+                return render(request, "accounts/invalid_request.html")
+        else:
+            return render(request, "accounts/invalid_request.html")
+
+        return render(request, "accounts/registeration_complete.html",
+                      {"username": register_form["username"].value(), "event": register_form['event'].value()})
     else:
-        return HttpResponse("Invalid Request <br><br> Redirect To <a href={% url 'home' %}>home</a>")
+        return render(request, "accounts/invalid_request.html")
