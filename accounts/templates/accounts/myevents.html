@@ -5,6 +5,18 @@
     <title>My Events</title>
 </head>
 <body>
-
+You are registered for the following events. <br>
+<hr>
+{% for event in events %}
+    <div>
+        {% if event.logo %}
+            {{ event.logo }}
+        {% else %}
+            {{ default_logo }}
+        {% endif %}
+        <br>{{ event.name }}
+    </div>
+    <hr>
+{% endfor %}
 </body>
 </html>

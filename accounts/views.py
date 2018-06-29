@@ -94,8 +94,15 @@ def edit_additional_info(request):
 @login_required
 def display_user_registered_events(request):
     event_set = request.user.moreuserdata.participating_events.all()
-    event_names = list()
-    return render(request, "accounts/myevents.html")
+    return_event_set = list()
+    for event in event_set:
+        E = {"name": event.name}
+        if str(event.logo):
+            E["logo"] = event.logo.url
+
+        return_event_set.append(E)
+    return render(request, "accounts/myevents.html",
+                  {"events": return_event_set, "default_logo": "/media/events/defaults/logo.png"})
 
 
 @login_required
@@ -178,7 +185,7 @@ def un_register_user_for_event(request, event_name):
 
 @login_required
 def maps(request):
-    return render(request, "accounts/calender.html")
+    return render(request, "accounts/map.html")
 
 
 @login_required
