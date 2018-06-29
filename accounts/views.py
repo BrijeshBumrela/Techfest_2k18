@@ -16,6 +16,22 @@ from . import QRcode
 string = ''
 
 
+def email_confirmation_required(func):
+    """
+    A decorator which allows to access url only if email for current user has been confirmed.
+    THE DECORATOR login_required MUST ALWAYS PRECEDE THIS
+
+    """
+    def checker(request, *args):
+        if request.user.emailconfirmation.email_confirmed is True:
+            return func(request, *args)
+
+        else:
+            return render(request, "accounts/email_not_verified.html")
+
+    return checker
+
+
 def MD5encrypt(str1):
     str1 = str(str1)
     str2 = 'ksbdyemxl'
@@ -32,6 +48,7 @@ def redirect_to_profile_home(request):
 
 
 @login_required
+@email_confirmation_required
 def profile_home(request):
     User = {"username": request.user.username}
     additional_info_check = False
@@ -46,6 +63,7 @@ def profile_home(request):
 
 
 @login_required
+@email_confirmation_required
 def edit_additional_info(request):
     if request.method == "POST":
 
@@ -92,6 +110,7 @@ def edit_additional_info(request):
 # QRgenerator(string)
 
 @login_required
+@email_confirmation_required
 def display_user_registered_events(request):
     event_set = request.user.moreuserdata.participating_events.all()
     return_event_set = list()
@@ -106,6 +125,7 @@ def display_user_registered_events(request):
 
 
 @login_required
+@email_confirmation_required
 def register_user_for_event(request, event_name):
     try:
         event_name = str(event_name)
@@ -144,6 +164,7 @@ def register_user_for_event(request, event_name):
 
 
 @login_required
+@email_confirmation_required
 def un_register_user_for_event(request, event_name):
     event_slug = event_name
     try:
@@ -184,10 +205,12 @@ def un_register_user_for_event(request, event_name):
 
 
 @login_required
+@email_confirmation_required
 def maps(request):
     return render(request, "accounts/map.html")
 
 
 @login_required
+@email_confirmation_required
 def calender(request):
     return render(request, "accounts/calender.html")

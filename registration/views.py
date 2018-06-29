@@ -81,6 +81,7 @@ def activate_account(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.emailconfirmation.email_confirmed = True
         user.save()
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('home')
 
     elif user is None :
