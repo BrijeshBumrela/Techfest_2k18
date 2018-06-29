@@ -8,7 +8,8 @@
 <link rel="shortcut icon" href="{% static 'main_page/img/icons/logo.png' %}" />
 <link href="{% static 'main_page/css/timeline.css' %}" rel="stylesheet" >				<!-- Custom CSS of event page -->
 <link href="{% static 'main_page/css/main.css' %}" rel="stylesheet"> 					<!-- Custom styles for this template -->
-
+<link href="{% static 'assets/css/jR3D-style.css' %}" rel="stylesheet">					<!-- CSS file for slider -->
+	
 <!-- UIkit -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
@@ -20,7 +21,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
+
 	
+<!-- Slider -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="{% static 'assets/js/jR3DCarousel.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jR3Djsfile.js' %}"></script>
 
 </head>
 
@@ -28,6 +34,42 @@
 
 <div class="chip uk-container" style="margin:20px;"><h3 style="color:#ff5500;"><strong>Capture The Flag</strong></h3></div>
 
+	
+	<div class="container" style="margin:20px;">
+	
+		<div class="jR3DCarouselGalleryCustomeTemplate">
+			
+			<div class="jR3DCarouselCustomSlide">
+				<img src="{% static 'assets/img/page/ctf-c-1.jpg' %}" />
+				<div class="captions">This is custom text slide 1</div>
+			</div>
+			
+			<div class="jR3DCarouselCustomSlide">
+				<img src="{% static 'assets/img/page/ctf-c-2.jpg' %}" />
+				<span class="captions">This is clickable slide 2</span>				
+			</div>
+			
+			<div class="jR3DCarouselCustomSlide">
+				<img src="{% static 'assets/img/page/ctf-c-3.jpg' %}" />
+				<div class="captions">This is custom text slide 3</div>
+			</div>
+			
+			<div class="jR3DCarouselCustomSlide">
+				<img src="{% static 'assets/img/page/ctf-c-4.jpg' %}" />
+				<div class="captions">This is custom text slide 4</div>
+			</div>
+			
+			<div class="jR3DCarouselCustomSlide">
+				<img src="{% static 'assets/img/page/ctf-c-5.jpg' %}" />
+				<div class="captions">This is custom text slide 5</div>
+			</div>
+			
+		</div>
+</div>
+	
+	
+	
+	
 
 
 <div>
