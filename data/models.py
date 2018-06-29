@@ -10,6 +10,27 @@ from django.core.exceptions import ValidationError
 
 
 # Create your models here.
+
+class EmailConfirmation(models.Model):
+    user = models.OneToOneField(to=User, primary_key=True, on_delete=models.CASCADE)
+    email_confirmed = models.BooleanField(default=False)
+
+
+@receiver(signals.post_save, sender=User)
+def put_email_confirmed_false(sender, instance, created, **kwargs):
+    if created:
+        EmailConfirmation.objects.create(user=instance)
+        if instance.has_usable_password() is False:
+            # Users passing through oauth don't need to confirm email
+            instance.emailconfirmation.email_confirmed = True
+
+        elif instance.is_superuser :
+            # Superusers don't need to confirm emails
+            instance.emailconfirmation.email_confirmed = True
+
+    instance.emailconfirmation.save()
+
+
 def get_profilepic_upload_url(instance, filename):
     location = "profile_pictures"
     return os.path.join(location, str(instance.user.id))
@@ -59,7 +80,9 @@ def event_name_slug_validator(event_name):
 
 
 class Event(models.Model):
-    name = models.CharField(verbose_name="Event Name", max_length=50, unique=True, validators=[event_name_slug_validator], help_text="All characters allowed except '-' as this may collide with slug of event name")
+    name = models.CharField(verbose_name="Event Name", max_length=50, unique=True,
+                            validators=[event_name_slug_validator],
+                            help_text="All characters allowed except '-' as this may collide with slug of event name")
     logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
                              help_text="Please Upload A Logo For This Event")
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
