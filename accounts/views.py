@@ -93,7 +93,9 @@ def edit_additional_info(request):
 
 @login_required
 def display_user_registered_events(request):
-    pass
+    event_set = request.user.moreuserdata.participating_events.all()
+    event_names = list()
+    return render(request, "accounts/myevents.html")
 
 
 @login_required

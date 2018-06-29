@@ -13,5 +13,5 @@ urlpatterns = [
     path('login/', auth_views.login, name="login"),
     path('event/<slug:event_name>/register', views.register_user_for_event, name="register_for_event"),
     path('event/<slug:event_name>/deregister', views.un_register_user_for_event, name="un_register_for_event"),
-    path('myevents', views.display_user_registered_events)
+    path('myevents', views.display_user_registered_events,name="myevents")
 ]
