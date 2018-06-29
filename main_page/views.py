@@ -165,3 +165,7 @@ def event_info(request, event_name):
 
 def contact_us(request):
     return render(request, "main_page/contact_us.html")
+
+
+def temp_event_info(request):
+    return render(request, "main_page/event_info.html")

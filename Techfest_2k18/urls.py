@@ -29,7 +29,11 @@ urlpatterns = [
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('contact-us',main_page.views.contact_us, name="contact_us" )
+    path('contact-us',main_page.views.contact_us, name="contact_us" ),
+    #----
+    #TEMPORARY
+    path('tempeventinfo',main_page.views.temp_event_info),
+    #------
 
 ]
 
