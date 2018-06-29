@@ -178,7 +178,7 @@ def un_register_user_for_event(request, event_name):
 
 @login_required
 def maps(request):
-    return render(request, "accounts/calender.html")
+    return render(request, "accounts/map.html")
 
 
 @login_required
