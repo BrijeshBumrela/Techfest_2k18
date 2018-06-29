@@ -4,10 +4,11 @@ from . import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from data.tokens import account_activation_token
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -21,7 +22,7 @@ def send_account_activation_email(request, user_instance):
                                       'domain': current_site.domain,
                                       'uid': urlsafe_base64_encode(
                                           force_bytes(
-                                              user_instance.pk)),
+                                              user_instance.pk)).decode(),
                                       'token': account_activation_token.make_token(
                                           user_instance),
                                       })
@@ -50,7 +51,6 @@ def signup(request):
             # user_instance = new_user
             send_account_activation_email(request, new_user)
 
-
             # login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('registration:account_activation_email_sent')
 
@@ -69,3 +69,27 @@ def logout_view(request):
 
 def account_activation_email_sent(request):
     return render(request, "registration/account_activation_email_sent.html")
+
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.emailconfirmation.email_confirmed = True
+        user.save()
+        return redirect('home')
+
+    elif user is None :
+        return render(request, 'registration/invalid_activation_link.html', {"isnone":True})
+    else:
+        return render(request,'registration/invalid_activation_link.html')
+
+
+@login_required
+def generate_new_activation_link(request):
+    send_account_activation_email(request, request.user)
+    redirect('registration:account_activation_email_sent')
