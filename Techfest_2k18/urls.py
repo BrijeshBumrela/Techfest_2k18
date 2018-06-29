@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-
-from django.urls import path, include
+from django.conf.urls import url
+from django.urls import path, include, re_path
 import main_page.views
 from . import settings
 from django.conf.urls.static import static
@@ -28,7 +28,9 @@ urlpatterns = [
     path('event/<slug:event_name>', main_page.views.event_info, name="event info"),
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
-    path('auth/', include('social_django.urls', namespace='social'))
+    path('auth/', include('social_django.urls', namespace='social')),
+    path('activate/<uidb64>/<token>',
+        main_page.views.redirect_to_index, name='activate'),
 ]
 
 if settings.DEBUG:
