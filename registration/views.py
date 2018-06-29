@@ -92,4 +92,4 @@ def activate_account(request, uidb64, token):
 @login_required
 def generate_new_activation_link(request):
     send_account_activation_email(request, request.user)
-    redirect('registration:account_activation_email_sent')
+    return redirect('registration:account_activation_email_sent')
