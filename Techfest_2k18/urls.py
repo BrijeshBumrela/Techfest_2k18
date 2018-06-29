@@ -29,8 +29,7 @@ urlpatterns = [
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('activate/<uidb64>/<token>',
-        main_page.views.redirect_to_index, name='activate'),
+
 ]
 
 if settings.DEBUG:

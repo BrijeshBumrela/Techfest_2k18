@@ -4,5 +4,5 @@ We are glad to see you here.
 
 Please click on the link below to confirm your email and activate your account:
 
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+http://{{ domain }}{% url 'registration:activate' uidb64=uid token=token %}
 {% endautoescape %}
