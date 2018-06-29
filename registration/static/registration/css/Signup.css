@@ -9,11 +9,16 @@ body
 	text-align: center;
 	border-radius: 15px;
 	box-shadow: 5px 10px 100px lightblue;
-	width:650px;
+	width:500px;
 	margin-top: 25px;
 	margin-left: 50px;
 	padding-bottom: 80px;
 
+}
+.text1
+{
+	margin-right: 35px;
+	font-family: "Courier New", Courier, monospace;
 }
 .button
 {
@@ -29,38 +34,45 @@ body
 .button1
 {
 	background-color: white; 
-	padding: 15px 62px;
+	padding: 15px 45px;
     color: black; 
     border: 2px solid #4CAF50;
+
 }
 .button1:hover
 {
 	background-color: #4CAF50; /* Green */
 	color: white;
+	box-shadow: 2px 5px 25px rgb(16, 96, 0);
 }
 .button2
 {
 	background-color: white; 
-	padding: 15px 57.5px;
+	padding: 15px 40px;
     color: black; 
     border: 2px solid rgb(113, 56, 193);
+    margin-right: 40px;
 }
 .button2:hover
 {
-	background-color: rgb(113, 56, 193); /* Green */
+	background-color: rgb(113, 56, 193); 
 	color: white;
+	box-shadow: 2px 5px 25px rgb(131, 6, 214)
 }
 .button3
 {
+	margin-right: 15px;
 	background-color: white; 
-	padding: 15px 57.5px;
+	padding: 10px 40px;
     color: black; 
     border: 2px solid rgb(113, 56, 193);
+    border-radius: 15px;
 }
 .button3:hover
 {
-	background-color: rgb(113, 56, 193); /* Green */
+	background-color: #30082d; 
 	color: white;
+	box-shadow: 2px 5px 25px lightblue;
 }
 h4 
 { 
@@ -68,7 +80,7 @@ h4
 	text-align:center; 
 	border-bottom: 1px solid blue; 
 	line-height:0.1em;
-	margin-left: 150px;
+	margin-left: 85px;
 	margin:20px 100 20px; 
 } 
 h4 span 
@@ -90,4 +102,49 @@ h4 span
 .main
 {
 	font-size: 60px;
+}
+.fname
+{
+	float: left;
+	margin-left: 75px;
+}
+.lname
+{
+	margin-right: 75px;
+}
+.fbox
+{
+	float: left;
+	margin-left: 75px;
+}
+.lbox
+{
+	margin-right: 75px;
+}
+.email
+{
+	float: left;
+	margin-left: 75px;		
+}
+.e-box
+{
+	margin-right: 30px;	
+}
+.uname
+{
+	float: left;
+	margin-left: 75px;
+}
+.pass
+{
+	margin-right: 75px;
+}
+.ubox
+{
+	float: left;
+	margin-left: 75px;
+}
+.pbox
+{
+	margin-right: 75px;
 }
