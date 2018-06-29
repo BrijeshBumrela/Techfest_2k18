@@ -136,8 +136,6 @@ def register_user_for_event(request, event_name):
         return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
 
 
-
-
 @login_required
 def un_register_user_for_event(request, event_name):
     event_slug = event_name
@@ -172,6 +170,17 @@ def un_register_user_for_event(request, event_name):
             return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
 
         return render(request, "accounts/un_registration_complete.html",
-                      {"username": register_form["username"].value(), "event": register_form['event'].value(),"event_slug":event_slug})
+                      {"username": register_form["username"].value(), "event": register_form['event'].value(),
+                       "event_slug": event_slug})
     else:
         return render(request, "accounts/invalid_request.html", {"message": "Invalid request"})
+
+
+@login_required
+def maps(request):
+    return render(request, "accounts/calender.html")
+
+
+@login_required
+def calender(request):
+    return render(request, "accounts/calender.html")
