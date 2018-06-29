@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" href="{% static 'assets/img/icons/logo.png' %}" />
+<link href="{% static 'assets/css/timeline.css' %}" rel="stylesheet" >				<!-- Custom CSS of event page -->
+<link href="{% static 'assets/css/main.css' %}" rel="stylesheet"> 					<!-- Custom styles for this template -->
+
+<!-- UIkit -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+
+	
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
+
+</head>
+
+<body>
+
+<div class="chip uk-container" style="margin:20px;"><h3 style="color:#ff5500;"><strong>Capture The Flag</strong></h3></div>
+
+
+
+<div>
+	<div class="timeline" uk-scrollspy="cls: uk-animation-fade;delay: 700; repeat: false">
+		  <div class="container-event left" >
+				<div class="content box-1" uk-scrollspy="cls: uk-animation-slide-left;delay:500;repeat: true" >
+					<div class="col-md-12 col-sm-4">
+					  <div class="chip">
+						<h3 style="color:#ff5500;font-size:2vw;" ><b>Introduction</b></h3>
+					  </div>
+					</div>
+					<p style="color:#F0FFF0;font-size:1vw;color:cyan; " >Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+				</div>
+		  </div>
+		  
+		  
+		  <div class="container-event right">
+			<div class="content box-2" uk-scrollspy="cls: uk-animation-slide-right;delay:800;repeat: true" >
+				<div class="col-md-12 col-sm-4">
+					<div class="chip">
+						<h3 style="color:#ff5500;font-size:2vw;" ><b>Schedule</b></h3>
+					</div>
+				</div>
+					<p style="color:#7CFC00;" ><img src="{% static 'assets/img/icons/icon-cal.png' %}"><strong style="font-size:2vw;"> 26 September 2018 </strong></p>
+					<p style="font-size:2vw;color:cyan;" >Timings : <strong style="font-size:2vw;">02:00 PM to 04:00 PM</strong></p>
+				<form><a href="#" class="btn btn-danger btn-rounded" style="background-color:red;"><strong style="font-family:font-family: 'Raleway', sans-serif;">Register Now</strong></a></form>
+			</div>
+		  </div>
+		  
+		  
+		  
+		  
+		  
+		  
+		  <div class="container-event left">
+			<div class="content box-3" uk-scrollspy="cls: uk-animation-slide-left;delay:1100;repeat: true">
+				<div class="col-md-12 col-sm-4">
+					<div class="chip">
+						<h3 style="color:#ff5500;"><strong>Prizes</strong></h3>
+					</div>
+				</div>
+				<ul style="font-size:1.5vw;" uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">
+					<li style="color:cyan;" >Winner : <p style="color:orange;">asdad</p></li>
+					<li style="color:cyan;" >First Runner-Up : <p style="color:orange;">asdad</p></li>
+					<li style="color:cyan;" >Second Runner-Up : <p style="color:orange;">adsad</p></li>
+				</ul>
+			</div>
+		  </div>
+		  
+		  <div class="container-event right">
+			<div class="content box-4" uk-scrollspy="cls: uk-animation-slide-right;repeat: true">
+				<div class="col-md-12 col-sm-4">
+					<div class="chip">
+						<h3 style="color:#ff5500;font-size:2vw;" ><b>Rules</b></h3>
+					</div>
+				</div>
+			  <p style="font-size:1.5vw;color:orange;" uk-parallax="opacity: 0,1; y: 100,0; viewport: 0.5"><strong>Kindly go through Rules and Regulation of the event.</strong></p>
+			  <a href="#" class="btn btn-danger btn-rounded" style="background-color:red;"><strong style="font-family:font-family: 'Raleway', sans-serif;">Click Here</strong></a>	
+			</div>
+		  </div>
+	</div>  
+</div>	  
+
+
+<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="img-circle"
+                                 alt="Harshit Singh" style="float:left; padding:30px; width:250px; height:250px ">
+
+
+		  <div class="uk-container-event">
+			  <div class="chip" style="margin:20px;"><h3 style="color:#ff5500;"><strong>Help Desk</strong></h3></div>
+					<div class="uk-container">
+					  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+							<div>
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" >
+									<img src="{% static 'assets/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
+									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
+									<img src="{% static 'assets/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+									<img src="{% static 'assets/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+								</div>
+							</div>
+							<div>
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px;"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+									<img src="{% static 'assets/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
+									<img src="{% static 'assets/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+									<img src="{% static 'assets/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+								</div>
+							</div>
+							<div>
+								<div class="uk-card uk-card-primary" style="margin-bottom:70px;border-radius:40px 40px 40px 40px;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+									<img src="{% static 'assets/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
+									<img src="{% static 'assets/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+									<img src="{% static 'assets/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+								</div>
+							</div>
+							<div>
+								<div class="uk-card uk-card-primary" style="margin-bottom:70px;border-radius:40px 40px 40px 40px;"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+									<img src="{% static 'assets/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
+									<img src="{% static 'assets/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+									<img src="{% static 'assets/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+	
+</body>
+</html>
