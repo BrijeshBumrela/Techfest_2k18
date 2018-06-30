@@ -214,3 +214,4 @@ def maps(request):
 @email_confirmation_required
 def calender(request):
     return render(request, "accounts/calender.html")
+
