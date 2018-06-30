@@ -19,6 +19,7 @@ from django.urls import path, include, re_path
 import main_page.views
 from . import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,11 +30,15 @@ urlpatterns = [
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('contact-us',main_page.views.contact_us, name="contact_us" ),
-    #----
-    #TEMPORARY
-    path('tempeventinfo',main_page.views.temp_event_info),
-    #------
+    path('password_reset/', auth_views.password_reset, name='password_reset'),
+    path('password_reset/done/', auth_views.password_reset_done, name='password_reset_done'),
+    path('reset/(<uidb64>/<token>', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    path('reset/done/', auth_views.password_reset_complete, name='password_reset_complete'),
+    path('contact-us', main_page.views.contact_us, name="contact_us"),
+    # ----
+    # TEMPORARY
+    path('tempeventinfo', main_page.views.temp_event_info),
+    # ------
 
 ]
 
