@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation Failed</title>
+</head>
+<body>
+It seems your email has not been confirmed.<br>
+Click on the account activation link in your email<br>
+<a href="{% url 'registration:resend_activation_link' %}">Generate a new link</a>
+</body>
+</html>

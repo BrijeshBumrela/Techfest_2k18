@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Your name has been removed from the participants list for  {{ event }}. Sad to see you go back. :-(
+<br>
+Mistake? : <a href="{% url 'event info' event_slug %}">Register Again</a><br>
+Back to <a href="{% url 'home' %}">home</a><br>
+Back to <a href="{% url 'accounts:profile_home' %}">profile</a>
+</body>
+</html>

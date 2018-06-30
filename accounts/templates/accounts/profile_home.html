@@ -8,7 +8,7 @@
 <body>
 <nav>
     <a>Logo</a> |
-    <a>Events</a> |
+    <a href="{% url 'accounts:myevents' %}">My Events</a> |
     <a>Teams</a> |
     <a href="{% url 'accounts:edit_additional_info' %}">Edit Profile</a> |
     <a href="{% url 'accounts:profile_home' %}">Hello {{ user.username }}</a> |

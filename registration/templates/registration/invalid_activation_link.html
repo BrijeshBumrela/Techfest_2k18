@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invalidation Activation Link</title>
+</head>
+<body>
+This activation link is invalid.<br>
+This may be because of following reasons :
+<ul>
+    <li>The link has been tampered with</li>
+    <li>The link has timed out</li>
+    <li>A new link was generated which led to the deactivation of this link</li>
+    <li>Your account has been blocked</li>
+
+</ul>
+
+For the first 3 cases you may <a href="{% url 'registration:resend_activation_link' %}">Generate A New Link</a>. <br>
+<a>Contact Us</a> if problem persists
+{{ isnone }}
+</body>
+</html>
