@@ -43,9 +43,9 @@
     <!-- flip-clock js-->
 
     <!-- UIkit CDN -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
 
 
     <!-- UIkit JS -->
@@ -78,28 +78,40 @@
             {% if username %}
                 <!-- User authenticated .Instead of Login,signup , display Profile and Logout-->
                 <div class="navbar-header">
-			
-			<button class="uk-button-default" type="button"><ul class="nav nav-pills navbar-nav menu">
-			  <li><a href="{% url 'accounts:profile_home' %}"><span class="glyphicon glyphicon-user"></span><b> Hi ! {{ username }}</b></a></li></button>
-				<div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
-					<ul class="uk-nav uk-dropdown-nav">
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-user.png' %}"><a href="{% url 'accounts:profile_home' %}"><strong>My Profile</strong></a></li>
-						<li class="uk-nav-divider"></li>
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-coin.png' %}"><a href="#" style="padding:10px;"><strong>My TecnoCoins</strong></a></li>
-						<li class="uk-nav-divider"></li>
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-bell.png' %}"><a href="#" style="padding:10px;"><strong>Notifications</strong></a></li>
-						<li class="uk-nav-divider"></li>
-						<li class="li-nav"><img src="{% static 'main_page/img/icons/icon-logout.png' %}"><a href="{% url 'registration:logout' %}" style="padding:10px;"><strong>Log Out</strong></a></li>
-					</ul>
-				</div>
 
-		</div>
+                    <button class="uk-button-default" type="button">
+                        <ul class="nav nav-pills navbar-nav menu">
+                            <li><a href="{% url 'accounts:profile_home' %}"><span
+                                    class="glyphicon glyphicon-user"></span><b> Hi ! {{ username }}</b></a></li>
+                    </button>
+                    <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li class="li-nav"><img src="{% static 'main_page/img/icons/icon-user.png' %}"><a
+                                    href="{% url 'accounts:profile_home' %}"><strong>My Profile</strong></a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li class="li-nav"><img src="{% static 'main_page/img/icons/icon-coin.png' %}"><a href="#"
+                                                                                                              style="padding:10px;"><strong>My
+                                TecnoCoins</strong></a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li class="li-nav"><img src="{% static 'main_page/img/icons/icon-bell.png' %}"><a href="#"
+                                                                                                              style="padding:10px;"><strong>Notifications</strong></a>
+                            </li>
+                            <li class="uk-nav-divider"></li>
+                            <li class="li-nav"><img src="{% static 'main_page/img/icons/icon-logout.png' %}"><a
+                                    href="{% url 'registration:logout' %}" style="padding:10px;"><strong>Log
+                                Out</strong></a></li>
+                        </ul>
+                    </div>
+
+                </div>
             {% else %}
                 <!-- user not authenticated. Display Signup and Login -->
                 <div class="navbar-header">
                     <ul class="nav nav-pills navbar-nav menu">
-                        <li><a href="{% url 'registration:signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="{% url 'registration:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="{% url 'registration:signup' %}"><span class="glyphicon glyphicon-user"></span>
+                            Sign Up</a></li>
+                        <li><a href="{% url 'registration:login' %}"><span class="glyphicon glyphicon-log-in"></span>
+                            Login</a></li>
                     </ul>
                 </div>
             {% endif %}
@@ -490,20 +502,20 @@
         {% for event in events %}
 
             <div class="col-md-3 col-sm-6">
-                <a href="{% url 'event info' event.name|strtoslug  %}">
-                <div class="speaker_box">
-                    <div class="speaker_img">
-                        {% if event.prime_image %}
-                            <img src="{{ event.prime_image }}" alt="{{ event.name }}" style="">
-                        {% else %}
-                            <img src="{{ event_coming_soon_image }}" alt="{{ event.name }}" style="">
-                        {% endif %}
-                        <div class="info_box">
-                            <h5 class="name">{{ event.name }}</h5>
+                <a href="{% url 'event info' event.name|strtoslug %}">
+                    <div class="speaker_box">
+                        <div class="speaker_img">
+                            {% if event.prime_image %}
+                                <img src="{{ event.prime_image }}" alt="{{ event.name }}" style="">
+                            {% else %}
+                                <img src="{{ event_coming_soon_image }}" alt="{{ event.name }}" style="">
+                            {% endif %}
+                            <div class="info_box">
+                                <h5 class="name">{{ event.name }}</h5>
 
+                            </div>
                         </div>
                     </div>
-                </div>
                 </a>
             </div>
 
@@ -738,7 +750,7 @@
                 {% for event in events %}
                     <tr>
                         <td>
-                            <a href="{% url 'event info' event.name|strtoslug  %}">
+                            <a href="{% url 'event info' event.name|strtoslug %}">
                                 {% if event.logo %}
                                     <img src="{{ event.logo }}" alt="event">
                                 {% else %}
@@ -753,12 +765,14 @@
                         <td>
                             <div class="event_place">
                                 <h3 class="name">{{ event.name }}</h3>
-                                <h5 class="name">Starts At : {{ event.calender.hour }} {{ event.calender.timeblock }}</h5>
+                                <h5 class="name">Starts At
+                                    : {{ event.calender.hour }}{% if event.calender.minute %}.{{ event.calender.minute }} {% endif %} {{ event.calender.timeblock }}</h5>
                                 <h6 class="name">Duration : {{ event.calender.diff }}</h6>
                             </div>
                         </td>
                         <td>
-                            <a href="{% url 'event info' event.name|strtoslug  %}" class="btn btn-primary btn-rounded"><strong>Register Now</strong></a>
+                            <a href="{% url 'event info' event.name|strtoslug %}"
+                               class="btn btn-primary btn-rounded"><strong>Register Now</strong></a>
                         </td>
                         <td class="buy_link"></td>
                     </tr>
