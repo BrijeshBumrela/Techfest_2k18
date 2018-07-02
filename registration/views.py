@@ -10,10 +10,21 @@ from django.template.loader import render_to_string
 from data.tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 
+from threading import Thread
+from django.db import connection
+
+def postpone(func):
+    def decorator(*args, **kwargs):
+        t = Thread(target=func, args=args, kwargs=kwargs)
+        t.daemon = True
+        t.start()
+
+    return decorator
+
 
 # Create your views here.
 
-
+@postpone
 def send_account_activation_email(request, user_instance):
     current_site = get_current_site(request)
     email_subject = "Activate Your Technobots2k18 Account "
@@ -28,7 +39,7 @@ def send_account_activation_email(request, user_instance):
                                       })
 
     user_instance.email_user(email_subject, email_message)
-
+    connection.close()
     return
 
     # return redirect('registration:account_activation_email_sent')
@@ -84,10 +95,10 @@ def activate_account(request, uidb64, token):
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('home')
 
-    elif user is None :
-        return render(request, 'registration/invalid_activation_link.html', {"isnone":True})
+    elif user is None:
+        return render(request, 'registration/invalid_activation_link.html', {"isnone": True})
     else:
-        return render(request,'registration/invalid_activation_link.html')
+        return render(request, 'registration/invalid_activation_link.html')
 
 
 @login_required
