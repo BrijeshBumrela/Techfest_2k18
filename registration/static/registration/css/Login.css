@@ -20,12 +20,12 @@ body
 
 	color: white;
 	font-size: 15px;
-	margin-bottom: 80px;
+	
 }
 .login
 {
-	margin-right: 140px;
-	margin-top: 80px;
+	margin-right: 15%;
+	margin-top: 5%;
 	float: right;
 	background-color: rgb(169, 184, 209);
 	border: 3px solid blue;
@@ -35,15 +35,7 @@ body
     padding-bottom: 45px;	
     font-family: "Comic Sans MS", cursive, sans-serif;
 }
-.social-login
-{
-	margin-top: 0px;
-}
-.google
-{
-	margin-right: 0px;
-}
 .git
 {
-	margin-left: 10px;
+	margin-left: 1%;
 }
