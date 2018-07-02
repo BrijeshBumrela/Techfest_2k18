@@ -24,7 +24,7 @@ def put_email_confirmed_false(sender, instance, created, **kwargs):
             # Users passing through oauth don't need to confirm email
             instance.emailconfirmation.email_confirmed = True
 
-        elif instance.is_superuser :
+        elif instance.is_superuser:
             # Superusers don't need to confirm emails
             instance.emailconfirmation.email_confirmed = True
 
@@ -90,7 +90,7 @@ class Event(models.Model):
     description = models.TextField(verbose_name="Description")
     rules = models.TextField(verbose_name="Contest Rules")
     prize = models.TextField(verbose_name="Prize Description")
-    organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=False,
+    organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=True,
                                         help_text="Please Select 1 or more users as Organisers")
     participants = models.ManyToManyField(to=MoreUserData, related_name="participating_events", blank=True, )
 
@@ -132,3 +132,25 @@ class EventCatalogue(models.Model):
 
     def __str__(self):
         return self.event.name + " Catalogue"
+
+
+def get_committee_upload_url(instance, filename):
+    return os.path.join("committee", instance.name, "logo" + filename)
+
+
+class Committee(models.Model):
+    name = models.CharField(max_length=50)
+    members = models.ManyToManyField(to=MoreUserData, blank=True)
+    committee_lgo = models.ImageField(verbose_name="Committee Logo", upload_to=get_committee_upload_url, blank=True)
+
+
+def phone_number_validator(ph_no):
+    pass
+
+
+class CommitteeContactInfo(models.Model):
+    committee = models.OneToOneField(to=Committee,on_delete=models.CASCADE)
+    phone_number_min_length = MinLengthValidator(10)
+    phone_number = models.CharField(max_length=10, validators=[phone_number_min_length],blank=True,
+                                    help_text="Enter The contact number of committee without the preceeding country code")
+    email = models.EmailField(blank=True)
