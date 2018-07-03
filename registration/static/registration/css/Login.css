@@ -4,38 +4,68 @@ body
 }
 .text
 {
-	margin-top: 40px;
-	margin-left: 70px;
+	width: 40%;
+	margin-top: 5%;
 	float: left;
+	text-align: center;
 }
 .main
 {
 	font-size: 80px;	
-	margin-left: 50px;
 	color: white;
 	font-family:Impact, Charcoal, sans-serif;
 }
 .child
 {
-
 	color: white;
-	font-size: 15px;
-	
 }
 .login
 {
-	margin-right: 15%;
-	margin-top: 5%;
+	width: 30%;
 	float: right;
+	margin-right: 8%;
+	margin-top: 5.5%;
 	background-color: rgb(169, 184, 209);
 	border: 3px solid blue;
 	text-align: center;
 	border-radius: 5px;
-    width: 300px;  
     padding-bottom: 45px;	
-    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.login_head
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.login_btn:hover
+{
+	box-shadow: 2px 5px 25px blue;
+}
+.forgot_pass
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#or
+{
+	font-family: "Lucida Console", Monaco, monospace;
+}
+.google:hover
+{
+	box-shadow: 2px 5px 25px red;		
 }
 .git
 {
-	margin-left: 1%;
+	margin-left: 3%;
+}
+.git:hover
+{
+	box-shadow: 2px 5px 25px darkblue;
+}
+#google1
+{
+	margin-right: 3%;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#git1
+{
+	margin-left: 7%;
+	font-family: Verdana, Geneva, sans-serif;
 }
