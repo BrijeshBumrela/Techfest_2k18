@@ -130,13 +130,21 @@
                     <li><a class="nav-link" href="{% url 'home' %}#events"><b> Events</b></a></li>
                     <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
                         <ul class="uk-nav uk-dropdown-nav">
-                            <li class="li-nav-event">
-                                <div class="chip">
-                                    <img src="{% static 'main_page/img/icons/icon-ctf.png' %}" alt="Contact Person' %}">
-                                    <a style="text-decoration:none;" href="#"><strong>Cature The Flag</strong></a>
-                                </div>
-                            </li>
-                            <li class="li-nav-event">
+                            {% for event in events %}
+                                <li class="li-nav-event">
+                                    <div class="chip">
+                                        {% if event.logo %}
+                                            <img src="{{ event.logo }}" alt="{{ event.name }}">
+                                        {% else %}
+                                            <img src="{{ default_logo }}" alt="{{ event.name }}">
+                                        {% endif %}
+
+                                        <a style="text-decoration:none;"
+                                           href="{% url 'event info' event.name|strtoslug %}"><strong>{{ event.name }}</strong></a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            {% comment %}<li class="li-nav-event">
                                 <div class="chip">
                                     <img src="{% static 'main_page/img/icons/icon-rvc.png' %}" alt="Contact Person' %}">
                                     <a style="text-decoration:none;" href="#"><strong>Reverse Coding</strong></a>
@@ -189,7 +197,7 @@
                                     <img src="{% static 'main_page/img/icons/icon-rcc.jpg' %}" alt="Contact Person">
                                     <a style="text-decoration:none;" href="#"><strong>RC Car Event</strong></a>
                                 </div>
-                            </li>
+                            </li>{% endcomment %}
                         </ul>
                     </div>
 
