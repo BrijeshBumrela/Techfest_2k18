@@ -26,7 +26,8 @@ body
 	margin-right: 8%;
 	margin-top: 5.5%;
 	background-color: rgb(169, 184, 209);
-	border: 3px solid blue;
+	border: 10px solid blue;
+	box-shadow: 2px 5px 25px blue; 
 	text-align: center;
 	border-radius: 5px;
     padding-bottom: 45px;	

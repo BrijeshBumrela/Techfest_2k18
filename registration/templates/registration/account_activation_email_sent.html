@@ -1,10 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Activation Email</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    	#section
+    	{
+    		position: relative;
+    	}
+    	#background
+    	{
+    		position: absolute;
+    		left: 0;
+    		top: 0;
+    		z-index: -1;
+    		transition: all .6s;
+    	}
+     	#section1
+    	{
+    		position: relative;
+    	}
+    	#main
+    	{
+    		position: fixed;
+    		width: 70%;
+    		margin-top: 12%;
+    		margin-left: 15%;
+    		background-color: rgb(198, 226, 255);
+    		border:1px solid black;
+    		padding-top: 1.5%;
+    		padding-bottom: 2%;
+    		font-family: "Comic Sans MS", cursive, sans-serif;
+    	}
+    </style>
 </head>
-<body>
-An email with activation link will be sent shortly
+<body style="text-align: center;font-size: 30px;color: rgb(58, 26, 0);">
+	<div id="section"></div>
+	<div id="background">
+		<img src="{% static 'registration/images/sat.jpeg' %}">
+	</div>
+	<div id="section1"></div>
+<div id="main">
+	<div>
+		<i class="fa fa-envelope" style="font-size: 50px;"></i>  An Email with activation link will be sent shortly...
+	</div>
 </body>
 </html>
