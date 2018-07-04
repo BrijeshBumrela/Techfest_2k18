@@ -71,7 +71,7 @@ def delete_profile_pic_on_model_delete(sender, instance, **kwargs):
 
 def get_event_logo_upload_url(instance, filename):
     location = "events"
-    return os.path.join(location, str(instance.name), "logos", "logo.png")
+    return os.path.join(location, str(instance.name), "logos", filename)
 
 
 def event_name_slug_validator(event_name):
