@@ -111,7 +111,7 @@ body
 
 <div class="uk-container">	
 	<div style="text-align:center;margin:10px;" >
-		<img src="assets/img/icons/icon-ctf-logo.png" width="120" height="120">
+		<img src="{% static 'main_page/img/icons/icon-ctf-logo.png' %}"  width="120" height="120">
 	</div>
 </div>
 
@@ -122,27 +122,27 @@ body
 		<div class="jR3DCarouselGalleryCustomeTemplate">
 			
 			<div class="jR3DCarouselCustomSlide">
-				<img src="assets/img/page/ctf-c-1.jpg" />
+				<img src="{% static 'main_page/img/page/ctf-c-1.jpg' %}" />
 				<div class="captions">This is custom text slide 1</div>
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
-					<img src="assets/img/page/ctf-c-2.jpg" />
+					<img src="{% static 'main_page/img/page/ctf-c-2.jpg' %}" />
 					<span class="captions">This is clickable slide 2</span>				
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
-				<img src="assets/img/page/ctf-c-3.jpg" />
+				<img src="{% static 'main_page/img/page/ctf-c-3.jpg' %}" />
 				<div class="captions">This is custom text slide 3</div>
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
-				<img src="assets/img/page/ctf-c-4.jpg" />
+				<img src="{% static 'main_page/img/page/ctf-c-4.jpg' %}" />
 				<div class="captions">This is custom text slide 4</div>
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
-				<img src="assets/img/page/ctf-c-5.jpg" />
+				<img src="{% static 'main_page/img/page/ctf-c-5.jpg' %}" />
 				<div class="captions">This is custom text slide 5</div>
 			</div>
 			
@@ -179,9 +179,9 @@ body
 						</div>
 					</div>
 				</div>
-					<p style="color:#7CFC00;" ><img src="assets/img/icons/icon-cal.png"><strong style="font-size:2vw;"> 26 September 2018 </strong></p>
+					<p style="color:#7CFC00;" ><img src="{% static 'main_page/img/icons/icon-cal.png' %}"><strong style="font-size:2vw;"> 26 September 2018 </strong></p>
 					<p style="font-size:2vw;color:cyan;" >Timings : <strong style="font-size:2vw;">02:00 PM to 04:00 PM</strong></p>
-				<a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family:font-family: 'Raleway', sans-serif;">Register Now</strong></a>
+				<a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Register Now</strong></a>
 			</div>
 		  </div>
 		  
@@ -200,9 +200,9 @@ body
 					</div>
 				</div>
 				<ul type="none" style="font-size:1.5vw;" uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">
-					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="assets/img/icons/icon-medal.png" width="40" height="40" style="margin:10px;">Winner : <span style="color:orange;">asdad</span></li>
-					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="assets/img/icons/icon-medal-silver.png" width="40" height="40" style="margin:10px;">First Runner-Up : <span style="color:orange;">asdad</span></li>
-					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="assets/img/icons/icon-medal-bronze.png" width="40" height="40" style="margin:10px;">Second Runner-Up : <span style="color:orange;">adsad</span></li>
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal.png' %}" width="40" height="40" style="margin:10px;">Winner : <span style="color:orange;">asdad</span></li>
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal-silver.png' %}" width="40" height="40" style="margin:10px;">First Runner-Up : <span style="color:orange;">asdad</span></li>
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal-bronze.png' %}" width="40" height="40" style="margin:10px;">Second Runner-Up : <span style="color:orange;">adsad</span></li>
 				</ul>
 			</div>
 		  </div>
@@ -217,7 +217,7 @@ body
 					</div>
 				</div>
 			  <p style="font-size:1.5vw;color:orange;" uk-parallax="opacity: 0,1; y: 100,0; viewport: 0.5"><strong>Kindly go through Rules and Regulation of the event.</strong></p>
-			  <form><a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family:font-family: 'Raleway', sans-serif;">Click Here</strong></a></form>	
+			  <form><a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Click Here</strong></a></form>
 			</div>
 		  </div>
 	</div>  
@@ -228,60 +228,60 @@ body
 					  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
 							<div>
 								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px" uk-scrollspy="cls: uk-animation-slide-left;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" uk-parallax="sepia: 70;">
-									<img src="assets/img/comments/c1.jpg" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
 									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="assets/img/icons/icon-mail.png"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
 									<div class="col-md-6 col-sm-10">
-										<img src="assets/img/icons/icon-phone.png" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls: uk-animation-slide-right;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" uk-parallax="sepia: 70;">
-									<img src="assets/img/comments/c1.jpg" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
 									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="assets/img/icons/icon-mail.png"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
 									<div class="col-md-6 col-sm-10">
-										<img src="assets/img/icons/icon-phone.png" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls:uk-animation-fade; delay: 500; repeat: true; uk-animation-slide-left;" uk-parallax="sepia: 70;">
-									<img src="assets/img/comments/c1.jpg" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
 									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="assets/img/icons/icon-mail.png"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
 									<div class="col-md-6 col-sm-10">
-										<img src="assets/img/icons/icon-phone.png" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
 								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls:uk-animation-fade; delay: 500; repeat: true; uk-animation-slide-right;" uk-parallax="sepia: 70;">
-									<img src="assets/img/comments/c1.jpg" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148"> 
+									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
 									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="assets/img/icons/icon-mail.png"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
 									<div class="col-md-6 col-sm-10">
-										<img src="assets/img/icons/icon-phone.png" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 					</div>
 				</div>
 
-	
+          </div>
 </body>
 </html>
 
