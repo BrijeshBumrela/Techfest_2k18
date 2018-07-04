@@ -5,37 +5,119 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="shortcut icon" href="{% static 'main_page/img/icons/logo.png' %}" />
+<link rel="shortcut icon" href="{% static 'main_page/img/icons/icon-ctf-logo.png' %}" />
 <link href="{% static 'main_page/css/timeline.css' %}" rel="stylesheet" >				<!-- Custom CSS of event page -->
 <link href="{% static 'main_page/css/main.css' %}" rel="stylesheet"> 					<!-- Custom styles for this template -->
 <link href="{% static 'main_page/css/jR3D-style.css' %}" rel="stylesheet">					<!-- CSS file for slider -->
-	
+<link href="{% static 'main_page/css/style.css' %}" rel="stylesheet">
+
+
 <!-- UIkit -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
 
-	
+
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
 
-	
+
+
 <!-- Slider -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="{% static 'main_page/js/jR3DCarousel.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'main_page/js/jR3Djsfile.js' %}"></script>
 
+
+
+<style>
+
+body
+{
+	background: url( "{% static 'main_page/img/page/ctf-log.jpg' %}");
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+	background-size: cover;
+}
+
+
+/* The circles on the timeline */
+.container-event::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+	background: url('{% static "main_page/img/icons/icon-ctf.png" %}' ) center center no-repeat;
+    border: 4px solid #FF9F55;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+
+.box-1
+{
+	background: url('{% static "main_page/img/page/ctf1.jpg" %}') center center no-repeat;
+	background-size: cover;
+	opacity:0.8;
+}
+
+
+.box-2
+{
+	background: url('{%  static "main_page/img/page/ctf2.jpg" %}') center center no-repeat;
+	background-size: cover;
+	opacity:0.8;
+}
+
+
+
+.box-3
+{
+	background: url('{% static "main_page/img/page/ctf3.jpg" %}') center center no-repeat;
+	background-size: cover;
+	opacity:0.8;
+}
+
+
+.box-4
+{
+	background: url('{% static "main_page/img/page/ctf4.jpg" %}') center center no-repeat;
+	background-size: cover;
+	opacity:0.8;
+}
+
+
+</style>
+
+
 </head>
 
 <body>
 
-<div class="chip uk-container" style="margin:20px;"><h3 style="color:#ff5500;"><strong>Capture The Flag</strong></h3></div>
+<div style="text-align:center;">
+	<div class="chip uk-container" style=" margin:20px; margin-bottom: 5px;">
+		<div style="float:left">
+			<h3 style="color:#ff5500;">
+				<strong>Capture The Flag</strong>
+			</h3>
+		</div>
+	</div>
+</div>
 
-	
-	<div class="container" style="margin:20px;">
+
+<div class="uk-container">	
+	<div style="text-align:center;margin:10px;" >
+		<img src="{% static 'main_page/img/icons/icon-ctf-logo.png' %}"  width="120" height="120">
+	</div>
+</div>
+
+
+
+<div class="container-slider" style="margin:20px;">
 	
 		<div class="jR3DCarouselGalleryCustomeTemplate">
 			
@@ -45,8 +127,8 @@
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
-				<img src="{% static 'main_page/img/page/ctf-c-2.jpg' %}" />
-				<span class="captions">This is clickable slide 2</span>				
+					<img src="{% static 'main_page/img/page/ctf-c-2.jpg' %}" />
+					<span class="captions">This is clickable slide 2</span>				
 			</div>
 			
 			<div class="jR3DCarouselCustomSlide">
@@ -66,36 +148,40 @@
 			
 		</div>
 </div>
-	
-	
-	
-	
-
 
 <div>
 	<div class="timeline" uk-scrollspy="cls: uk-animation-fade;delay: 700; repeat: false">
 		  <div class="container-event left" >
+				 
+		  
 				<div class="content box-1" uk-scrollspy="cls: uk-animation-slide-left;delay:500;repeat: true" >
 					<div class="col-md-12 col-sm-4">
-					  <div class="chip">
-						<h3 style="color:#ff5500;font-size:2vw;" ><b>Introduction</b></h3>
-					  </div>
+						<div style="text-align:center;">
+							<div class="chip">
+								<h3 style="color:#ff5500;font-size:2vw;" ><b>Introduction</b></h3>
+							  </div>
+						</div>
 					</div>
 					<p style="color:#F0FFF0;font-size:1vw;color:cyan; " >Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
 				</div>
+				
+				
+				
 		  </div>
 		  
 		  
 		  <div class="container-event right">
 			<div class="content box-2" uk-scrollspy="cls: uk-animation-slide-right;delay:800;repeat: true" >
 				<div class="col-md-12 col-sm-4">
-					<div class="chip">
-						<h3 style="color:#ff5500;font-size:2vw;" ><b>Schedule</b></h3>
+					<div style="text-align:center;">
+						<div class="chip">
+							<h3 style="color:#ff5500;font-size:2vw;" ><b>Schedule</b></h3>
+						</div>
 					</div>
 				</div>
 					<p style="color:#7CFC00;" ><img src="{% static 'main_page/img/icons/icon-cal.png' %}"><strong style="font-size:2vw;"> 26 September 2018 </strong></p>
 					<p style="font-size:2vw;color:cyan;" >Timings : <strong style="font-size:2vw;">02:00 PM to 04:00 PM</strong></p>
-				<form><a href="#" class="btn btn-danger btn-rounded" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Register Now</strong></a></form>
+				<a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Register Now</strong></a>
 			</div>
 		  </div>
 		  
@@ -107,14 +193,16 @@
 		  <div class="container-event left">
 			<div class="content box-3" uk-scrollspy="cls: uk-animation-slide-left;delay:1100;repeat: true">
 				<div class="col-md-12 col-sm-4">
-					<div class="chip">
-						<h3 style="color:#ff5500;"><strong>Prizes</strong></h3>
+					<div style="text-align:center">
+						<div class="chip">
+							<h3 style="color:#ff5500;"><strong>Prizes</strong></h3>
+						</div>
 					</div>
 				</div>
-				<ul style="font-size:1.5vw;" uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">
-					<li style="color:cyan;" >Winner : <p style="color:orange;">asdad</p></li>
-					<li style="color:cyan;" >First Runner-Up : <p style="color:orange;">asdad</p></li>
-					<li style="color:cyan;" >Second Runner-Up : <p style="color:orange;">adsad</p></li>
+				<ul type="none" style="font-size:1.5vw;" uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal.png' %}" width="40" height="40" style="margin:10px;">Winner : <span style="color:orange;">asdad</span></li>
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal-silver.png' %}" width="40" height="40" style="margin:10px;">First Runner-Up : <span style="color:orange;">asdad</span></li>
+					<li class="li-nav-event" style="color:cyan;" ><img class="li-nav-event" src="{% static 'main_page/img/icons/icon-medal-bronze.png' %}" width="40" height="40" style="margin:10px;">Second Runner-Up : <span style="color:orange;">adsad</span></li>
 				</ul>
 			</div>
 		  </div>
@@ -122,83 +210,79 @@
 		  <div class="container-event right">
 			<div class="content box-4" uk-scrollspy="cls: uk-animation-slide-right;repeat: true">
 				<div class="col-md-12 col-sm-4">
-					<div class="chip">
-						<h3 style="color:#ff5500;font-size:2vw;" ><b>Rules</b></h3>
+					<div style="text-align:center">
+						<div class="chip">
+							<h3 style="color:#ff5500;font-size:2vw;" ><b>Rules</b></h3>
+						</div>
 					</div>
 				</div>
 			  <p style="font-size:1.5vw;color:orange;" uk-parallax="opacity: 0,1; y: 100,0; viewport: 0.5"><strong>Kindly go through Rules and Regulation of the event.</strong></p>
-			  <a href="#" class="btn btn-danger btn-rounded" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Click Here</strong></a>
+			  <form><a href="#" class="btn btn-danger btn-rounded li-nav-event" style="background-color:red;"><strong style="font-family: 'Raleway', sans-serif;">Click Here</strong></a></form>
 			</div>
 		  </div>
 	</div>  
 </div>	  
-
-
-<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="img-circle"
-                                 alt="Harshit Singh" style="float:left; padding:30px; width:250px; height:250px ">
-
-
 		  <div class="uk-container-event">
 			  <div class="chip" style="margin:20px;"><h3 style="color:#ff5500;"><strong>Help Desk</strong></h3></div>
 					<div class="uk-container">
 					  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
 							<div>
-								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" >
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px" uk-scrollspy="cls: uk-animation-slide-left;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" uk-parallax="sepia: 70;">
 									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
 									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
 										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
-									
-									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+									<div class="col-md-6 col-sm-10">
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
-								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px;"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls: uk-animation-slide-right;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true" uk-parallax="sepia: 70;">
 									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
-									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
 										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
-									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+									<div class="col-md-6 col-sm-10">
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
-								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px;" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls:uk-animation-fade; delay: 500; repeat: true; uk-animation-slide-left;" uk-parallax="sepia: 70;">
 									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
-									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
 										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
-									<div class="col-md-6 col-sm-10"style="margin:5px;">
-										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+									<div class="col-md-6 col-sm-10">
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
 							<div>
-								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px;"  uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: true">
+								<div class="uk-card uk-card-primary" style="border-radius:40px 40px 40px 40px"  uk-scrollspy="cls:uk-animation-fade; delay: 500; repeat: true; uk-animation-slide-right;" uk-parallax="sepia: 70;">
 									<img src="{% static 'main_page/img/comments/c1.jpg' %}" class="uk-border-circle uk-align-center" alt="shubh vanvat" width="148" height="148">
-									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom"><strong>Shubh Vanvat</strong></h3>
+									<h3 style="margin-left:25px;" class="uk-card-title uk-margin-remove-bottom;"><strong>Shubh Vanvat</strong></h3>
 									<p style="margin-left:25px;" class="uk-text-meta uk-margin-remove-top">Coordinator</p>
 									<div class="col-md-6 col-sm-10"style="margin:5px;">
 										<img src="{% static 'main_page/img/icons/icon-mail.png' %}"><span style="font-size:1.5vw"><strong> shubh.v17@iiits.in</strong></span>
 									</div>
-									<div class="col-md-6 col-sm-10"style="margin:5px;">	
-										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong> +91 89892 21599</strong></span>
+									<div class="col-md-6 col-sm-10">
+										<img src="{% static 'main_page/img/icons/icon-phone.png' %}" style="margin-left:20px;"><span style="font-size:1.5vw"><strong>+918989221599</strong></span>
 									</div>
 								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 
-	
+          </div>
 </body>
 </html>
+
+

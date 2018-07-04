@@ -83,6 +83,7 @@
                         <ul class="nav nav-pills navbar-nav menu">
                             <li><a href="{% url 'accounts:profile_home' %}"><span
                                     class="glyphicon glyphicon-user"></span><b> Hi ! {{ username }}</b></a></li>
+                        </ul>
                     </button>
                     <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
                         <ul class="uk-nav uk-dropdown-nav">
@@ -123,18 +124,95 @@
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'home' %}#about"><strong>About</strong></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url 'home' %}#events"><strong>Events</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url 'home' %}#comments"><strong>Comments</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url 'home' %}#calender"><strong>Event-Calender</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url 'home' %}#sponsors"><strong>Sponsors</strong></a>
-                </li>
+
+
+                <ul class="nav nav-pills navbar-nav menu">
+                    <li><a class="nav-link" href="{% url 'home' %}#events"><b> Events</b></a></li>
+                    <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            {% for event in events %}
+                                <li class="li-nav-event">
+                                    <div class="chip">
+                                        {% if event.logo %}
+                                            <img src="{{ event.logo }}" alt="{{ event.name }}">
+                                        {% else %}
+                                            <img src="{{ default_logo }}" alt="{{ event.name }}">
+                                        {% endif %}
+
+                                        <a style="text-decoration:none;"
+                                           href="{% url 'event info' event.name|strtoslug %}"><strong>{{ event.name }}</strong></a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            {% comment %}<li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-rvc.png' %}" alt="Contact Person' %}">
+                                    <a style="text-decoration:none;" href="#"><strong>Reverse Coding</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-elk.png' %}" alt="Contact Person' %}">
+                                    <a style="text-decoration:none;" href="#"><strong>Elektra</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-htc.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>Hack The Code</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-cas.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>The Cascader</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-hkt.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>MedTech Hackathon</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-bot.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>Top Bot</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-apd.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>Appathon</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-lgd.png' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>Parivarkarsha</strong></a>
+                                </div>
+                            </li>
+                            <li class="li-nav-event">
+                                <div class="chip">
+                                    <img src="{% static 'main_page/img/icons/icon-rcc.jpg' %}" alt="Contact Person">
+                                    <a style="text-decoration:none;" href="#"><strong>RC Car Event</strong></a>
+                                </div>
+                            </li>{% endcomment %}
+                        </ul>
+                    </div>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'home' %}#comments"><strong>Comments</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'home' %}#calender"><strong>Event-Calender</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'home' %}#sponsors"><strong>Sponsors</strong></a>
+                    </li>
+
+                </ul>
 
             </ul>
 
@@ -766,7 +844,8 @@
                             <div class="event_place">
                                 <h3 class="name">{{ event.name }}</h3>
                                 <h5 class="name">Starts At
-                                    : {{ event.calender.hour }}{% if event.calender.minute %}.{{ event.calender.minute }} {% endif %} {{ event.calender.timeblock }}</h5>
+                                    : {{ event.calender.hour }}{% if event.calender.minute %}.
+                                        {{ event.calender.minute }} {% endif %} {{ event.calender.timeblock }}</h5>
                                 <h6 class="name">Duration : {{ event.calender.diff }}</h6>
                             </div>
                         </td>

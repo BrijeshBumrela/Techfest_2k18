@@ -10,10 +10,11 @@ from django.template.loader import render_to_string
 from data.tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 
+from django.db import connection
+from data.async import run_in_background
 
-# Create your views here.
 
-
+@run_in_background
 def send_account_activation_email(request, user_instance):
     current_site = get_current_site(request)
     email_subject = "Activate Your Technobots2k18 Account "
@@ -28,10 +29,24 @@ def send_account_activation_email(request, user_instance):
                                       })
 
     user_instance.email_user(email_subject, email_message)
-
+    connection.close()
     return
 
     # return redirect('registration:account_activation_email_sent')
+
+@run_in_background
+def send_welcome_mail(user_instance):
+    """
+    Sends a welcome and confirmation mail after account has been activated
+    """
+    email_subject = "Welcome to Technobots2k18 "
+    email_message = render_to_string('registration/welcome.html',
+                                     {'user_fullname': user_instance.get_full_name(),
+                                      })
+
+    user_instance.email_user(email_subject, email_message)
+    connection.close()
+    return
 
 
 def signup(request):
@@ -82,12 +97,13 @@ def activate_account(request, uidb64, token):
         user.emailconfirmation.email_confirmed = True
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        send_welcome_mail(user)
         return redirect('home')
 
-    elif user is None :
-        return render(request, 'registration/invalid_activation_link.html', {"isnone":True})
+    elif user is None:
+        return render(request, 'registration/invalid_activation_link.html', {"isnone": True})
     else:
-        return render(request,'registration/invalid_activation_link.html')
+        return render(request, 'registration/invalid_activation_link.html')
 
 
 @login_required
