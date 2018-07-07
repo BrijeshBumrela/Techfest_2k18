@@ -41,6 +41,7 @@ Or If You Prefer....
         <meta charset="UTF-8">
         <title>TechnoBot</title>
         <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Signup.css' %}">
+        <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script>
         	var x=0;
@@ -80,7 +81,7 @@ Or If You Prefer....
         </script>
     </head>
     <body onload="col();">
-        <div class="signup" id="temp">
+        <div class="signup" id="temp" style="background-color: black;">
             <h2 style="font-family:Lucida Sans Unicode;" id="head" onmouseover="col()">Let Us Know You!!</h2>
             <form action="" method="post">
                 {% csrf_token %}
@@ -124,15 +125,15 @@ Or If You Prefer....
 
                 <div>
                     <span>{{ signup_form.last_name.errors }}</span>
-                    <span class="fbox">{{ signup_form.first_name | attr:"placeholder:First Name"}}</span>
-                    <span class="lbox">{{ signup_form.last_name | attr:"placeholder:Last Name"}}</span>
+                    <span class="fbox">{{ signup_form.first_name  | add_class:"input-box"}}</span>
+                    <span class="lbox">{{ signup_form.last_name | add_class:"input-box"}}</span>
                     <span>{{ signup_form.last_name.field.help_text }}</span>
                 </div>
                 	<br>
                 <div>
                     <span>{{ signup_form.email.errors }}</span>
                     <span class="email"><label for="{{ form.email.id_for_label }}">Email :</label></span><br>
-                    <span class="e-box">{{ signup_form.email | attr:"placeholder:Email Address" | attr:"size:49px"}}</span>
+                    <span class="e-box">{{ signup_form.email  | attr:"size:52%" | add_class:"input-box" }}</span>
                     <span>{{ signup_form.email.field.help_text }}</span>
                 </div>
                 	<br>
@@ -144,8 +145,8 @@ Or If You Prefer....
 
                 <div>
                     <span>{{ signup_form.password.errors }}</span>
-                    <span class="ubox">{{ signup_form.username  | attr:"placeholder:Username"}}</span>
-                    <span class="pbox">{{ signup_form.password  | attr:"placeholder:Password"}}</span>
+                    <span class="ubox">{{ signup_form.username  | add_class:"input-box"}}</span>
+                    <span class="pbox">{{ signup_form.password   | add_class:"input-box"}}</span>
                     <span>{{ signup_form.password.field.help_text }}</span>
                 </div>
                 	<br>

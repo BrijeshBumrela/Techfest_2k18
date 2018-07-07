@@ -22,9 +22,9 @@ def email_confirmation_required(func):
     THE DECORATOR login_required MUST ALWAYS PRECEDE THIS
 
     """
-    def checker(request, *args):
+    def checker(request, *args, **kwargs):
         if request.user.emailconfirmation.email_confirmed is True:
-            return func(request, *args)
+            return func(request, *args, **kwargs)
 
         else:
             return render(request, "accounts/email_not_verified.html")

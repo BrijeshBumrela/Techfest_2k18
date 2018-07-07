@@ -37,6 +37,21 @@ def get_profilepic_upload_url(instance, filename):
 
 
 class MoreUserData(models.Model):
+    COUNTRY_CODE_CHOICES = (
+        ('+91', 'India(+91)'),
+        ('+7', 'Russia(+7)'),
+        ('+81', 'Japan(+81)'),
+        ('+1', 'USA(+1)'),
+        ('+972', 'Israel(+972)')
+    )
+    TSHIRT_SIZE_CHOICES = (
+        ('S', 'Small(S)'),
+        ('M', 'Medium(M)'),
+        ('L', 'Large(L)'),
+        ('XL', 'Extra Large(XL)'),
+        ('XXL', 'Extra Extra Large(XXL)')
+    )
+    COLLEGE_CHOICES = ()
     user = models.OneToOneField(to=User, primary_key=True, on_delete=models.CASCADE)
     secret_key_length = 32
     secret_key_min_length = MinLengthValidator(secret_key_length)
@@ -44,8 +59,16 @@ class MoreUserData(models.Model):
                                   validators=[secret_key_min_length], blank=True)
     profile_pic = models.ImageField(verbose_name="Profile Picture", upload_to=get_profilepic_upload_url, blank=True,
                                     help_text="Please upload a Profile Picture")
-    description = models.TextField(verbose_name="About You", blank=True, help_text="Write A Few Lines About Yourself")
+    country_code = models.CharField(verbose_name="Country Code for Phone Number", max_length=4,
+                                    choices=COUNTRY_CODE_CHOICES,
+                                    default='+91')
+    phone_number = models.CharField(verbose_name="Phone Number", max_length=10, validators=[MinLengthValidator(10)],
+                                    blank=True)
     college_name = models.CharField(verbose_name="College Name", max_length=100)
+    description = models.TextField(verbose_name="About You", blank=True, help_text="Write A Few Lines About Yourself")
+    tshirt_size = models.CharField(verbose_name="T-Shirt Size", max_length=3, blank=True, choices=TSHIRT_SIZE_CHOICES,
+                                   help_text="Enter your T shirt size so that we can get you one if you win")
+
     github_id = models.CharField(verbose_name="Github Username", max_length=50, blank=True)
     hackerrank_id = models.CharField(verbose_name="Hackerrank Username", max_length=50, blank=True)
     codechef_id = models.CharField(verbose_name="Codechef Username", max_length=50, blank=True)
@@ -149,8 +172,8 @@ def phone_number_validator(ph_no):
 
 
 class CommitteeContactInfo(models.Model):
-    committee = models.OneToOneField(to=Committee,on_delete=models.CASCADE)
+    committee = models.OneToOneField(to=Committee, on_delete=models.CASCADE)
     phone_number_min_length = MinLengthValidator(10)
-    phone_number = models.CharField(max_length=10, validators=[phone_number_min_length],blank=True,
+    phone_number = models.CharField(max_length=10, validators=[phone_number_min_length], blank=True,
                                     help_text="Enter The contact number of committee without the preceeding country code")
     email = models.EmailField(blank=True)

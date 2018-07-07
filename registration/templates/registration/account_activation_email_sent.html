@@ -1,10 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-An email with activation link will be sent shortly
-</body>
-</html>
+{% extends "data/basic_message_template.html" %}
+{% load static %}
+    {% comment %}
+        THIS IS AN EXTENTION TEMPLATE.
+        MAKE SURE THAT EVERYTHING IS WITHIN THE RESPECTIVE BLOCK ELEMENTS.
+        ANYTHING OUTSIDE A BLOCK ELEMENT WILL NOT BE RENDERED
+
+        {% block %}
+            ..      THIS IS A BLOCK ELEMENT
+        {% endblock %}
+
+        NOTE: Load static is purposefully kept out of block
+    {% endcomment %}
+
+{% block load_files %}
+    {% comment %}
+    Load custom filters,app_files etc. here (DJANGO RELATED)
+    {% endcomment %}
+{% endblock load_files %}
+
+
+<!-- Head Start -->
+    {% block title %}
+        {% comment %}
+            SET THE TITLE OF THE PAGE HERE
+        {% endcomment %}
+        Activation Email
+    {% endblock title %}
+
+
+    {% block stylesheets %}
+        {% comment %}
+            Import required stylesheets here.
+            font-awesome.min.css is already imported
+        {% endcomment %}
+        <link>
+    {% endblock stylesheets %}
+
+
+    {% block javascript_files %}
+        {% comment %}
+            Import required javascript files here.
+            jquery.min.js is already imported
+        {% endcomment %}
+        <script></script>
+    {% endblock javascript_files %}
+
+
+    {% block style %}
+        {% comment %}
+        Add Custom Styles Here
+        {% endcomment %}
+        <style>
+
+        </style>
+    {% endblock style %}
+
+
+    {% block scripts %}
+        {% comment %}
+        Add Custom Scripts Here that need to be added in head.
+        Scripts that need to added at the end of file should be put in the block element at the end of this file
+        {% endcomment %}
+        <script>
+
+        </script>
+    {% endblock scripts %}
+
+
+<!-- Head End -->
+
+
+<!-- Body Starts -->
+
+    {% block background_image %}
+        <img src="{% static 'registration/images/sat.jpeg' %}">
+    {% endblock background_image %}
+
+    {% block section1_img1 %}
+        <i class="fa fa-envelope" style="font-size: 50px;"></i>
+    {% endblock section1_img1 %}
+
+    {% block section1_content1 %}
+        An Email with activation link will be sent shortly...
+    {% endblock section1_content1 %}
+
+<!-- Body End -->
