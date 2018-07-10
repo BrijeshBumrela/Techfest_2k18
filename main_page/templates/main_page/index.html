@@ -131,16 +131,18 @@
                     <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
                         <ul class="uk-nav uk-dropdown-nav">
                             {% for event in events %}
-                                <li class="li-nav-event">
+                                <li class="li-nav-event" onclick='location.href = "{% url 'event info' event.name|strtoslug %}";'>
                                     <div class="chip">
+
                                         {% if event.logo %}
                                             <img src="{{ event.logo }}" alt="{{ event.name }}">
                                         {% else %}
                                             <img src="{{ default_logo }}" alt="{{ event.name }}">
                                         {% endif %}
 
-                                        <a style="text-decoration:none;"
-                                           href="{% url 'event info' event.name|strtoslug %}"><strong>{{ event.name }}</strong></a>
+                                        <a style="text-decoration:none;" href="{% url 'event info' event.name|strtoslug %}">
+                                            <strong>{{ event.name }}</strong>
+                                        </a>
                                     </div>
                                 </li>
                             {% endfor %}
