@@ -1,93 +1,100 @@
+@font-face
+{
+	font-family: 'local';
+	src:url('BRADHITC.TTF') format('truetype');
+}
+@font-face
+{
+	font-family: 'local1';
+	src:url('micross.ttf') format('truetype');
+}
+@font-face
+{
+	font-family: 'local2';
+	src:url('Gabriola.ttf') format('truetype');
+}
 body
 {
-	background-image: url("../images//s-back1.jpg");
+	background-image: url("../images/signup4.jpg");
+	background-size: auto;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center 
+	background-repeat: no-repeat 
+	background-attachment: fixed;
 }
 .signup
 {
-	float: left;
-	color: white;
-	border-radius: 15px;
-	box-shadow: 5px 10px 100px lightblue;
-	width:40%;
-	margin-top: 3%;
-	margin-left: 4%;
-	padding-bottom: 5%;
 
+	margin-top: 5%;
+	width: 50%;
+	/*box-shadow: 2px 5px 25px white;*/
 }
-#head
-{
-	margin-left: 30%;
-}
-
 .fname
 {
-	font-family: 'Signika', sans-serif;
-	margin-left: 15%;
+	font-family: 'local';
+	margin-left: 8%;
+	font-size: 20px;
 	color: rgb(255, 0, 170);
 }
 .lname
 {
-	font-family: 'Signika', sans-serif;
-	margin-left: 20%;
+	font-family: 'local';
+	font-size: 20px;
 	color: rgb(255, 0, 170);
 }
 .fbox
 {
-	margin-top: 5%;
-	margin-left: 15%;
+	margin-left: 8%;
 }
 .lbox
 {
-	margin-left: 7.5%;
+	
 }
 .email
 {
-	font-family: 'Signika', sans-serif;
-	margin-left: 15%;	
+	font-family: 'local';
+	font-size: 20px;
+	margin-left: 8%;
 	color: rgb(255, 0, 170);	
 }
 .e-box
 {
-	margin-left: 15%;	
+	margin-left: 8%;
 }
-
-.input-box
-{
-	color: white;
-	caret-color: rgb(255, 0, 170);
-	background-color: black;
-    border: none;
-    border-bottom: 2px solid yellow;
-}
-.input-box:focus
-{
-	box-shadow: 0px 1.5px 1px red;
-}
-
 .uname
 {
-	font-family: 'Signika', sans-serif;
-	margin-left: 15%;
+	font-family: 'local';
+	font-size: 20px;
+	margin-left: 8%;
 	color: rgb(255, 0, 170);
 }
 .pass
 {
-	font-family: 'Signika', sans-serif;
-	margin-left: 21%;
+	font-family: 'local';
+	font-size: 20px;
 	color: rgb(255, 0, 170);
 }
 .ubox
 {
-	margin-left: 15%;
+	margin-left: 8%;
 }
-.pbox
+.text2
 {
-	margin-left: 7.5%;
-}
-.text1
-{
-	margin-left: 32%;
+	text-align: center;
+	color: white;
 	font-family: "Courier New", Courier, monospace;
+}
+.input-box
+{
+	caret-color: rgb(255, 0, 170);
+    border: 3px solid rgb(191, 189, 189);
+}
+.input-box:focus
+{
+	border: 3px solid rgb(5, 5, 5);
 }
 .button
 {
@@ -102,12 +109,11 @@ body
 }
 .button1
 {
+	margin-left: 18%;
 	background-color: white; 
 	padding: 15px 45px;
     color: black; 
     border: 2px solid #4CAF50;
-    margin-left: 16%;
-
 }
 .button1:hover
 {
@@ -121,7 +127,6 @@ body
 	padding: 15px 40px;
     color: black; 
     border: 2px solid rgb(113, 56, 193);
-    margin-left: 1%
 }
 .button2:hover
 {
@@ -131,45 +136,16 @@ body
 }
 .button3
 {
-	margin-left: 32%;
 	background-color: white; 
-	padding: 10px 40px;
+	margin-left: 32%;
+	padding: 8px 30px;
     color: black; 
     border: 2px solid rgb(113, 56, 193);
-    border-radius: 15px;
+    border-radius: 5px;
 }
 .button3:hover
 {
 	background-color: #30082d; 
 	color: white;
 	box-shadow: 2px 5px 25px lightblue;
-}
-h4 
-{ 
-	width:300px;
-	text-align:center; 
-	border-bottom: 1px solid blue; 
-	line-height:0.1em;
-	margin-left: 85px;
-	margin:20px 100 20px; 
-} 
-h4 span 
-{ 
-	border-radius: 5px;
-	background:red;
-	padding:0 15px; 
-}
-.text
-{
-	color:white;
-	text-align: center;
-	width: 400px;
-	float: right;
-	
-	margin-top: 65px;
-	margin-right: 90px;
-}
-.main
-{
-	font-size: 60px;
 }
