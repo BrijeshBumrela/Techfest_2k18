@@ -3,16 +3,6 @@
 	font-family: 'local';
 	src:url('BRADHITC.TTF') format('truetype');
 }
-@font-face
-{
-	font-family: 'local1';
-	src:url('micross.ttf') format('truetype');
-}
-@font-face
-{
-	font-family: 'local2';
-	src:url('Gabriola.ttf') format('truetype');
-}
 body
 {
 	background-image: url("../images/signup4.jpg");

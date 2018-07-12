@@ -33,31 +33,48 @@
 	<div class="text">
 		<p class="main">TECHNOBOT</p>
 		<hr style="color: yellow;text-align: center;width: 50%;">
-		<p class="child">LOGIN.PARTICIPATE.WIN</p>
+		<p class="child"><span style="color: orange">LOGIN</span>.<span style="color: white">PARTICIPATE</span>.<span style="color: green">WIN</span></p>
 	</div>
-	<div class="login">
-		<h2 class="login_head">LOGIN</h2>
+	<div class="container login" style="width: 50%;">
+		<div class="row col-lg-12">
+			<h2 class="login_head">LOGIN</h2>
+		</div>
 		<form action="" method="post">
-		   {% csrf_token %}
-		   {{ form.as_p }}<br>
-		   <button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
-		</form><br><br>
-		<div class="forgot_pass">
-			Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+			<div class="row">
+				<div class="col-lg-5" style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+				   {% csrf_token %}
+				   {{ form.as_p }}<br>
+				</div>
+				<span class="text1" style="margin-left: 15%;">OR Login with...</span>
+				<div class="col-lg-7 social-login">
+					<button class="button button1">
+					<a href="{% url 'social:begin' 'google-oauth2' %}">
+						<i class="fa fa-google google" style="font-size:40px;color:white"></i><span style="color: white;">Google</span>
+					</a>
+					</button><br>
+					
+				</div>
+			</div>
+			<div class="row"> 
+				<div class="col-lg-5" style="text-align: center;">
+			   		<button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
+			    </div>
+			    <div class="col-lg-7">
+			    <button class="button button2">
+					<a href="{% url 'social:begin' 'github' %}">
+						<i class="fa fa-github git" style="font-size:40px;color: white"></i><span style="color: white;">GitHub</span>
+					</a><br>
+				</button>
+			</div>
+			</div>
+		</form><br>	
+		<div class="row forgot_pass">
+			<div class="col-lg-5" style="text-align: center;">
+				Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+			</div>
 		</div>
-		<hr>
-			<span id="or">Or If You Prefer...</span>
-		<hr>
-		<div class="social-login">
-			<a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google google" style="font-size:48px;color:red" onmouseover="google_display()" onmouseout="google_noDisplay()"></i></a>
-			<span style="margin-left: 3%;">OR</span>
-			<a href="{% url 'social:begin' 'github' %}"><i class="fa fa-github git" style="font-size:45px" onmouseover="git_display()" onmouseout="git_noDisplay()"></i></a><br>
-		</div>
-		<div style="margin-top: 1%">
-			<span id="google1" style="visibility: hidden;">Google</span>
-			<span id="git1" style="visibility: hidden;">GitHub</span>
-		</div>
-	</div>
+
+
 
 </body>
 </html>
