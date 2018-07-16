@@ -202,8 +202,9 @@ text tspan{
 }
 .button3:hover
 {
-	/*background-color: #30082d; */
+	background-color: #30082d; 
 	letter-spacing: 5px;
+	color: white;
 	box-shadow: 2px 5px 25px lightblue;
 }
 .git
