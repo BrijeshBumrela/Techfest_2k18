@@ -9,16 +9,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png' %}" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
+	<script>
+		function google_display() 
+		{
+			document.getElementById('google1').style.visibility = "visible";
+		}
+		function google_noDisplay() 
+		{
+			document.getElementById('google1').style.visibility = "hidden";
+		}
+		function git_display() 
+		{
+			document.getElementById('git1').style.visibility = "visible";
+		}
+		function git_noDisplay() 
+		{
+			document.getElementById('git1').style.visibility = "hidden";
+		}
+
+	</script>
 </head>
 <body>
 	<div class="text">
-		<p class="main">TECHFESIA</p>
-		<h5 style="color: pink;">Biggest Techfest of IIIT Sricity</h5>
+		<p class="main">TECHNOBOT</p>
+		<hr style="color: yellow;text-align: center;width: 50%;">
 		<p class="child"><span style="color: orange">LOGIN</span>.<span style="color: white">PARTICIPATE</span>.<span style="color: green">WIN</span></p>
 	</div>
 	<div class="container login" style="width: 50%;">
 		<div class="row col-lg-12">
-			<h1 class="login_head">LOGIN</h1>
+			<h2 class="login_head">LOGIN</h2>
 		</div>
 		<form action="" method="post">
 			<div class="row">
@@ -28,13 +47,11 @@
 				</div>
 				<span class="text1" style="margin-left: 15%;">OR Login with...</span>
 				<div class="col-lg-7 social-login">
-					
+					<button class="button button1">
 					<a href="{% url 'social:begin' 'google-oauth2' %}">
-						<button class="button button1">
 						<i class="fa fa-google google" style="font-size:40px;color:white"></i><span style="color: white;">Google</span>
-						</button>
 					</a>
-					<br>
+					</button><br>
 					
 				</div>
 			</div>
@@ -43,13 +60,11 @@
 			   		<button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
 			    </div>
 			    <div class="col-lg-7">
-			    
+			    <button class="button button2">
 					<a href="{% url 'social:begin' 'github' %}">
-						<button class="button button2">
 						<i class="fa fa-github git" style="font-size:40px;color: white"></i><span style="color: white;">GitHub</span>
-						</button>
 					</a><br>
-				
+				</button>
 			</div>
 			</div>
 		</form><br>	
