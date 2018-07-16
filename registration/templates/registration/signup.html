@@ -98,10 +98,10 @@
                             <h2 style="font-family:Lucida Sans Unicode;" id="head">Let Us Know You!!</h2>
                         </div>.
                         <div class="col-md-5 col-md-offset-1">
-                            <label for="{{ form.first_name.id_for_label }}" class="fields">First Name :</label>
+                            <label for="{{ signup_form.first_name.id_for_label }}" class="fields">First Name :</label>
                         </div>
                         <div class="col-md-5">
-                            <label for="{{ form.last_name.id_for_label }}" class="fields">Last Name :</label>
+                            <label for="{{ signup_form.last_name.id_for_label }}" class="fields">Last Name :</label>
                         </div>
 
                         <div class="col-md-5 col-md-offset-1">
@@ -121,7 +121,7 @@
                             {{ signup_form.non_field_errors }}
             
                         <div class="col-md-5 col-md-offset-1">
-                            <label for="{{ form.email.id_for_label }}" class="fields">Email :</label>                            
+                            <label for="{{ signup_form.email.id_for_label }}" class="fields">Email :</label>                            
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             {{ signup_form.email  | add_class:"input-box" }}
@@ -132,10 +132,10 @@
                     <span>{{ signup_form.email.field.help_text }}</span>
  
                     <div class="col-md-5 col-md-offset-1">
-                        <label for="{{ form.username.id_for_label }}" class="fields">Username :</label>
+                        <label for="{{ signup_form.username.id_for_label }}" class="fields">Username :</label>
                     </div>
                     <div class="col-md-5">
-                        <label for="{{ form.password.id_for_label }}" class="fields">Password :</label>
+                        <label for="{{ signup_form.password.id_for_label }}" class="fields">Password :</label>
                     </div>
             
                     <div class="col-md-5 col-md-offset-1">
