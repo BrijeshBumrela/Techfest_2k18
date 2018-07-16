@@ -1,50 +1,19 @@
-
-{% comment %}
-             COMING FROM EVENTS. KEPT FOR REFERENCES
-{% load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>BASIC SIGNUP FORM</h2>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-<hr>
-Or If You Prefer....
-<hr>
-<form action="" method="post">
-    {% csrf_token %}
-    <div>
-            {{ signup_form.non_field_errors }}
-    </div>
-    <table>
-        {% for field in signup_form %}
-            <tr>
-                <td>
-                    {{ field.label_tag }}
-                </td>
-                <td>
-                    <span>{{ field }}</span>
-                    {% if field.help_text %}
-                        <br><span style="color: blue;font-size: medium">{{ field.help_text }}</span>
-                    {% endif %}
-                </td>
-{% endcomment %}
 {% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>TechnoBot</title>
+        <title>SignUp</title>
         <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Signup.css' %}">
         <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         <script>
         	var x=0;
         	var y=127;
@@ -81,88 +50,133 @@ Or If You Prefer....
         	}
         	setInterval(col,200);
         </script>
+        <script>
+            var spans = document.querySelectorAll("tspan");
+            var i = 0;
+            for (i = 0; i < spans.length; i++) {
+              spans[i].setAttribute("rotate", (10 * Math.random() - 5));
+            }
+        </script>
     </head>
     <body onload="col();">
-        <div class="container signup" style="width: 35%;">
-            <div class="row col-lg-12" style="text-align: center;">
-                <h2 style="font-family:Lucida Sans Unicode;" id="head">Let Us Know You!!</h2>
-            </div>.
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="row">
-                        {{ signup_form.non_field_errors }}
+        <div class="container container-name" style="margin-left: 2%">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;border:1px solid yellow;margin-top: 9%;" >
+                <svg width="600" height="200">
+                  <text x="300" y="125" text-anchor="middle">
+                    <tspan id="l1">T</tspan>
+                    <tspan id="l2">E</tspan>
+                    <tspan id="l3">C</tspan>
+                    <tspan id="l4">H</tspan>
+                    <tspan id="l5">F</tspan>
+                    <tspan id="l6">E</tspan>
+                    <tspan id="l7">S</tspan>
+                    <tspan id="l8">I</tspan>
+                    <tspan id="l9">A</tspan>
+                  </text>
+                </svg>
                 </div>
-                <div class="row">
-                    <span>{{ signup_form.first_name.errors }}</span>
-                    <span class="col-lg-5 fname"><label for="{{ form.first_name.id_for_label }}">First Name :</label></span>
-                    <span class="col-lg-5 lname"><label for="{{ form.last_name.id_for_label }}">Last Name :</label></span>
-                    
-                    <span>{{ signup_form.first_name.field.help_text }}</span>
+            
+                <div style="text-align: center;" class="col-md-12" >
+                    <hr style="width: 70%;">
                 </div>
-
-                <div class="row">
-                    <span>{{ signup_form.last_name.errors }}</span>
-                    <span class="col-lg-5 fbox">{{ signup_form.first_name | attr:"placeholder:First Name.." | add_class:"input-box"}}</span>
-                    <span class="col-lg-3 lbox">{{ signup_form.last_name  | attr:"placeholder:Last Name.." | add_class:"input-box"}}</span>
-                    <span>{{ signup_form.last_name.field.help_text }}</span>
-                </div>
-                	<br>
-                <div class="row">
-                    <span>{{ signup_form.email.errors }}</span>
-                    <span class="col-lg-3 email"><label for="{{ form.email.id_for_label }}">Email :</label></span><br>
-                    <span>{{ signup_form.email.field.help_text }}</span>
-                </div>
-                <div class="row">
-                    <span class="col-lg-12 e-box" >{{ signup_form.email  | attr:"placeholder:Email.." | attr:"size:53.5%" | add_class:"input-box" }}</span>
-                </div>
-                    <br>
-                <div class="row">
-                    <span>{{ signup_form.username.errors }}</span>
-                    <span class="col-lg-5 uname"><label for="{{ form.username.id_for_label }}">Username :</label></span>
-                    <span class="col-lg-5 pass"><label for="{{ form.password.id_for_label }}">Password :</label></span>
-                </div>
-
-                <div class="row">
-                    <span>{{ signup_form.password.errors }}</span>
-                    <span class="col-lg-5 ubox">{{ signup_form.username | attr:"placeholder:UserName.."  | add_class:"input-box"}}</span>
-                    <span class="col-lg-3 pbox">{{ signup_form.password | attr:"placeholder:Password.."| add_class:"input-box"}}</span>
-                    <span>{{ signup_form.password.field.help_text }}</span>
-                </div>
-                	<br>
-                <div class="row">
-                	<button class="col-lg-4 button button3" type="submit">Sign Me Up</button>
-                </div>
-
-
-            </form>
-                <br>
-            <div class="row line" style="margin-left: 9%;">
-                <span class="col-lg-10">
-                    <hr>
-                </span> 
-            </div>
-                <br>
-            <div class="row text2"">
-               <span class="col-lg-12"> Or Continue With... </span>
             </div>
             <div class="row">
-                <span class="col-lg-6">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}">
-                        <button class="button button1">
-                            <i class="fa fa-google" style="font-size:30px"></i>oogle
-                        </button>
-                    </a>
-                </span>
-                <span class="col-lg-5">
-                    <a href="{% url 'social:begin' 'github' %}">
-                        <button class="button button2">
-                            <i class="fa fa-github" style="font-size:30px"></i>GitHub
-                        </button>
-                    </a>
-                </span>
+                <div class="col-md-12" style="text-align: center;">
+                    <span class="sub_name">SIGNUP TO PARTICIPATE</span>
+                </div>
             </div>
-        <br>
-        </div>
+            <div class="row">
 
+            </div>
+        </div>        
+        <div class="container container-signup col-md-offset-6">
+            <form action="" method="post">
+            {% csrf_token %}
+                <div class="row">
+                        <div class="col-md-10 col-md-offset-1"  style="text-align: center;">
+                            <h2 style="font-family:Lucida Sans Unicode;" id="head">Let Us Know You!!</h2>
+                        </div>.
+                        <div class="col-md-5 col-md-offset-1">
+                            <label for="{{ form.first_name.id_for_label }}" class="fields">First Name :</label>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="{{ form.last_name.id_for_label }}" class="fields">Last Name :</label>
+                        </div>
+
+                        <div class="col-md-5 col-md-offset-1">
+                            {{ signup_form.first_name | add_class:"input-box" }}
+                        </div>
+                        <div class="col-md-5">
+                            {{ signup_form.last_name | add_class:"input-box"}}
+                        </div>     
+                            
+                            <div class="col-md-10">&nbsp &nbsp</div>            
+                        <span>{{ signup_form.first_name.errors }}</span>
+                        <span>{{ signup_form.first_name.field.help_text }}</span>
+
+                        <span>{{ signup_form.last_name.errors }}</span>
+                        <span>{{ signup_form.last_name.field.help_text }}</span>
+                    
+                            {{ signup_form.non_field_errors }}
+            
+                        <div class="col-md-5 col-md-offset-1">
+                            <label for="{{ form.email.id_for_label }}" class="fields">Email :</label>                            
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            {{ signup_form.email  | add_class:"input-box" }}
+                        </div>
+                <div class="col-md-10">&nbsp &nbsp</div> 
+
+                    <span>{{ signup_form.email.errors }}</span>
+                    <span>{{ signup_form.email.field.help_text }}</span>
+ 
+                    <div class="col-md-5 col-md-offset-1">
+                        <label for="{{ form.username.id_for_label }}" class="fields">Username :</label>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="{{ form.password.id_for_label }}" class="fields">Password :</label>
+                    </div>
+            
+                    <div class="col-md-5 col-md-offset-1">
+                        {{ signup_form.username | add_class:"input-box"}}
+                    </div>
+                    <div class="col-md-5">
+                        {{ signup_form.password | add_class:"input-box"}}
+                    </div>
+                <div class="col-md-10">&nbsp &nbsp</div> 
+            
+                    <span>{{ signup_form.username.errors }}</span>
+                    <span>{{ signup_form.password.errors }}</span>
+                    <span>{{ signup_form.password.field.help_text }}</span>
+            
+                    <div class="col-md-10  col-md-offset-1">
+                        <button class="button button3" type="submit"><span class="bt_text">Sign Me Up</span></button>
+                    </div>
+            
+            </form>
+            
+                    <div class="col-md-10 col-md-offset-1 line">
+                        <hr style="max-width: 80%;color: rgb(97, 100, 104);">
+                    </div> 
+            
+                   <div class="col-md-10 col-md-offset-1 text2"> Or Continue With... </div>
+            
+                    <div class="col-md-5 col-md-offset-1">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}">
+                                <button class="button google">
+                                    <i class="fa fa-google-plus-square" style="font-size:30px"></i><span class="bt_text">Google</span>
+                                </button>
+                            </a>
+                    </div>
+                    <div class="col-md-5">
+                            <a href="{% url 'social:begin' 'github' %}">
+                                <button class="button git">
+                                    <i class="fa fa-github" style="font-size:30px"></i><span class="bt_text">GitHub</span>
+                                </button>
+                            </a>
+                    </div>
+            </div><br>
+        </div>
     </body>
 </html>
