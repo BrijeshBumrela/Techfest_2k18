@@ -56,15 +56,15 @@ body
 
 @keyframes textAnim {
   0% {font-size: 80px; fill: white;}
-  10% {font-size: 100px; fill: red;}
+  10% {font-size: 100px; fill: rgb(123, 0, 255)}
   40% {font-size: 70px; fill: white;}
   100% {font-size: 80px; fill: white;}
 }
 
 @-webkit-keyframes textAnim {
   0% {font-size: 80px; fill: white;}
-  10% {font-size: 100px; fill: red;}
-  40% {font-size: 70px; fill: orange;}
+  10% {font-size: 100px; fill: rgb(123, 0, 255);}
+  40% {font-size: 70px; fill: rgb(157, 83, 237);}
   100% {font-size: 80px; fill: white;}
 }
 
@@ -186,7 +186,7 @@ text tspan{
 .google:hover
 {
 	letter-spacing: 3px;
-	background-color: rgb(249, 7, 7);
+	background-color: #30082d;
 	color: white;
 	box-shadow: 2px 5px 25px rgb(16, 96, 0);
 }
@@ -218,7 +218,7 @@ text tspan{
 .git:hover
 {
 	letter-spacing: 3px;
-	background-color: rgb(144, 17, 255);
+	background-color: #30082d;
 	color: white; 
 	box-shadow: 2px 5px 25px rgb(144, 17, 255);
 }
