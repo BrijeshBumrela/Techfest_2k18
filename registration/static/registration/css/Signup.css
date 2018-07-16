@@ -1,151 +1,228 @@
-@font-face
-{
-	font-family: 'local';
-	src:url('BRADHITC.TTF') format('truetype');
+@media (min-width: 900px) {
+    .container-signup{
+        max-width: 600px;
+    }
+
+}
+@media (min-width: 500px) {
+    .container-name{
+        max-width: 600px;
+    }
+
 }
 @font-face
 {
 	font-family: 'local1';
-	src:url('micross.ttf') format('truetype');
+	src:url('BRADHITC.TTF') format('truetype');
 }
 @font-face
 {
 	font-family: 'local2';
-	src:url('Gabriola.ttf') format('truetype');
+	src:url('CHILLER.TTF') format('truetype');
 }
+@font-face
+{
+	font-family: 'local3';
+	src:url('FELIXTI.TTF') format('truetype');
+}
+@font-face
+{
+	font-family: 'local4';
+	src:url('HARLOWSI.TTF') format('truetype');
+}
+
 body
 {
 	background-image: url("../images/signup4.jpg");
 	background-size: auto;
 	background-repeat: no-repeat;
-	-moz-background-size: cover;
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-position: top center 
-	background-repeat: no-repeat 
+	background-position: top center ;
+	background-repeat: no-repeat ;
 	background-attachment: fixed;
 }
-.signup
+.container-name
 {
+	float: left;
+}
+.name
+{
+	font-size: 70px;
+	font-family: 'local4'
+}
 
-	margin-top: 5%;
-	width: 50%;
-	/*box-shadow: 2px 5px 25px white;*/
+
+
+@keyframes textAnim {
+  0% {font-size: 80px; fill: white;}
+  10% {font-size: 100px; fill: red;}
+  40% {font-size: 70px; fill: white;}
+  100% {font-size: 80px; fill: white;}
 }
-.fname
+
+@-webkit-keyframes textAnim {
+  0% {font-size: 80px; fill: white;}
+  10% {font-size: 100px; fill: red;}
+  40% {font-size: 70px; fill: orange;}
+  100% {font-size: 80px; fill: white;}
+}
+
+text tspan{
+  font-family: 'Helvetica, Arial';
+  font-weight: 600;
+  animation: textAnim 2s ease infinite;
+  -webkit-animation: textAnim 2s ease infinite;
+}
+
+
+#l2 {
+  animation-delay: .1s;
+  -webkit-animation-delay: .1s;
+}
+#l3 {
+  animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+}
+#l4 {
+  animation-delay: .3s;
+  -webkit-animation-delay: .3s;
+}
+#l5 {
+  animation-delay: .4s;
+  -webkit-animation-delay: .4s;
+}
+
+#l6 {
+  animation-delay: .5s;
+  -webkit-animation-delay: .5s;
+}
+
+#l7 {
+  animation-delay: .6s;
+  -webkit-animation-delay: .6s;
+}
+#l8 {
+  animation-delay: .6s;
+  -webkit-animation-delay: .6s;
+}
+#l9 {
+  animation-delay: .6s;
+  -webkit-animation-delay: .6s;
+}
+
+
+
+.sub_name
 {
-	font-family: 'local';
-	margin-left: 8%;
+  font-family: "Roboto Slab";
+  font-size: 20px;
+  background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 75%, #5e0522 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fields
+{
+	font-family: 'local1';
 	font-size: 20px;
-	color: rgb(255, 0, 170);
+	color: yellow;
 }
-.lname
+.container-signup
 {
-	font-family: 'local';
-	font-size: 20px;
-	color: rgb(255, 0, 170);
-}
-.fbox
-{
-	margin-left: 8%;
-}
-.lbox
-{
-	
-}
-.email
-{
-	font-family: 'local';
-	font-size: 20px;
-	margin-left: 8%;
-	color: rgb(255, 0, 170);	
-}
-.e-box
-{
-	margin-left: 8%;
-}
-.uname
-{
-	font-family: 'local';
-	font-size: 20px;
-	margin-left: 8%;
-	color: rgb(255, 0, 170);
-}
-.pass
-{
-	font-family: 'local';
-	font-size: 20px;
-	color: rgb(255, 0, 170);
-}
-.ubox
-{
-	margin-left: 8%;
-}
-.text2
-{
-	text-align: center;
-	color: white;
-	font-family: "Courier New", Courier, monospace;
+	box-shadow: 1px 2px 20px lightblue;
+	border-radius: 25px;
+	margin-top: 3%;
+	background: linear-gradient(to bottom right,black,rgb(34, 6, 102));
 }
 .input-box
 {
-	caret-color: rgb(255, 0, 170);
-    border: 3px solid rgb(191, 189, 189);
-}
+	display: block;
+	width: 100%;
+	height: 30px;
+	border: 0;
+	border-bottom: 1px solid #ddd;
+	padding: 1em;
+	box-sizing: border-box;
+	background: none;
+	outline: none;
+	color: #78909c;
+	transition: all 0.1s ease-in;
+} 
+
 .input-box:focus
 {
-	border: 3px solid rgb(5, 5, 5);
+	border-bottom: 1px solid rgb(242, 0, 0);
+}
+.line
+{
+	text-align: center;
+}
+.text2
+{
+	font-family: 'local2';
+	color: rgb(7, 249, 19);
+	font-size: 28px;
+	text-align: center;
 }
 .button
 {
     border: none;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    transition: all 0.2s ease-in;
 
 }
-.button1
+.google
 {
-	margin-left: 18%;
 	background-color: white; 
-	padding: 15px 45px;
+	padding: 15px 50px;
+	width: 100%;
     color: black; 
     border: 2px solid #4CAF50;
 }
-.button1:hover
+.google:hover
 {
-	background-color: #4CAF50;
+	letter-spacing: 3px;
+	background-color: rgb(249, 7, 7);
 	color: white;
 	box-shadow: 2px 5px 25px rgb(16, 96, 0);
 }
-.button2
-{
-	background-color: white; 
-	padding: 15px 40px;
-    color: black; 
-    border: 2px solid rgb(113, 56, 193);
-}
-.button2:hover
-{
-	background-color: rgb(113, 56, 193); 
-	color: white;
-	box-shadow: 2px 5px 25px rgb(131, 6, 214)
-}
 .button3
 {
+	width: 100%;
 	background-color: white; 
-	margin-left: 32%;
-	padding: 8px 30px;
+	padding: 6px 50px;
     color: black; 
     border: 2px solid rgb(113, 56, 193);
     border-radius: 5px;
+    letter-spacing: 5px;
 }
 .button3:hover
 {
 	background-color: #30082d; 
+	letter-spacing: 5px;
 	color: white;
 	box-shadow: 2px 5px 25px lightblue;
+}
+.git
+{
+	background-color: white; 
+	padding: 15px 50px;
+	width: 100%;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.git:hover
+{
+	letter-spacing: 3px;
+	background-color: rgb(144, 17, 255);
+	color: white; 
+	box-shadow: 2px 5px 25px rgb(144, 17, 255);
+}
+.bt_text
+{
+	font-family: 'local3';
 }

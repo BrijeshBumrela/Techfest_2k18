@@ -1,0 +1,168 @@
+
+{% comment %}
+             COMING FROM EVENTS. KEPT FOR REFERENCES
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>BASIC SIGNUP FORM</h2>
+<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+<hr>
+Or If You Prefer....
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <div>
+            {{ signup_form.non_field_errors }}
+    </div>
+    <table>
+        {% for field in signup_form %}
+            <tr>
+                <td>
+                    {{ field.label_tag }}
+                </td>
+                <td>
+                    <span>{{ field }}</span>
+                    {% if field.help_text %}
+                        <br><span style="color: blue;font-size: medium">{{ field.help_text }}</span>
+                    {% endif %}
+                </td>
+{% endcomment %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TechnoBot</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Signup.css' %}">
+        <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        	var x=0;
+        	var y=127;
+        	var z=255;
+        	var flagy;
+        	var flagz;
+        	function col()
+        	{
+        		document.getElementById("head").style.color = 'rgb(' + y + ',' + z + ',' + x + ')';
+        		if (y <= 0) 
+        		{flagy = 0;} 
+        		if(y >= 255)
+        		{flagy = 1;}
+        		if (z <= 0) 
+        		{flagz = 0;} 
+        		if(z >= 255)
+        		{flagz = 1;}
+        		if(flagy == 0)
+        		{
+        			y = y + 12;
+        		}
+        		if(flagy == 1)
+        		{
+        			y = y - 12;
+        		}
+        		if(flagz == 0)
+        		{
+        			z = z + 24;
+        		}
+        		if(flagz == 1)
+        		{
+        			z = z - 24;
+        		}
+        	}
+        	setInterval(col,200);
+        </script>
+    </head>
+    <body onload="col();">
+        <div class="container signup" style="width: 35%;">
+            <div class="row col-lg-12" style="text-align: center;">
+                <h2 style="font-family:Lucida Sans Unicode;" id="head">Let Us Know You!!</h2>
+            </div>.
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                        {{ signup_form.non_field_errors }}
+                </div>
+                <div class="row">
+                    <span>{{ signup_form.first_name.errors }}</span>
+                    <span class="col-lg-5 fname"><label for="{{ form.first_name.id_for_label }}">First Name :</label></span>
+                    <span class="col-lg-5 lname"><label for="{{ form.last_name.id_for_label }}">Last Name :</label></span>
+                    
+                    <span>{{ signup_form.first_name.field.help_text }}</span>
+                </div>
+
+                <div class="row">
+                    <span>{{ signup_form.last_name.errors }}</span>
+                    <span class="col-lg-5 fbox">{{ signup_form.first_name | attr:"placeholder:First Name.." | attr:"size:100%" | add_class:"input-box" }}</span>
+                    <span class="col-lg-5 lbox">{{ signup_form.last_name  | attr:"placeholder:Last Name.."| attr:"size:100%" | add_class:"input-box"}}</span>
+                    <span>{{ signup_form.last_name.field.help_text }}</span>
+                </div>
+                	<br>
+                <div class="row">
+                    <span>{{ signup_form.email.errors }}</span>
+                    <span class="col-lg-3 email"><label for="{{ form.email.id_for_label }}">Email :</label></span><br>
+                    <span>{{ signup_form.email.field.help_text }}</span>
+                </div>
+                <div class="row">
+                    <span class="col-lg-12 e-box" >{{ signup_form.email  | attr:"placeholder:Email.." | attr:"size:53.5%" | add_class:"input-box" }}</span>
+                </div>
+                    <br>
+                <div class="row">
+                    <span>{{ signup_form.username.errors }}</span>
+                    <span class="col-lg-5 uname"><label for="{{ form.username.id_for_label }}">Username :</label></span>
+                    <span class="col-lg-5 pass"><label for="{{ form.password.id_for_label }}">Password :</label></span>
+                </div>
+
+                <div class="row">
+                    <span>{{ signup_form.password.errors }}</span>
+                    <span class="col-lg-5 ubox">{{ signup_form.username | attr:"placeholder:UserName.."  | add_class:"input-box"}}</span>
+                    <span class="col-lg-3 pbox">{{ signup_form.password | attr:"placeholder:Password.."| add_class:"input-box"}}</span>
+                    <span>{{ signup_form.password.field.help_text }}</span>
+                </div>
+                	<br>
+                <div class="row">
+                	<button class="col-lg-4 button button3" type="submit">Sign Me Up</button>
+                </div>
+
+
+            </form>
+                <br>
+            <div class="row line" style="margin-left: 9%;">
+                <span class="col-lg-10">
+                    <hr>
+                </span> 
+            </div>
+                <br>
+            <div class="row text2"">
+               <span class="col-lg-12"> Or Continue With... </span>
+            </div>
+            <div class="row">
+                <span class="col-lg-6">
+                    <a href="{% url 'social:begin' 'google-oauth2' %}">
+                        <button class="button button1">
+                            <i class="fa fa-google" style="font-size:30px"></i>oogle
+                        </button>
+                    </a>
+                </span>
+                <span class="col-lg-5">
+                    <a href="{% url 'social:begin' 'github' %}">
+                        <button class="button button2">
+                            <i class="fa fa-github" style="font-size:30px"></i>GitHub
+                        </button>
+                    </a>
+                </span>
+            </div>
+        <br>
+        </div>
+
+    </body>
+</html>
