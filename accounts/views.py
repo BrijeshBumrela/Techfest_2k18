@@ -13,7 +13,7 @@ from . import QRcode
 # Create your views here.
 
 
-string = ''
+secret_string = ''
 
 
 def email_confirmation_required(func):
@@ -78,8 +78,8 @@ def edit_additional_info(request):
                 MUD.user = request.user
                 # Encryption
                 MUD.secret_key = MD5encrypt(request.user.username)
-                # Using the variable string to send to qrcode
-                string = str(MUD.secret_key)
+                # Using the variable secret_string to send to qrcode
+                secret_string = str(MUD.secret_key)
 
             MUD.college_name = user_data_form.cleaned_data["college_name"]
             MUD.github_id = user_data_form.cleaned_data["github_id"]
@@ -107,7 +107,7 @@ def edit_additional_info(request):
         return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
 
 
-# QRgenerator(string)
+# QRgenerator(secret_string)
 
 @login_required
 @email_confirmation_required
