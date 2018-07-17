@@ -92,6 +92,7 @@ def delete_profile_pic_on_model_delete(sender, instance, **kwargs):
             os.remove(instance.profile_pic.path)
 
 
+
 def get_event_logo_upload_url(instance, filename):
     location = "events"
     return os.path.join(location, str(instance.name), "logos", filename)
@@ -108,11 +109,16 @@ class Event(models.Model):
                             help_text="All characters allowed except '-' as this may collide with slug of event name")
     logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
                              help_text="Please Upload A Logo For This Event")
+    registration_start_date_time = models.DateTimeField(verbose_name="Registration Starts On (IST) ",)
+    registration_end_date_time = models.DateTimeField(verbose_name="Registration Ends On (IST) ",)
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
-    description = models.TextField(verbose_name="Description")
-    rules = models.TextField(verbose_name="Contest Rules")
-    prize = models.TextField(verbose_name="Prize Description")
+    description = models.TextField(verbose_name="Description", blank=True, max_length=1500)
+    format = models.TextField(verbose_name="Format", blank=True, max_length=1500)
+    rules = models.TextField(verbose_name="Contest Rules", blank=True, max_length=1500)
+    prize = models.TextField(verbose_name="Prize Description", blank=True, max_length=1000)
+    prerequisites = models.TextField(verbose_name="Pre-Requisites", blank=True, max_length=1000)
+    resources = models.TextField(verbose_name="Resources", blank=True, max_length=1500)
     organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=True,
                                         help_text="Please Select 1 or more users as Organisers")
     participants = models.ManyToManyField(to=MoreUserData, related_name="participating_events", blank=True, )
