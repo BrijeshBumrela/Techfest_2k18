@@ -1,4 +1,3 @@
-
 from . import models
 
 from django.contrib.auth.models import User
@@ -71,6 +70,12 @@ def create_validated_user(**kwargs):
     if 'college_name' not in kwargs:
         kwargs['college_name'] = 'Indian Institute Of Information Technology, Sri City'
 
+    try:
+        existing_user = User.objects.get(email=kwargs['email'])
+        raise IntegrityError("An Account with This Email Id Already Exists")
+    except User.DoesNotExist:
+        pass
+
     U = User.objects.create_user(username=kwargs['username'],
                                  password=kwargs['password'],
                                  email=kwargs['email'],
@@ -88,4 +93,3 @@ def create_validated_user(**kwargs):
         MU.phone_number = kwargs['ph_no']
     MU.secret_key = MD5encrypt(U.username)
     MU.save()
-

@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from data.tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 
-from django.db import connection
+from django.db import connection,IntegrityError
 from data.async import run_in_background
 
 
@@ -54,6 +54,12 @@ def signup(request):
         new_user_form = forms.UserForm(request.POST)
 
         if new_user_form.is_valid():
+            try:
+                existing_user = User.objects.get(email=new_user_form.cleaned_data['email'])
+                new_user_form.errors["email"] = 'An Account with this email-id already exists'
+                return render(request, 'registration/signup.html', {"signup_form": new_user_form})
+            except User.DoesNotExist:
+                pass
             new_user = User.objects.create_user(
                 username=new_user_form.cleaned_data["username"],
                 password=new_user_form.cleaned_data["password"],
