@@ -161,3 +161,11 @@ def event_info(request, event_name):
     else:
         return render(request, "main_page/temp_event_info.html",
                       {"event": event, "organisers": event_organisers, "logo": logo})
+
+
+def contact_us(request):
+    return render(request, "main_page/contact_us.html")
+
+
+def temp_event_info(request):
+    return render(request, "main_page/event_info.html")

@@ -1,3 +1,6 @@
+
+{% comment %}
+             COMING FROM EVENTS. KEPT FOR REFERENCES
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
@@ -24,25 +27,144 @@ Or If You Prefer....
                     {{ field.label_tag }}
                 </td>
                 <td>
-                    <span>{{ field|attr:"placeholder:hello"|attr:"size:100px" }}</span>
+                    <span>{{ field }}</span>
                     {% if field.help_text %}
                         <br><span style="color: blue;font-size: medium">{{ field.help_text }}</span>
                     {% endif %}
                 </td>
+{% endcomment %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TechnoBot</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Signup.css' %}">
+        <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+        	var x=0;
+        	var y=127;
+        	var z=255;
+        	var flagy;
+        	var flagz;
+        	function col()
+        	{
+        		document.getElementById("head").style.color = 'rgb(' + y + ',' + z + ',' + x + ')';
+        		if (y <= 0) 
+        		{flagy = 0;} 
+        		if(y >= 255)
+        		{flagy = 1;}
+        		if (z <= 0) 
+        		{flagz = 0;} 
+        		if(z >= 255)
+        		{flagz = 1;}
+        		if(flagy == 0)
+        		{
+        			y = y + 12;
+        		}
+        		if(flagy == 1)
+        		{
+        			y = y - 12;
+        		}
+        		if(flagz == 0)
+        		{
+        			z = z + 24;
+        		}
+        		if(flagz == 1)
+        		{
+        			z = z - 24;
+        		}
+        	}
+        	setInterval(col,200);
+        </script>
+    </head>
+    <body onload="col();">
+        <div class="signup" id="temp" style="background-color: black;">
+            <h2 style="font-family:Lucida Sans Unicode;" id="head" onmouseover="col()">Let Us Know You!!</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div>
+                        {{ signup_form.non_field_errors }}
+                </div>
+                {% comment %}<table>
+                    {% for field in signup_form %}
+                        <tr>
+                            <td>
+                                {{ field.label_tag }}
+                            </td>
+                            <td>
+                               <span style="width: 100px;">{{ field }}</span> 
+                                {% if field.help_text %}
+                                    <br><span style="color: blue;font-size: medium"  >{{ field.help_text }}</span>
+                                {% endif %}
+                            </td>
 
-                <td style="color: red;font-weight: bold">
-                    {{ field.errors }}
-                </td>
-            </tr>
-        {% endfor %}
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Sign-Up">
-                </td>
-                <td></td>
-            </tr>
-    </table>
-</form>
-</body>
+
+                            <td style="color: red;font-weight: bold">
+                                {{ field.errors }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit">Sign Me Up</button>   
+                            </td>
+                            <td></td>
+                        </tr>
+                </table>{% endcomment %}
+                <div>
+                    <span>{{ signup_form.first_name.errors }}</span>
+                    <span class="fname"><label for="{{ form.first_name.id_for_label }}">First Name :</label></span>
+                    <span class="lname"><label for="{{ form.last_name.id_for_label }}">Last Name :</label></span>
+                    
+                    <span>{{ signup_form.first_name.field.help_text }}</span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.last_name.errors }}</span>
+                    <span class="fbox">{{ signup_form.first_name  | add_class:"input-box"}}</span>
+                    <span class="lbox">{{ signup_form.last_name | add_class:"input-box"}}</span>
+                    <span>{{ signup_form.last_name.field.help_text }}</span>
+                </div>
+                	<br>
+                <div>
+                    <span>{{ signup_form.email.errors }}</span>
+                    <span class="email"><label for="{{ form.email.id_for_label }}">Email :</label></span><br>
+                    <span class="e-box">{{ signup_form.email  | attr:"size:52%" | add_class:"input-box" }}</span>
+                    <span>{{ signup_form.email.field.help_text }}</span>
+                </div>
+                	<br>
+                <div>
+                    <span>{{ signup_form.username.errors }}</span>
+                    <span class="uname"><label for="{{ form.username.id_for_label }}">Username :</label></span>
+                    <span class="pass"><label for="{{ form.password.id_for_label }}">Password :</label></span>
+                </div>
+
+                <div>
+                    <span>{{ signup_form.password.errors }}</span>
+                    <span class="ubox">{{ signup_form.username  | add_class:"input-box"}}</span>
+                    <span class="pbox">{{ signup_form.password   | add_class:"input-box"}}</span>
+                    <span>{{ signup_form.password.field.help_text }}</span>
+                </div>
+                	<br>
+                <div>
+                	<button class="button button3" type="submit">Sign Me Up</button>
+                </div>
+
+
+            </form>
+            <h4><span>OR</span></h4>
+            <div class="text1">Login With...</div>
+            <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="button button1"><i class="fa fa-google" style="font-size:30px"></i>oogle</button></a>
+            <a href="{% url 'social:begin' 'github' %}"><button class="button button2"><i class="fa fa-github" style="font-size:30px"></i>GitHub</button></a><br>
+        </div>
+                <div class="text">
+            <div class="main">TECHNOBOT</div>
+            <hr style="color: yellow;">
+            <div class="child">SIGNUP TO PARTICIPATE</div>
+        </div>
+    </body>
 </html>

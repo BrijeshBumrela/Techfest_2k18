@@ -143,7 +143,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '488190015416-0a183nq8ljo79l0bc5ppdv1rhssgap2u.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '_Tu6NIX_V2dR-9Qyn2CUfeIi'
 
-SOCIAL_AUTH_GITHUB_KEY ='bafd458fd9fe324b85fe'
+SOCIAL_AUTH_GITHUB_KEY = 'bafd458fd9fe324b85fe'
 SOCIAL_AUTH_GITHUB_SECRET = '2fbfd46d54213837f1206e83327a49b402d1256a'
 
 REST_FRAMEWORK = {
@@ -153,3 +153,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'adwaitthatteytemp@gmail.com'
+EMAIL_HOST_PASSWORD = 'Hello World'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+PASSWORD_RESET_TIMEOUT_DAYS = 1
