@@ -9,26 +9,53 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png' %}" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
+	<script>
+		function google_display() 
+		{
+			document.getElementById('google1').style.visibility = "visible";
+		}
+		function google_noDisplay() 
+		{
+			document.getElementById('google1').style.visibility = "hidden";
+		}
+		function git_display() 
+		{
+			document.getElementById('git1').style.visibility = "visible";
+		}
+		function git_noDisplay() 
+		{
+			document.getElementById('git1').style.visibility = "hidden";
+		}
+
+	</script>
 </head>
 <body>
 	<div class="text">
 		<p class="main">TECHNOBOT</p>
+		<hr style="color: yellow;text-align: center;width: 50%;">
 		<p class="child">LOGIN.PARTICIPATE.WIN</p>
 	</div>
 	<div class="login">
-		<h2>LOGIN</h2>
+		<h2 class="login_head">LOGIN</h2>
 		<form action="" method="post">
 		   {% csrf_token %}
 		   {{ form.as_p }}<br>
-		   <button class="btn btn-primary btn-lg" type="submit">LOGIN</button>
+		   <button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
 		</form><br><br>
+		<div class="forgot_pass">
+			Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+		</div>
 		<hr>
-			Or If You Prefer...
+			<span id="or">Or If You Prefer...</span>
 		<hr>
 		<div class="social-login">
-			<a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google google" style="font-size:48px;color:red"></i></a>
-			<span>OR</span>
-			<a href="{% url 'social:begin' 'github' %}"><i class="fa fa-github git" style="font-size:45px"></i></a><br>
+			<a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google google" style="font-size:48px;color:red" onmouseover="google_display()" onmouseout="google_noDisplay()"></i></a>
+			<span style="margin-left: 3%;">OR</span>
+			<a href="{% url 'social:begin' 'github' %}"><i class="fa fa-github git" style="font-size:45px" onmouseover="git_display()" onmouseout="git_noDisplay()"></i></a><br>
+		</div>
+		<div style="margin-top: 1%">
+			<span id="google1" style="visibility: hidden;">Google</span>
+			<span id="git1" style="visibility: hidden;">GitHub</span>
 		</div>
 	</div>
 

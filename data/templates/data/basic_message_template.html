@@ -1,0 +1,97 @@
+{% load static %}
+
+{% block load_files %}
+{% endblock load_files %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Basic Message
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {% block javascript_files %}
+    {% endblock javascript_files %}
+
+
+    <style>
+
+        body
+        {
+            text-align: center;
+            font-size: 30px;
+            color: rgb(58, 26, 0);
+        }
+        #section
+    	{
+    		position: relative;
+    	}
+    	#background
+    	{
+    		position: absolute;
+    		left: 0;
+    		top: 0;
+    		z-index: -1;
+    		transition: all .6s;
+    	}
+
+        #section1
+                {
+                    position: relative;
+                }
+    	#main
+    	{
+    		position: fixed;
+    		width: 70%;
+    		margin-top: 12%;
+    		margin-left: 15%;
+    		background-color: rgb(198, 226, 255);
+    		border:1px solid black;
+    		padding-top: 1.5%;
+    		padding-bottom: 2%;
+    		font-family: "Comic Sans MS", cursive, sans-serif;
+    	}
+
+    </style>
+
+    {% block style %}
+    {% endblock style %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+</head>
+
+<body>
+
+    <div id="section"></div>
+	{% block background %}
+	    <div id="background">
+		    {% block background_image %}
+            {% endblock background_image %}
+	    </div>
+    {% endblock background %}
+    {% block section1 %}
+	    <div id="section1"></div>
+        <div id="main">
+
+            <div>
+                {% block section1_img1 %}
+
+                {% endblock section1_img1 %}
+                {% block section1_content1 %}
+
+                {% endblock section1_content1 %}
+            </div>
+        </div>
+    {% endblock section1 %}
+</body>
