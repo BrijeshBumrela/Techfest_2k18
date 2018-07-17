@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.utils import timezone
 
+from accounts.views import MD5encrypt
+
 
 # Create your tests here.
 
@@ -43,4 +45,47 @@ def create_events(number_of_events=10):
             event.organisers.add(models.MoreUserData.objects.all()[0])
         except IndexError:
             raise IndexError("Create at least 1 user before creating events")
+
+
+def create_validated_user(**kwargs):
+    if 'username' not in kwargs:
+        print("username:", end=' ')
+        kwargs['username'] = input()
+
+    if 'email' not in kwargs:
+        print("email:", end=' ')
+        kwargs['email'] = input()
+
+    if 'password' not in kwargs:
+        print("password:", end=' ')
+        kwargs['password'] = input()
+
+    if 'first_name' not in kwargs:
+        print("First Name:", end=' ')
+        kwargs['first_name'] = input()
+
+    if 'last_name' not in kwargs:
+        print("Last Name:", end=' ')
+        kwargs['last_name'] = input()
+
+    if 'college_name' not in kwargs:
+        kwargs['college_name'] = 'Indian Institute Of Information Technology, Sri City'
+
+    U = User.objects.create_user(username=kwargs['username'],
+                                 password=kwargs['password'],
+                                 email=kwargs['email'],
+                                 )
+
+    U.first_name = kwargs['first_name']
+    U.last_name = kwargs['last_name']
+
+    U.emailconfirmation.email_confirmed = True
+
+    U.save()
+
+    MU = models.MoreUserData(user=U, college_name=kwargs["college_name"])
+    if 'ph_no' in kwargs:
+        MU.phone_number = kwargs['ph_no']
+    MU.secret_key = MD5encrypt(U.username)
+    MU.save()
 
