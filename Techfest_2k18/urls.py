@@ -28,6 +28,7 @@ urlpatterns = [
     path('event/<slug:event_name>', main_page.views.event_info, name="event info"),
     path('registration/', include('registration.urls')),
     path('accounts/', include('accounts.urls')),
+    path('api/', include('api.urls')),
     path('auth/', include('social_django.urls', namespace='social'))
 ]
 

@@ -24,7 +24,7 @@ SECRET_KEY = 'b+g+2m6(f3#o9hn71b@!u@dn#4@-g%rr32&d+fd1tf%zckt6v1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'data',
     'main_page',
     'registration',
-    'accounts'
+    'accounts',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '_Tu6NIX_V2dR-9Qyn2CUfeIi'
 
 SOCIAL_AUTH_GITHUB_KEY ='bafd458fd9fe324b85fe'
 SOCIAL_AUTH_GITHUB_SECRET = '2fbfd46d54213837f1206e83327a49b402d1256a'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
