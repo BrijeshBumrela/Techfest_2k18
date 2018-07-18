@@ -8,7 +8,7 @@ app_name = "accounts"
 urlpatterns = [
     path('profile', views.redirect_to_profile_home, ),
     path('profile/', views.redirect_to_profile_home),
-    path('profile/edit-info', views.edit_additional_info, name="edit_additional_info"),
+    path('profile/edit-info', views.edit_info, name="edit_additional_info"),
     path('profile/home', views.profile_home, name="profile_home"),
     path('login/', auth_views.login, name="login"),
     path('event/<slug:event_name>/register', views.register_user_for_event, name="register_for_event"),
