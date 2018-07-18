@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
-from registration.forms import MoreUserDataForm
+from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo
 from django.contrib.auth.decorators import login_required
 from main_page.forms import EventRegisterForm
 import os.path
@@ -64,11 +64,19 @@ def profile_home(request):
 
 @login_required
 @email_confirmation_required
-def edit_additional_info(request):
+def edit_info(request):
     if request.method == "POST":
 
-        user_data_form = MoreUserDataForm(request.POST, request.FILES)
+        user_data_form = EditProfileUserInfo(request.POST)
+        more_user_data_form = EditProfileMoreUserDataInfo(request.POST)
+
         if user_data_form.is_valid():
+            U = request.user
+            U.first_name = user_data_form.cleaned_data['first_name']
+            U.last_name = user_data_form.cleaned_data['last_name']
+            U.save()
+
+        if more_user_data_form.is_valid():
 
             MUD = None
             if hasattr(request.user, 'moreuserdata'):
@@ -81,30 +89,32 @@ def edit_additional_info(request):
                 # Using the variable secret_string to send to qrcode
                 secret_string = str(MUD.secret_key)
 
-            MUD.college_name = user_data_form.cleaned_data["college_name"]
-            MUD.github_id = user_data_form.cleaned_data["github_id"]
-            MUD.hackerrank_id = user_data_form.cleaned_data["hackerrank_id"]
-            MUD.codechef_id = user_data_form.cleaned_data["codechef_id"]
-            MUD.codeforces_id = user_data_form.cleaned_data["codeforces_id"]
-            MUD.description = user_data_form.cleaned_data["description"]
+            MUD.college_name = more_user_data_form.cleaned_data["college_name"]
+            MUD.country_code = more_user_data_form.cleaned_data["country_code"]
+            MUD.phone_number = more_user_data_form.cleaned_data["phone_number"]
+            MUD.description = more_user_data_form.cleaned_data["description"]
+            MUD.github_id = more_user_data_form.cleaned_data["github_id"]
+            MUD.hackerrank_id = more_user_data_form.cleaned_data["hackerrank_id"]
+            MUD.codechef_id = more_user_data_form.cleaned_data["codechef_id"]
+            MUD.codeforces_id = more_user_data_form.cleaned_data["codeforces_id"]
+            MUD.tshirt_size = more_user_data_form.cleaned_data["tshirt_size"]
 
-            if "profile_pic" in request.FILES:
-                MUD.profile_pic = request.FILES["profile_pic"]
 
             MUD.save()
             return redirect('accounts:profile_home')
 
         else:
-            return render(request, "accounts/edit_additional_info.html", {"data_form": user_data_form})
+            return render(request, "accounts/edit_info.html", {"user_data_form": user_data_form, "more_user_data_form":more_user_data_form})
 
     else:
+        new_user_data_form = EditProfileUserInfo(instance=request.user)
         if hasattr(request.user, 'moreuserdata'):
-            new_form = MoreUserDataForm(instance=request.user.moreuserdata)
+            new_more_user_data_form = EditProfileMoreUserDataInfo(instance=request.user.moreuserdata)
 
         else:
-            new_form = MoreUserDataForm()
+            new_more_user_data_form = EditProfileMoreUserDataInfo()
 
-        return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
+        return render(request, "accounts/edit_info.html", {"user_data_form": new_user_data_form, "more_user_data_form": new_more_user_data_form})
 
 
 # QRgenerator(secret_string)
