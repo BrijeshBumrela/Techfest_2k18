@@ -147,11 +147,14 @@ SOCIAL_AUTH_GITHUB_KEY = 'bafd458fd9fe324b85fe'
 SOCIAL_AUTH_GITHUB_SECRET = '2fbfd46d54213837f1206e83327a49b402d1256a'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'adwaitthatteytemp@gmail.com'
