@@ -35,9 +35,12 @@ class RegisteredOrNotView(APIView):
 
     def post(self, request, format=None):
         obj = get_object_or_404(Event, id=request.data.get('id'))
+        add_or_remove = bool(request.data.get('add_or_remove'))
         user_data = request.user.moreuserdata
-        if user_data not in obj.participants.all():
+        if add_or_remove and user_data not in obj.participants.all():
             obj.participants.add(user_data)
+        if not add_or_remove and user_data in obj.participants.all():
+            obj.participants.remove(user_data)
         return Response(status=200)
 
     
