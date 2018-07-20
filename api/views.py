@@ -43,4 +43,10 @@ class RegisteredOrNotView(APIView):
             obj.participants.remove(user_data)
         return Response(status=200)
 
-    
+
+class AllRegisteredEventsView(APIView):
+    def get(self, request, format=None):
+        queryset = Event.objects.filter(participants=request.user.moreuserdata).order_by('end_date_time', 'start_date_time')
+        serializer = EventSerializer(queryset, many=True)
+        return Response(serializer.data)
+
