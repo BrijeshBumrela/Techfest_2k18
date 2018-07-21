@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -85,14 +86,14 @@
 				<label class="fields" for="{{ form.username.id_for_label}}"> Username: </label>
 			</div>
 			<div class="col-md-11 col-md-offset-1">
-				{{form.username}}
+				{{form.username | add_class:"input-box"}}
 			</div>			
 			<div class="col-md-10 col-md-offset-1">&nbsp &nbsp</div> 				
 			<div class="col-md-5 col-md-offset-1">
 					<label class="fields" for="{{ form.username.id_for_label}}"> Password: </label>
 			</div>
 			<div class="col-md-11 col-md-offset-1">
-				{{form.password}}
+				{{form.password | add_class:"input-box"}}
 			</div>
 			<div class="col-md-10">&nbsp &nbsp</div> 
 			<div class="col-md-10 col-md-offset-1" style="text-align: center;">
