@@ -1,74 +1,131 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Login.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png' %}" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
-</head>
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Login</title>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Login.css' %}">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png' %}" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
+        <script>
+        	var x=0;
+        	var y=127;
+        	var z=255;
+        	var flagy;
+        	var flagz;
+        	function col()
+        	{
+        		document.getElementById("head").style.color = 'rgb(' + y + ',' + z + ',' + x + ')';
+        		if (y <= 0) 
+        		{flagy = 0;} 
+        		if(y >= 255)
+        		{flagy = 1;}
+        		if (z <= 0) 
+        		{flagz = 0;} 
+        		if(z >= 255)
+        		{flagz = 1;}
+        		if(flagy == 0)
+        		{y = y + 12;}
+        		if(flagy == 1)
+        		{y = y - 12;}
+        		if(flagz == 0)
+        		{z = z + 24;}
+        		if(flagz == 1)
+        		{z = z - 24;}
+        	}
+        	setInterval(col,500);
+        </script>
+        <script>
+            var spans = document.querySelectorAll("tspan");
+            var i = 0;
+            for (i = 0; i < spans.length; i++) {
+              spans[i].setAttribute("rotate", (10 * Math.random() - 5));
+            }
+        </script>
+	</head>
 <body>
-	<div class="text">
-		<p class="main">TECHFESIA</p>
-		<h5 style="color: pink;">Biggest Techfest of IIIT Sricity</h5>
-		<p class="child"><span style="color: orange">LOGIN</span>.<span style="color: white">PARTICIPATE</span>.<span style="color: green">WIN</span></p>
+	<div class="container container-name" style="margin-left: 5%;">
+		<div class="row">
+		    <div class="col-md-12" style="text-align: center;border:1px solid yellow;margin-top: 9%;" >
+	                <svg width="600" height="200">
+	                  <text x="300" y="125" text-anchor="middle">
+	                    <tspan id="l1">T</tspan>
+	                    <tspan id="l2">E</tspan>
+	                    <tspan id="l3">C</tspan>
+	                    <tspan id="l4">H</tspan>
+	                    <tspan id="l5">F</tspan>
+	                    <tspan id="l6">E</tspan>
+	                    <tspan id="l7">S</tspan>
+	                    <tspan id="l8">I</tspan>
+	                    <tspan id="l9">A</tspan>
+	                  </text>
+	                </svg>
+	        </div>
+	        <div style="text-align: center;" class="col-md-12" >
+                <hr style="width: 70%;">
+            </div>
+	    </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <span class="sub_name">LOGIN TO WIN</span>
+            </div>
+        </div>
 	</div>
-	<div class="container login" style="width: 50%;">
-		<div class="row col-lg-12">
-			<h1 class="login_head">LOGIN</h1>
-		</div>
-		<form action="" method="post">
-			<div class="row">
-				<div class="col-lg-5" style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-				    {% csrf_token %}
-				    {% comment %} {{ form.as_p }}<br> {% endcomment %}
-				    <div>
-					    <label for="{{ form.username.id_for_label}}"> Username: </label>
-						{{form.username}}
-					</div>
-					
-					<div>
-						<label for="{{ form.username.id_for_label}}"> Password: </label>
-						{{form.password}}
-					</div>
-				</div>
-				<span class="text1" style="margin-left: 15%;">OR Login with...</span>
-				<div class="col-lg-7 social-login">
-					
+    <div class="container container-login col-md-offset-7">
+    	<div class="row">
+			<div class="col-md-10 col-md-offset-1" style="text-align: center;">
+				<h2 style="font-family:Lucida Sans Unicode;" id="head">LOGIN!!</h2>
+			</div>
+			<form action="" method="post">
+			{% csrf_token %}
+			<div class="col-md-5 col-md-offset-1">
+				<label class="fields" for="{{ form.username.id_for_label}}"> Username: </label>
+			</div>
+			<div class="col-md-11 col-md-offset-1">
+				{{form.username}}
+			</div>			
+			<div class="col-md-10 col-md-offset-1">&nbsp &nbsp</div> 				
+			<div class="col-md-5 col-md-offset-1">
+					<label class="fields" for="{{ form.username.id_for_label}}"> Password: </label>
+			</div>
+			<div class="col-md-11 col-md-offset-1">
+				{{form.password}}
+			</div>
+			<div class="col-md-10">&nbsp &nbsp</div> 
+			<div class="col-md-10 col-md-offset-1" style="text-align: center;">
+				<button class="button button3 bt_text" type="submit">LOGIN</button>
+			</div>
+			<div class="col-md-10">&nbsp &nbsp</div> 
+			<div class="col-md-10 col-md-offset-1 forgot-pass">
+					Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+			</div>
+			<div class="col-md-10">&nbsp &nbsp</div> 
+			<div class="col-md-10 col-md-offset-1">
+				<h4><span class="h4-text">OR Continue with...</span></h4>
+			</div>
+			<div class="col-md-10">&nbsp &nbsp</div> 
+			<div class="col-md-5 col-md-offset-1">						
 					<a href="{% url 'social:begin' 'google-oauth2' %}">
 						<button class="button button1">
-						<i class="fa fa-google google" style="font-size:40px;color:white"></i><span style="color: white;">Google</span>
+							<i class="fa fa-google-plus-square" style="font-size:30px"></i>
+							<span class="bt_text">Google</span>
 						</button>
 					</a>
-					<br>
-					
-				</div>
 			</div>
-			<div class="row"> 
-				<div class="col-lg-5" style="text-align: center;">
-			   		 <button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
-			    </div>
-			    <div class="col-lg-7">
-			    
+			<div class="col-md-5">
 					<a href="{% url 'social:begin' 'github' %}">
 						<button class="button button2">
-						<i class="fa fa-github git" style="font-size:40px;color: white"></i><span style="color: white;">GitHub</span>
+							<i class="fa fa-github" style="font-size:30px"></i>
+							<span class="bt_text">GitHub</span>
 						</button>
-					</a><br>
-				
+					</a>									
 			</div>
-			</div>
-		</form><br>	
-		<div class="row forgot_pass">
-			<div class="col-lg-5" style="text-align: center;">
-				Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
-			</div>
+			</form><br>	
+			<div class="col-md-10">&nbsp &nbsp</div> 
 		</div>
-
-
-
+	</div>
 </body>
 </html>

@@ -32,21 +32,13 @@
         		if(z >= 255)
         		{flagz = 1;}
         		if(flagy == 0)
-        		{
-        			y = y + 12;
-        		}
+        		{y = y + 12;}
         		if(flagy == 1)
-        		{
-        			y = y - 12;
-        		}
+        		{y = y - 12;}
         		if(flagz == 0)
-        		{
-        			z = z + 24;
-        		}
+        		{z = z + 24;}
         		if(flagz == 1)
-        		{
-        			z = z - 24;
-        		}
+        		{z = z - 24;}
         	}
         	setInterval(col,500);
         </script>
@@ -82,12 +74,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="text-align: center;">
-                    <span class="sub_name">SIGNUP TO PARTICIPATE</span>
-                </div>
+            <div class="col-md-12" style="text-align: center;">
+                <span class="sub_name">SIGNUP TO PARTICIPATE</span>
             </div>
-            <div class="row">
-
             </div>
         </div>        
         <div class="container container-signup col-md-offset-6">
@@ -117,19 +106,20 @@
 
                         <span>{{ signup_form.last_name.errors }}</span>
                         <span>{{ signup_form.last_name.field.help_text }}</span>
-                    
-                            {{ signup_form.non_field_errors }}
-            
                         <div class="col-md-5 col-md-offset-1">
-                            <label for="{{ signup_form.email.id_for_label }}" class="fields">Email :</label>                            
+                            <label for="{{ signup_form.email.id_for_label }}" class="fields">Email :</label>             
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             {{ signup_form.email  | add_class:"input-box" }}
                         </div>
+                        <div class="col-md-10 col-md-offset-1" >
+                            {{ signup_form.non_field_errors }}
+                            <span style="color: red;">{{ signup_form.email.errors }}</span>
+                            <span >{{ signup_form.email.field.help_text }}</span>
+                        </div>
                 <div class="col-md-10">&nbsp &nbsp</div> 
 
-                    <span>{{ signup_form.email.errors }}</span>
-                    <span>{{ signup_form.email.field.help_text }}</span>
+
  
                     <div class="col-md-5 col-md-offset-1">
                         <label for="{{ signup_form.username.id_for_label }}" class="fields">Username :</label>
@@ -145,9 +135,10 @@
                         {{ signup_form.password | add_class:"input-box"}}
                     </div>
                 <div class="col-md-10">&nbsp &nbsp</div> 
-            
-                    <span>{{ signup_form.username.errors }}</span>
-                    <span>{{ signup_form.password.errors }}</span>
+                <div class="col-md-10 col-md-offset-1" >
+                    <span style="color: red;">{{ signup_form.username.errors }}</span>
+                </div>
+                    <span style="color: red;">{{ signup_form.password.errors }}</span>
                     <span>{{ signup_form.password.field.help_text }}</span>
             
                     <div class="col-md-10  col-md-offset-1">
