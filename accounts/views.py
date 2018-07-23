@@ -22,6 +22,7 @@ def email_confirmation_required(func):
     THE DECORATOR login_required MUST ALWAYS PRECEDE THIS
 
     """
+
     def checker(request, *args, **kwargs):
         if request.user.emailconfirmation.email_confirmed is True:
             return func(request, *args, **kwargs)
@@ -59,7 +60,7 @@ def profile_home(request):
         if S is not '':
             User["profile_pic"] = request.user.moreuserdata.profile_pic.url
 
-    return render(request, "accounts/profile_home.html", {"additional_info_check": additional_info_check, "user": User})
+    return render(request, "accounts/profile_home.html", {"active_profile":True, "additional_info_check": additional_info_check, "user": User})
 
 
 @login_required
@@ -99,12 +100,12 @@ def edit_info(request):
             MUD.codeforces_id = more_user_data_form.cleaned_data["codeforces_id"]
             MUD.tshirt_size = more_user_data_form.cleaned_data["tshirt_size"]
 
-
             MUD.save()
             return redirect('accounts:profile_home')
 
         else:
-            return render(request, "accounts/edit_info.html", {"user_data_form": user_data_form, "more_user_data_form":more_user_data_form})
+            return render(request, "accounts/edit_info.html",
+                          {"user_data_form": user_data_form, "more_user_data_form": more_user_data_form})
 
     else:
         new_user_data_form = EditProfileUserInfo(instance=request.user)
@@ -114,7 +115,8 @@ def edit_info(request):
         else:
             new_more_user_data_form = EditProfileMoreUserDataInfo()
 
-        return render(request, "accounts/edit_info.html", {"user_data_form": new_user_data_form, "more_user_data_form": new_more_user_data_form})
+        return render(request, "accounts/edit_info.html",
+                      {"user_data_form": new_user_data_form, "more_user_data_form": new_more_user_data_form})
 
 
 # QRgenerator(secret_string)
@@ -131,7 +133,11 @@ def display_user_registered_events(request):
 
         return_event_set.append(E)
     return render(request, "accounts/myevents.html",
-                  {"events": return_event_set, "default_logo": "/media/events/defaults/logo.png"})
+                  {"active_events": True,
+                   "events": return_event_set,
+                   "default_logo": "/media/events/defaults/logo.png"
+                   }
+                  )
 
 
 @login_required
@@ -216,6 +222,12 @@ def un_register_user_for_event(request, event_name):
 
 @login_required
 @email_confirmation_required
+def updates(request):
+    return render(request, "accounts/updates.html", {"active_updates": True, })
+
+
+@login_required
+@email_confirmation_required
 def maps(request):
     return render(request, "accounts/map.html")
 
@@ -224,4 +236,3 @@ def maps(request):
 @email_confirmation_required
 def calender(request):
     return render(request, "accounts/calender.html")
-
