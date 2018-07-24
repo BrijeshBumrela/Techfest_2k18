@@ -44,6 +44,13 @@
             border-left: none;
             border-right: none;
         }
+
+        .field_error{
+            color: #ff2509;
+            font-size: 110%;
+            font-weight: bold;
+
+        }
     </style>
 {% endblock %}
 
@@ -79,16 +86,19 @@
                         <div class="input-field col s12 m6 l6">
                             {{ user_data_form.first_name|add_class:"validate" }}
                             <label for="{{ user_data_form.first_name.id_for_label }}">First Name</label>
+                            <span class="helper-text field_error" data-error="right">{{ user_data_form.first_name.errors }}</span>
                         </div>
                         <div class="input-field col s12 m6 l6">
                             {{ user_data_form.last_name|add_class:"validate" }}
                             <label for="{{ user_data_form.last_name.id_for_label }}">Last Name</label>
+                            <span class="helper-text field_error" data-error="right">{{ user_data_form.last_name.errors }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             {{ more_user_data_form.college_name|add_class:"validate" }}
                             <label for="{{ more_user_data_form.college_name.id_for_label }}">College Name : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.college_name.errors }}</span>
                         </div>
                     </div>
 
@@ -96,6 +106,7 @@
                         <div class="input-field col s12">
                             {{ more_user_data_form.description|add_class:"validate remove_text_border" }}
                             <label for="{{ more_user_data_form.description.id_for_label }}">About You : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.description.errors }}</span>
                         </div>
                     </div>
 
@@ -107,10 +118,12 @@
                                 <div class="input-field col s12 m3 l3" style="width:30%;">
                                     <label for="{{ more_user_data_form.country_code.id_for_label }}" style="display:none">Country Code for Phone Number:</label>
                                     {{ more_user_data_form.country_code }}
+                                    <span class="helper-text field_error" data-error="right">{{ more_user_data_form.country_code.errors }}</span>
                                 </div>
                                 <div class="input-field col s12 m9 l9" style="width:70%">
                                     {{ more_user_data_form.phone_number|add_class:"validate" }}
                                     <label for="{{ more_user_data_form.phone_number.id_for_label }}">Enter Phone Number</label>
+                                    <span class="helper-text field_error" data-error="right">{{ more_user_data_form.phone_number.errors }}</span>
                                 </div>
                             </div>
 
@@ -128,26 +141,31 @@
                         <div class="input-field col s12 m6 l6">
                             {{ more_user_data_form.github_id|add_class:"validate" }}
                             <label for="{{ more_user_data_form.github_id.id_for_label }}">GitHub Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.github_id.errors }}</span>
                         </div>
                         <div class="input-field col s12 m6 l6">
                             {{ more_user_data_form.hackerrank_id|add_class:"validate" }}
                             <label for="{{ more_user_data_form.hackerrank_id.id_for_label }}">HackerRank Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.hackerrank_id.errors }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
                             {{ more_user_data_form.codechef_id|add_class:"validate" }}
                             <label for="{{ more_user_data_form.codechef_id.id_for_label }}">CodeChef Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.codechef_id.errors }}</span>
                         </div>
                         <div class="input-field col s12 m6 l6">
                             {{ more_user_data_form.codeforces_id|add_class:"validate" }}
                             <label for="{{ more_user_data_form.codeforces_id.id_for_label }}">CodeForces Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.codeforces_id.errors }}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             {{ more_user_data_form.tshirt_size }}
                             <label for="{{ more_user_data_form.tshirt_size.id_for_label }}">T-Shirt SIze</label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.tshirt_size.errors }}</span>
                         </div>
                     </div>
                 </div>
