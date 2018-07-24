@@ -37,6 +37,13 @@
         .story__shape:hover .story__img {
             filter: blur(3px) brightness(80%);
         }
+
+        .remove_text_border {
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
     </style>
 {% endblock %}
 
@@ -45,44 +52,53 @@
         <div class="row">
             <div class="story" onclick="open_profile_pic_upload_box()">
                 <figure class="story__shape">
-                    <img src="{% static 'img/person1.jpg' %}" class='circle responsive-img row1  story__img' alt="" id="edit_profile_pic">
+                    {% if profile.is_profile_pic_set %}
+                    <img src="{{ profile.profile_pic }}" class='circle responsive-img row1  story__img' alt="" id="edit_profile_pic">
+                    {% else %}
+                    <img src="{{ profile.edit_profile_pic }}" class='circle responsive-img row1  story__img' alt="" id="edit_profile_pic">
+                    {% endif %}
                     <a href="#">
                         <figcaption class="story__caption">Change</figcaption>
                     </a>
                 </figure>
             </div>
             <div class="user_fullname">
-                John Doe
+                {{ profile.fullname }}
             </div>
             <div class="user_username">
-                @johndoe (username)
+                @{{ profile.username }}
             </div>
         </div>
 
         <div class="row">
-            <form action="" method="post" id="edit-info-form">
+            <form action="" method="post" id="edit-info-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <script>
+                    console.log({{ user_data_form.errors }})
+                    console.log({{ more_user_data_form.errors}})
+                </script>
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">First Name</label>
+                            {{ user_data_form.first_name|add_class:"validate" }}
+                            <label for="{{ user_data_form.first_name.id_for_label }}">First Name</label>
                         </div>
                         <div class="input-field col s12 m6 l6">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Last Name</label>
+                            {{ user_data_form.last_name|add_class:"validate" }}
+                            <label for="{{ user_data_form.last_name.id_for_label }}">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate">
-                            <label for="disabled">College Name : </label>
+                            {{ more_user_data_form.college_name|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.college_name.id_for_label }}">College Name : </label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate">
-                            <label for="disabled">About You : </label>
+                            {{ more_user_data_form.description|add_class:"validate remove_text_border" }}
+                            <label for="{{ more_user_data_form.description.id_for_label }}">About You : </label>
                         </div>
                     </div>
 
@@ -92,19 +108,12 @@
 
                             <div class="row">
                                 <div class="input-field col s12 m3 l3" style="width:30%;">
-                                    <label for="id_country_code" style="display:none">Country Code for Phone Number:</label>
-
-                                    <select name="country_code" id="id_country_code">
-                                        <option value="+91" selected>India(+91)</option>
-                                        <option value="+7">Russia(+7)</option>
-                                        <option value="+81">Japan(+81)</option>
-                                        <option value="+1">USA(+1)</option>
-                                        <option value="+972">Israel(+972)</option>
-                                    </select>
+                                    <label for="{{ more_user_data_form.country_code.id_for_label }}" style="display:none">Country Code for Phone Number:</label>
+                                    {{ more_user_data_form.country_code }}
                                 </div>
                                 <div class="input-field col s12 m9 l9" style="width:70%">
-                                    <input type="text" name="phone_number" maxlength="10" id="id_phone_number"/>
-                                    <label for="id_phone_number">Enter Phone Number</label>
+                                    {{ more_user_data_form.phone_number|add_class:"validate" }}
+                                    <label for="{{ more_user_data_form.phone_number.id_for_label }}">Enter Phone Number</label>
                                 </div>
                             </div>
 
@@ -120,35 +129,28 @@
 
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
-                            <input id="email" type="text" class="validate">
-                            <label for="email">GitHub Username : </label>
+                            {{ more_user_data_form.github_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.github_id.id_for_label }}">GitHub Username : </label>
                         </div>
                         <div class="input-field col s12 m6 l6">
-                            <input id="email" type="text" class="validate">
-                            <label for="email">HackerRank Username : </label>
+                            {{ more_user_data_form.hackerrank_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.hackerrank_id.id_for_label }}">HackerRank Username : </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
-                            <input id="email" type="text" class="validate">
-                            <label for="email">CodeChef Username : </label>
+                            {{ more_user_data_form.codechef_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.codechef_id.id_for_label }}">CodeChef Username : </label>
                         </div>
                         <div class="input-field col s12 m6 l6">
-                            <input id="email" type="text" class="validate">
-                            <label for="email">CodeForces Username : </label>
+                            {{ more_user_data_form.codeforces_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.codeforces_id.id_for_label }}">CodeForces Username : </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select>
-                                <option value="0">None</option>
-                                <option value="1">Small (S)</option>
-                                <option value="2">Medium (M)</option>
-                                <option value="3">Large (L)</option>
-                                <option value="4">Extra Large (XL)</option>
-                                <option value="5">Extra Extra Large (XXL)</option>
-                            </select>
-                            <label>T-Shirt Design</label>
+                            {{ more_user_data_form.tshirt_size }}
+                            <label for="{{ more_user_data_form.tshirt_size.id_for_label }}">T-Shirt SIze</label>
                         </div>
                     </div>
                 </div>
@@ -156,7 +158,7 @@
                     <input type="submit" class="btn btn-large" value="Update">
                 </div>
                 <div style="display: none" onchange="update_profile_image()">
-                    <input type="file" id="profile_picture_upload">
+                    {{ more_user_data_form.profile_pic }}
                 </div>
             </form>
         </div>
@@ -167,7 +169,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <script>
-      file_upload_box = document.getElementById('profile_picture_upload');
+      file_upload_box = document.getElementById('{{ more_user_data_form.profile_pic.id_for_label }}');
       function open_profile_pic_upload_box() {
         file_upload_box.click();
       }

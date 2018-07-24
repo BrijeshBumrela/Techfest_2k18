@@ -1,3 +1,6 @@
+import datetime
+
+import pytz
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
@@ -14,7 +17,7 @@ from . import QRcode
 
 
 secret_string = ''
-
+# QRgenerator(secret_string)
 
 def email_confirmation_required(func):
     """
@@ -48,28 +51,55 @@ def redirect_to_profile_home(request):
     return redirect('accounts:profile_home')
 
 
+def get_user_details(request):
+    user_details = {"username": request.user.username,
+                    "fullname": request.user.get_full_name(),
+                    }
+
+    if hasattr(request.user, 'moreuserdata'):
+
+        S = str(request.user.moreuserdata.profile_pic)
+        if S is not '':
+            user_details["profile_pic"] = request.user.moreuserdata.profile_pic.url
+        else:
+            user_details["profile_pic"] = '/media/profile_pictures/default/blank.jpg'
+    else:
+        user_details["profile_pic"] = '/media/profile_pictures/default/blank.jpg'
+
+    return user_details
+
+
 @login_required
 @email_confirmation_required
 def profile_home(request):
-    User = {"username": request.user.username}
-    additional_info_check = False
+    user_details = get_user_details(request)
+    if hasattr(request.user,"moreuserdata") :
+        user_details["details_check"] = True
+        MUD = request.user.moreuserdata
+        user_details["about"] = MUD.description
+        user_details["college"] = MUD.college_name
+        user_details["email"] = request.user.email
+        user_details["phone_number"] = str(MUD.country_code) + ' ' + str(MUD.phone_number)
+        user_details["github_id"] = MUD.github_id
+        user_details["hackerrank_id"] = MUD.hackerrank_id
+        user_details["codechef_id"] = MUD.codechef_id
+        user_details["codeforces_id"] = MUD.codeforces_id
 
-    if hasattr(request.user, 'moreuserdata'):
-        additional_info_check = True
-        S = str(request.user.moreuserdata.profile_pic)
-        if S is not '':
-            User["profile_pic"] = request.user.moreuserdata.profile_pic.url
-
-    return render(request, "accounts/profile_home.html", {"active_profile":True, "additional_info_check": additional_info_check, "user": User})
+    return render(request, "accounts/profile_home.html", {"active_profile": True, "profile": user_details})
 
 
 @login_required
 @email_confirmation_required
 def edit_info(request):
+    current_user_details = get_user_details(request)
+    current_user_details["is_profile_pic_set"] = True
+    if current_user_details["profile_pic"] == '/media/profile_pictures/default/blank.jpg':
+        current_user_details["is_profile_pic_set"] = False
+        current_user_details["edit_profile_pic"] = '/media/profile_pictures/default/add_pic.jpeg'
     if request.method == "POST":
 
         user_data_form = EditProfileUserInfo(request.POST)
-        more_user_data_form = EditProfileMoreUserDataInfo(request.POST)
+        more_user_data_form = EditProfileMoreUserDataInfo(request.POST, request.FILES)
 
         if user_data_form.is_valid():
             U = request.user
@@ -100,12 +130,18 @@ def edit_info(request):
             MUD.codeforces_id = more_user_data_form.cleaned_data["codeforces_id"]
             MUD.tshirt_size = more_user_data_form.cleaned_data["tshirt_size"]
 
+            if "profile_pic" in request.FILES:
+                MUD.profile_pic = request.FILES["profile_pic"]
+
             MUD.save()
             return redirect('accounts:profile_home')
 
         else:
             return render(request, "accounts/edit_info.html",
-                          {"user_data_form": user_data_form, "more_user_data_form": more_user_data_form})
+                          {"user_data_form": user_data_form,
+                           "more_user_data_form": more_user_data_form,
+                           "profile": current_user_details,
+                           })
 
     else:
         new_user_data_form = EditProfileUserInfo(instance=request.user)
@@ -116,24 +152,44 @@ def edit_info(request):
             new_more_user_data_form = EditProfileMoreUserDataInfo()
 
         return render(request, "accounts/edit_info.html",
-                      {"user_data_form": new_user_data_form, "more_user_data_form": new_more_user_data_form})
+                      {"user_data_form": new_user_data_form,
+                       "more_user_data_form": new_more_user_data_form,
+                       "profile": current_user_details,
+                       })
 
 
-# QRgenerator(secret_string)
+
 
 @login_required
 @email_confirmation_required
 def display_user_registered_events(request):
+    user_details = get_user_details(request)
     event_set = request.user.moreuserdata.participating_events.all()
     return_event_set = list()
+    localtimezone = pytz.timezone('Asia/Kolkata')
+    cur_datetime = datetime.datetime.now().astimezone(localtimezone)
     for event in event_set:
-        E = {"name": event.name}
-        if str(event.logo):
+        E = {"name": event.name.title(), }
+        if event.start_date_time > cur_datetime:
+            diff = event.start_date_time - cur_datetime
+            if diff.days > 0:
+                E["start_diff"] = "Starts In " + str(diff.days) + " Days"
+            else:
+                E["start_diff"] = "Starts In " + str(diff.seconds) + " Seconds"
+        elif event.end_date_time > cur_datetime:
+            diff = event.end_date_time - cur_datetime
+            if diff.days > 0:
+                E["end_diff"] = "Ends In " + str(diff.days) + " Days"
+            else:
+                E["end_diff"] = "Ends In " + str(diff.seconds) + " Seconds"
+
+        if str(event.logo) is not "":
             E["logo"] = event.logo.url
 
         return_event_set.append(E)
     return render(request, "accounts/myevents.html",
-                  {"active_events": True,
+                  {"profile": user_details,
+                   "active_events": True,
                    "events": return_event_set,
                    "default_logo": "/media/events/defaults/logo.png"
                    }
@@ -223,7 +279,8 @@ def un_register_user_for_event(request, event_name):
 @login_required
 @email_confirmation_required
 def updates(request):
-    return render(request, "accounts/updates.html", {"active_updates": True, })
+    user_details = get_user_details(request)
+    return render(request, "accounts/updates.html", {"active_updates": True, "profile":user_details})
 
 
 @login_required

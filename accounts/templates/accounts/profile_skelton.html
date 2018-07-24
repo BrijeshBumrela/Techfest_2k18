@@ -114,12 +114,12 @@
     {% block left_panel %}
         <div class="col s12 m3 l3 center first-col black darken-2 red-text">
             <div class="row">
-                <img src="{% static 'img/person1.jpg' %}" class='circle responsive-img row1' alt="">
+                <img src="{{ profile.profile_pic }}" class='circle responsive-img row1' alt="">
                 <div class="user_fullname">
-                    John Doe
+                    {{ profile.fullname }}
                 </div>
                 <div class="user_username">
-                    @johndoe (username)
+                    @{{ profile.username }}
                 </div>
             </div>
             <div class="row card-panel left_panel_text {% if not active_updates %}black darken{% endif %}">
