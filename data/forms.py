@@ -25,5 +25,5 @@ class EditProfileUserInfo(forms.ModelForm):
 class EditProfileMoreUserDataInfo(forms.ModelForm):
     class Meta:
         model = MoreUserData
-        fields = ['college_name', 'country_code', 'phone_number', 'description', 'github_id', 'hackerrank_id', 'codechef_id', 'codeforces_id', 'tshirt_size']
+        fields = ['profile_pic','college_name', 'country_code', 'phone_number', 'description', 'github_id', 'hackerrank_id', 'codechef_id', 'codeforces_id', 'tshirt_size']
 
