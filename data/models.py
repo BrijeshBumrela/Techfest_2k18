@@ -33,7 +33,7 @@ def put_email_confirmed_false(sender, instance, created, **kwargs):
 
 def get_profilepic_upload_url(instance, filename):
     location = "profile_pictures"
-    return os.path.join(location, str(instance.user.id))
+    return os.path.join(location, str(instance.user.id), filename)
 
 
 class MoreUserData(models.Model):
