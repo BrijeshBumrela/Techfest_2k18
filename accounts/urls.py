@@ -17,4 +17,5 @@ urlpatterns = [
     path('myevents', views.display_user_registered_events, name="myevents"),
     path('maps', views.maps, name="map"),
     path('calender', views.calender, name="calender"),
+    path('password-change', views.change_password, name="change_password")
 ]

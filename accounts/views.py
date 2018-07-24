@@ -4,9 +4,10 @@ import pytz
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
-from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo
+from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo, ChangePasswordForm
 from django.contrib.auth.decorators import login_required
 from main_page.forms import EventRegisterForm
+from django.contrib.auth import login
 import os.path
 # For encryption
 import hashlib
@@ -281,6 +282,34 @@ def un_register_user_for_event(request, event_name):
 def updates(request):
     user_details = get_user_details(request)
     return render(request, "accounts/updates.html", {"active_updates": True, "profile":user_details})
+
+@login_required
+@email_confirmation_required
+def change_password(request):
+    user_details = get_user_details(request)
+    if request.method == "POST":
+        password_form = ChangePasswordForm(request.POST)
+        if password_form.is_valid():
+            if not request.user.check_password(password_form.cleaned_data["old_password"]):
+                password_form.errors["old_password"] = "Incorrect Current Password"
+                return render(request, "accounts/change_password.html",
+                              {"profile": user_details, "form": password_form,})
+            elif password_form.cleaned_data["new_password"]!=password_form.cleaned_data["confirm_new_password"]:
+                password_form.errors["confirm_new_password"] = "Both Passwords Do Not Match"
+                return render(request, "accounts/change_password.html",
+                              {"profile": user_details, "form": password_form, })
+            else:
+                request.user.set_password(password_form.cleaned_data["new_password"])
+                request.user.save()
+                login(request, request.user, backend='django.contrib.auth.backends.ModelBackend')
+                return redirect('accounts:profile_home')
+
+        else:
+            return render(request, "accounts/change_password.html", {"profile": user_details, "form": password_form})
+
+    else:
+        password_form = ChangePasswordForm()
+        return render(request, "accounts/change_password.html", {"profile": user_details,"form":password_form})
 
 
 @login_required
