@@ -27,3 +27,8 @@ class EditProfileMoreUserDataInfo(forms.ModelForm):
         model = MoreUserData
         fields = ['profile_pic','college_name', 'country_code', 'phone_number', 'description', 'github_id', 'hackerrank_id', 'codechef_id', 'codeforces_id', 'tshirt_size']
 
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput(), min_length=8)
+    confirm_new_password = forms.CharField(widget=forms.PasswordInput(), min_length=8)

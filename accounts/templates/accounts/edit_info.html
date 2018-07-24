@@ -73,10 +73,7 @@
         <div class="row">
             <form action="" method="post" id="edit-info-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <script>
-                    console.log({{ user_data_form.errors }})
-                    console.log({{ more_user_data_form.errors}})
-                </script>
+
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
@@ -167,7 +164,7 @@
 
 {% block endscripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'accounts/js/materialize.min.js' %}"></script>
     <script>
       file_upload_box = document.getElementById('{{ more_user_data_form.profile_pic.id_for_label }}');
       function open_profile_pic_upload_box() {

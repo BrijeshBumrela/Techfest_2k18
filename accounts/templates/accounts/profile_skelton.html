@@ -12,10 +12,11 @@
             Title
         {% endblock title %}
     </title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ profile.profile_pic }}" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/css/materialize.min.css' %}" media="screen,projection"/>
+
     {% block stylesheets %}
     {% endblock stylesheets %}
 
@@ -159,7 +160,7 @@
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'accounts/js/materialize.min.js' %}"></script>
 
 <script>
     $(document).ready(function () {
