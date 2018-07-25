@@ -4,7 +4,7 @@ import pytz
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
-from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo, ChangePasswordForm
+from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo, ChangePasswordForm, UpdateTemplateForm
 from django.contrib.auth.decorators import login_required
 from main_page.forms import EventRegisterForm
 from django.contrib.auth import login
@@ -74,7 +74,7 @@ def get_user_details(request):
 @email_confirmation_required
 def profile_home(request):
     user_details = get_user_details(request)
-    if hasattr(request.user,"moreuserdata") :
+    if hasattr(request.user, "moreuserdata"):
         user_details["details_check"] = True
         MUD = request.user.moreuserdata
         user_details["about"] = MUD.description
@@ -86,7 +86,7 @@ def profile_home(request):
         user_details["codechef_id"] = MUD.codechef_id
         user_details["codeforces_id"] = MUD.codeforces_id
 
-    QRcode.QRgenerator(secret_string)
+
     return render(request, "accounts/profile_home.html", {"active_profile": True, "profile": user_details})
 
 
@@ -158,8 +158,6 @@ def edit_info(request):
                        "more_user_data_form": new_more_user_data_form,
                        "profile": current_user_details,
                        })
-
-
 
 
 @login_required
@@ -282,7 +280,15 @@ def un_register_user_for_event(request, event_name):
 @email_confirmation_required
 def updates(request):
     user_details = get_user_details(request)
-    return render(request, "accounts/updates.html", {"active_updates": True, "profile":user_details})
+    user_updates = list()
+    for notif in request.user.notification_set.all():
+        notif.generate_urls()
+        F = UpdateTemplateForm(instance=notif)
+        user_updates.append(F)
+
+    return render(request, "accounts/updates.html",
+                  {"active_updates": True, "profile": user_details, "updates": user_updates})
+
 
 @login_required
 @email_confirmation_required
@@ -294,8 +300,8 @@ def change_password(request):
             if not request.user.check_password(password_form.cleaned_data["old_password"]):
                 password_form.errors["old_password"] = "Incorrect Current Password"
                 return render(request, "accounts/change_password.html",
-                              {"profile": user_details, "form": password_form,})
-            elif password_form.cleaned_data["new_password"]!=password_form.cleaned_data["confirm_new_password"]:
+                              {"profile": user_details, "form": password_form, })
+            elif password_form.cleaned_data["new_password"] != password_form.cleaned_data["confirm_new_password"]:
                 password_form.errors["confirm_new_password"] = "Both Passwords Do Not Match"
                 return render(request, "accounts/change_password.html",
                               {"profile": user_details, "form": password_form, })
@@ -310,19 +316,20 @@ def change_password(request):
 
     else:
         password_form = ChangePasswordForm()
-        return render(request, "accounts/change_password.html", {"profile": user_details,"form":password_form})
+        return render(request, "accounts/change_password.html", {"profile": user_details, "form": password_form})
 
 
 @login_required
 @email_confirmation_required
 def disp_qr_code(request):
-
     if not hasattr(request.user, 'moreuserdata'):
         return render(request, "accounts/invalid_request.html", {
             "message": "Your Profile is missing some critical information. Please go to your profile and fill out the missing information before registering for the event",
             "links": ["incomplete_profile"]})
 
-    return render(request, "accounts/qr_code.html", {"secret_string":request.user.moreuserdata.secret_key})
+    return render(request, "accounts/qr_code.html", {"secret_string": request.user.moreuserdata.secret_key})
+
+
 @login_required
 @email_confirmation_required
 def maps(request):

@@ -8,6 +8,8 @@ import os.path
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.core.exceptions import ValidationError
 
+from django.shortcuts import reverse
+
 
 # Create your models here.
 
@@ -183,3 +185,56 @@ class CommitteeContactInfo(models.Model):
     phone_number = models.CharField(max_length=10, validators=[phone_number_min_length], blank=True,
                                     help_text="Enter The contact number of committee without the preceeding country code")
     email = models.EmailField(blank=True)
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE)
+    keyword = models.CharField(max_length=15,help_text="Keyword that identifies different types of updates",null=True,blank=True)
+    heading = models.CharField(max_length=35)
+    content = models.CharField(max_length=500)
+    button1 = models.CharField(max_length=500,verbose_name="Dynamic link for URLs",null=True,blank=True)
+    button1_title = models.CharField(max_length=20,blank=True,null=True)
+    button1_url = models.URLField(blank=True)
+    button2 = models.CharField(max_length=500,verbose_name="Dynamic link for URLS",null=True,blank=True)
+    button2_title = models.CharField(max_length=20,blank=True,null=True)
+    button2_url = models.URLField(blank=True)
+
+    def new_update(self,user_instance,notif_heading,notif_content,but1="",but2=""):
+        self.user = user_instance
+        self.heading = notif_heading
+        self.content = notif_content
+        self.button1 = but1
+        self.button2 = but2
+
+        self.save()
+
+    def generate_urls(self):
+        if self.button1:
+            self.button1_url = reverse(self.button1)
+        else:
+            self.button1_url = ""
+
+        if self.button2:
+            self.button2_url = reverse(self.button2)
+        else:
+            self.button2_url = ""
+
+        self.save()
+
+
+
+@receiver(signals.post_save, sender=User)
+def moreuserdata_missing_update(sender, instance,created, **kwargs):
+    if created:
+        n1 = Notification.objects.create(user=instance,
+                                         keyword="moreuserdata_missing",
+                                         heading="Missing Info",
+                                         content="Your Profile Is missing some important information. You can not register for events until the information is filled",
+                                         button1='accounts:edit_additional_info',
+                                         button1_title="Fill Missing Info"
+                                         )
+
+@receiver(signals.post_save, sender=MoreUserData)
+def remove_moreuserdata_missing_update(sender,instance,created,**kwargs):
+    if created:
+        instance.user.notification_set.filter(keyword='moreuserdata_missing').delete()

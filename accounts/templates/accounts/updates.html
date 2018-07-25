@@ -26,26 +26,39 @@
 {% block content %}
     <div class="col s12 m9 l9 center red darken-2">
         <div>
+           {% for update in updates %}
+                <div class="card-panel grey darken-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                        <div class="col s10">
+                            <div class="black-text update_heading">
+                                {{ update.heading.value }}
+                            </div>
+                            <div class="black-text update_text">
+                                {{ update.content.value }}
+                            </div>
 
-            <div class="card-panel grey darken-5 z-depth-1">
-                <div class="row valign-wrapper">
-                    <div class="col s10">
-                        <div class="black-text update_heading">
-                            Sample Update Heading
-                        </div>
-                        <div class="black-text update_text">
-                            Some Sample Update Text
-                        </div>
-                        <div class="update_button">
-                            <a href="https://www.google.com">
-                                <button class="btn btn-medium black-text">Action Button</button>
-                            </a>
+                            <div class="update_button">
+                                {% if update.button1_url.value %}
+                                <a href="{{ update.button1_url.value }}">
+                                    <button class="btn btn-medium black-text">{{ update.button1_title.value }}</button>
+                                </a>
+                                {% endif %}
+                                {% if update.button2_url.value %}
+                                    <a href="{{ update.button2_url.value }}">
+                                        <button class="btn btn-medium black-text">{{ update.button2_title.value }}</button>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
+            {% empty %}
+               You don't Have any recent Updates
+            {% endfor %}
 
-            <div class="card-panel grey darken-5 z-depth-1">
+            {% comment %}<div class="card-panel grey darken-5 z-depth-1">
                 <div class="row valign-wrapper">
 
                     <div class="col s10">
@@ -86,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>{% endcomment %}
 
         </div>
     </div>
