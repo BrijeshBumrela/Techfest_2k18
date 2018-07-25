@@ -8,6 +8,8 @@ import os.path
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.core.exceptions import ValidationError
 
+from django.shortcuts import reverse
+
 
 # Create your models here.
 
@@ -33,7 +35,7 @@ def put_email_confirmed_false(sender, instance, created, **kwargs):
 
 def get_profilepic_upload_url(instance, filename):
     location = "profile_pictures"
-    return os.path.join(location, str(instance.user.id))
+    return os.path.join(location, str(instance.user.id), filename)
 
 
 class MoreUserData(models.Model):
@@ -92,6 +94,7 @@ def delete_profile_pic_on_model_delete(sender, instance, **kwargs):
             os.remove(instance.profile_pic.path)
 
 
+
 def get_event_logo_upload_url(instance, filename):
     location = "events"
     return os.path.join(location, str(instance.name), "logos", filename)
@@ -108,11 +111,16 @@ class Event(models.Model):
                             help_text="All characters allowed except '-' as this may collide with slug of event name")
     logo = models.ImageField(verbose_name="Event Logo", upload_to=get_event_logo_upload_url, blank=True,
                              help_text="Please Upload A Logo For This Event")
+    registration_start_date_time = models.DateTimeField(verbose_name="Registration Starts On (IST) ",)
+    registration_end_date_time = models.DateTimeField(verbose_name="Registration Ends On (IST) ",)
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
-    description = models.TextField(verbose_name="Description")
-    rules = models.TextField(verbose_name="Contest Rules")
-    prize = models.TextField(verbose_name="Prize Description")
+    description = models.TextField(verbose_name="Description", blank=True, max_length=1500)
+    format = models.TextField(verbose_name="Format", blank=True, max_length=1500)
+    rules = models.TextField(verbose_name="Contest Rules", blank=True, max_length=1500)
+    prize = models.TextField(verbose_name="Prize Description", blank=True, max_length=1000)
+    prerequisites = models.TextField(verbose_name="Pre-Requisites", blank=True, max_length=1000)
+    resources = models.TextField(verbose_name="Resources", blank=True, max_length=1500)
     organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=True,
                                         help_text="Please Select 1 or more users as Organisers")
     participants = models.ManyToManyField(to=MoreUserData, related_name="participating_events", blank=True, )
@@ -177,3 +185,56 @@ class CommitteeContactInfo(models.Model):
     phone_number = models.CharField(max_length=10, validators=[phone_number_min_length], blank=True,
                                     help_text="Enter The contact number of committee without the preceeding country code")
     email = models.EmailField(blank=True)
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE)
+    keyword = models.CharField(max_length=15,help_text="Keyword that identifies different types of updates",null=True,blank=True)
+    heading = models.CharField(max_length=35)
+    content = models.CharField(max_length=500)
+    button1 = models.CharField(max_length=500,verbose_name="Dynamic link for URLs",null=True,blank=True)
+    button1_title = models.CharField(max_length=20,blank=True,null=True)
+    button1_url = models.URLField(blank=True)
+    button2 = models.CharField(max_length=500,verbose_name="Dynamic link for URLS",null=True,blank=True)
+    button2_title = models.CharField(max_length=20,blank=True,null=True)
+    button2_url = models.URLField(blank=True)
+
+    def new_update(self,user_instance,notif_heading,notif_content,but1="",but2=""):
+        self.user = user_instance
+        self.heading = notif_heading
+        self.content = notif_content
+        self.button1 = but1
+        self.button2 = but2
+
+        self.save()
+
+    def generate_urls(self):
+        if self.button1:
+            self.button1_url = reverse(self.button1)
+        else:
+            self.button1_url = ""
+
+        if self.button2:
+            self.button2_url = reverse(self.button2)
+        else:
+            self.button2_url = ""
+
+        self.save()
+
+
+
+@receiver(signals.post_save, sender=User)
+def moreuserdata_missing_update(sender, instance,created, **kwargs):
+    if created:
+        n1 = Notification.objects.create(user=instance,
+                                         keyword="moreuserdata_missing",
+                                         heading="Missing Info",
+                                         content="Your Profile Is missing some important information. You can not register for events until the information is filled",
+                                         button1='accounts:edit_additional_info',
+                                         button1_title="Fill Missing Info"
+                                         )
+
+@receiver(signals.post_save, sender=MoreUserData)
+def remove_moreuserdata_missing_update(sender,instance,created,**kwargs):
+    if created:
+        instance.user.notification_set.filter(keyword='moreuserdata_missing').delete()

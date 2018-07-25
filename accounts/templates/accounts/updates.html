@@ -1,0 +1,106 @@
+{% extends 'accounts/profile_skelton.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Updates
+{% endblock title %}
+
+{% block style %}
+    <style>
+        .update_heading {
+            font-weight: bolder;
+            font-size: 160%;
+        }
+
+        .update_button {
+            color: black;
+        }
+
+        .update_text {
+            font-style: italic;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="col s12 m9 l9 center red darken-2">
+        <div>
+           {% for update in updates %}
+                <div class="card-panel grey darken-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                        <div class="col s10">
+                            <div class="black-text update_heading">
+                                {{ update.heading.value }}
+                            </div>
+                            <div class="black-text update_text">
+                                {{ update.content.value }}
+                            </div>
+
+                            <div class="update_button">
+                                {% if update.button1_url.value %}
+                                <a href="{{ update.button1_url.value }}">
+                                    <button class="btn btn-medium black-text">{{ update.button1_title.value }}</button>
+                                </a>
+                                {% endif %}
+                                {% if update.button2_url.value %}
+                                    <a href="{{ update.button2_url.value }}">
+                                        <button class="btn btn-medium black-text">{{ update.button2_title.value }}</button>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+               You don't Have any recent Updates
+            {% endfor %}
+
+            {% comment %}<div class="card-panel grey darken-5 z-depth-1">
+                <div class="row valign-wrapper">
+
+                    <div class="col s10">
+                        <div class="black-text update_heading">
+                            <!-- Update Heading-->
+                            Add Missing Info
+                        </div>
+                        <div class="black-text update_text">
+                            Your Profile seems to be missing some critical information.
+                            <br>You will not be able to register for events without filling out the missing info.<br>
+                            Please fill it up.
+                        </div>
+                        <div>
+                            <a>
+                                <button class="btn btn-medium black-text">Edit Info</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-panel grey darken-5 z-depth-1">
+                <div class="row valign-wrapper">
+
+                    <div class="col s10">
+                        <div class="black-text update_heading">
+                            <!-- Update Heading-->
+                            1st prize in Elektra
+                        </div>
+                        <div class="black-text update_text">
+                            Congratulations. You have won 1st prize in Elektra 3.0. <br>
+                            Please collect your prize today at 8pm in the main hall
+                        </div>
+                        <div>
+                            <a>
+                                <button class="btn btn-medium black-text">View Ranklist</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endcomment %}
+
+        </div>
+    </div>
+{% endblock content %}

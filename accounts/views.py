@@ -1,9 +1,13 @@
+import datetime
+
+import pytz
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from data.models import MoreUserData, Event
 from django.contrib.auth.models import User
-from registration.forms import MoreUserDataForm
+from data.forms import EditProfileMoreUserDataInfo, EditProfileUserInfo, ChangePasswordForm, UpdateTemplateForm
 from django.contrib.auth.decorators import login_required
 from main_page.forms import EventRegisterForm
+from django.contrib.auth import login
 import os.path
 # For encryption
 import hashlib
@@ -13,7 +17,7 @@ from . import QRcode
 # Create your views here.
 
 
-string = ''
+secret_string = ''
 
 
 def email_confirmation_required(func):
@@ -22,6 +26,7 @@ def email_confirmation_required(func):
     THE DECORATOR login_required MUST ALWAYS PRECEDE THIS
 
     """
+
     def checker(request, *args, **kwargs):
         if request.user.emailconfirmation.email_confirmed is True:
             return func(request, *args, **kwargs)
@@ -47,28 +52,64 @@ def redirect_to_profile_home(request):
     return redirect('accounts:profile_home')
 
 
+def get_user_details(request):
+    user_details = {"username": request.user.username,
+                    "fullname": request.user.get_full_name(),
+                    }
+
+    if hasattr(request.user, 'moreuserdata'):
+
+        S = str(request.user.moreuserdata.profile_pic)
+        if S is not '':
+            user_details["profile_pic"] = request.user.moreuserdata.profile_pic.url
+        else:
+            user_details["profile_pic"] = '/media/profile_pictures/default/blank.jpg'
+    else:
+        user_details["profile_pic"] = '/media/profile_pictures/default/blank.jpg'
+
+    return user_details
+
+
 @login_required
 @email_confirmation_required
 def profile_home(request):
-    User = {"username": request.user.username}
-    additional_info_check = False
+    user_details = get_user_details(request)
+    if hasattr(request.user, "moreuserdata"):
+        user_details["details_check"] = True
+        MUD = request.user.moreuserdata
+        user_details["about"] = MUD.description
+        user_details["college"] = MUD.college_name
+        user_details["email"] = request.user.email
+        user_details["phone_number"] = str(MUD.country_code) + ' ' + str(MUD.phone_number)
+        user_details["github_id"] = MUD.github_id
+        user_details["hackerrank_id"] = MUD.hackerrank_id
+        user_details["codechef_id"] = MUD.codechef_id
+        user_details["codeforces_id"] = MUD.codeforces_id
 
-    if hasattr(request.user, 'moreuserdata'):
-        additional_info_check = True
-        S = str(request.user.moreuserdata.profile_pic)
-        if S is not '':
-            User["profile_pic"] = request.user.moreuserdata.profile_pic.url
 
-    return render(request, "accounts/profile_home.html", {"additional_info_check": additional_info_check, "user": User})
+    return render(request, "accounts/profile_home.html", {"active_profile": True, "profile": user_details})
 
 
 @login_required
 @email_confirmation_required
-def edit_additional_info(request):
+def edit_info(request):
+    current_user_details = get_user_details(request)
+    current_user_details["is_profile_pic_set"] = True
+    if current_user_details["profile_pic"] == '/media/profile_pictures/default/blank.jpg':
+        current_user_details["is_profile_pic_set"] = False
+        current_user_details["edit_profile_pic"] = '/media/profile_pictures/default/add_pic.jpeg'
     if request.method == "POST":
 
-        user_data_form = MoreUserDataForm(request.POST, request.FILES)
+        user_data_form = EditProfileUserInfo(request.POST)
+        more_user_data_form = EditProfileMoreUserDataInfo(request.POST, request.FILES)
+
         if user_data_form.is_valid():
+            U = request.user
+            U.first_name = user_data_form.cleaned_data['first_name']
+            U.last_name = user_data_form.cleaned_data['last_name']
+            U.save()
+
+        if more_user_data_form.is_valid():
 
             MUD = None
             if hasattr(request.user, 'moreuserdata'):
@@ -78,15 +119,18 @@ def edit_additional_info(request):
                 MUD.user = request.user
                 # Encryption
                 MUD.secret_key = MD5encrypt(request.user.username)
-                # Using the variable string to send to qrcode
-                string = str(MUD.secret_key)
+                # Using the variable secret_string to send to qrcode
+                secret_string = str(MUD.secret_key)
 
-            MUD.college_name = user_data_form.cleaned_data["college_name"]
-            MUD.github_id = user_data_form.cleaned_data["github_id"]
-            MUD.hackerrank_id = user_data_form.cleaned_data["hackerrank_id"]
-            MUD.codechef_id = user_data_form.cleaned_data["codechef_id"]
-            MUD.codeforces_id = user_data_form.cleaned_data["codeforces_id"]
-            MUD.description = user_data_form.cleaned_data["description"]
+            MUD.college_name = more_user_data_form.cleaned_data["college_name"]
+            MUD.country_code = more_user_data_form.cleaned_data["country_code"]
+            MUD.phone_number = more_user_data_form.cleaned_data["phone_number"]
+            MUD.description = more_user_data_form.cleaned_data["description"]
+            MUD.github_id = more_user_data_form.cleaned_data["github_id"]
+            MUD.hackerrank_id = more_user_data_form.cleaned_data["hackerrank_id"]
+            MUD.codechef_id = more_user_data_form.cleaned_data["codechef_id"]
+            MUD.codeforces_id = more_user_data_form.cleaned_data["codeforces_id"]
+            MUD.tshirt_size = more_user_data_form.cleaned_data["tshirt_size"]
 
             if "profile_pic" in request.FILES:
                 MUD.profile_pic = request.FILES["profile_pic"]
@@ -95,33 +139,61 @@ def edit_additional_info(request):
             return redirect('accounts:profile_home')
 
         else:
-            return render(request, "accounts/edit_additional_info.html", {"data_form": user_data_form})
+            return render(request, "accounts/edit_info.html",
+                          {"user_data_form": user_data_form,
+                           "more_user_data_form": more_user_data_form,
+                           "profile": current_user_details,
+                           })
 
     else:
+        new_user_data_form = EditProfileUserInfo(instance=request.user)
         if hasattr(request.user, 'moreuserdata'):
-            new_form = MoreUserDataForm(instance=request.user.moreuserdata)
+            new_more_user_data_form = EditProfileMoreUserDataInfo(instance=request.user.moreuserdata)
 
         else:
-            new_form = MoreUserDataForm()
+            new_more_user_data_form = EditProfileMoreUserDataInfo()
 
-        return render(request, "accounts/edit_additional_info.html", {"data_form": new_form})
+        return render(request, "accounts/edit_info.html",
+                      {"user_data_form": new_user_data_form,
+                       "more_user_data_form": new_more_user_data_form,
+                       "profile": current_user_details,
+                       })
 
-
-# QRgenerator(string)
 
 @login_required
 @email_confirmation_required
 def display_user_registered_events(request):
+    user_details = get_user_details(request)
     event_set = request.user.moreuserdata.participating_events.all()
     return_event_set = list()
+    localtimezone = pytz.timezone('Asia/Kolkata')
+    cur_datetime = datetime.datetime.now().astimezone(localtimezone)
     for event in event_set:
-        E = {"name": event.name}
-        if str(event.logo):
+        E = {"name": event.name.title(), }
+        if event.start_date_time > cur_datetime:
+            diff = event.start_date_time - cur_datetime
+            if diff.days > 0:
+                E["start_diff"] = "Starts In " + str(diff.days) + " Days"
+            else:
+                E["start_diff"] = "Starts In " + str(diff.seconds) + " Seconds"
+        elif event.end_date_time > cur_datetime:
+            diff = event.end_date_time - cur_datetime
+            if diff.days > 0:
+                E["end_diff"] = "Ends In " + str(diff.days) + " Days"
+            else:
+                E["end_diff"] = "Ends In " + str(diff.seconds) + " Seconds"
+
+        if str(event.logo) is not "":
             E["logo"] = event.logo.url
 
         return_event_set.append(E)
     return render(request, "accounts/myevents.html",
-                  {"events": return_event_set, "default_logo": "/media/events/defaults/logo.png"})
+                  {"profile": user_details,
+                   "active_events": True,
+                   "events": return_event_set,
+                   "default_logo": "/media/events/defaults/logo.png"
+                   }
+                  )
 
 
 @login_required
@@ -206,6 +278,60 @@ def un_register_user_for_event(request, event_name):
 
 @login_required
 @email_confirmation_required
+def updates(request):
+    user_details = get_user_details(request)
+    user_updates = list()
+    for notif in request.user.notification_set.all():
+        notif.generate_urls()
+        F = UpdateTemplateForm(instance=notif)
+        user_updates.append(F)
+
+    return render(request, "accounts/updates.html",
+                  {"active_updates": True, "profile": user_details, "updates": user_updates})
+
+
+@login_required
+@email_confirmation_required
+def change_password(request):
+    user_details = get_user_details(request)
+    if request.method == "POST":
+        password_form = ChangePasswordForm(request.POST)
+        if password_form.is_valid():
+            if not request.user.check_password(password_form.cleaned_data["old_password"]):
+                password_form.errors["old_password"] = "Incorrect Current Password"
+                return render(request, "accounts/change_password.html",
+                              {"profile": user_details, "form": password_form, })
+            elif password_form.cleaned_data["new_password"] != password_form.cleaned_data["confirm_new_password"]:
+                password_form.errors["confirm_new_password"] = "Both Passwords Do Not Match"
+                return render(request, "accounts/change_password.html",
+                              {"profile": user_details, "form": password_form, })
+            else:
+                request.user.set_password(password_form.cleaned_data["new_password"])
+                request.user.save()
+                login(request, request.user, backend='django.contrib.auth.backends.ModelBackend')
+                return redirect('accounts:profile_home')
+
+        else:
+            return render(request, "accounts/change_password.html", {"profile": user_details, "form": password_form})
+
+    else:
+        password_form = ChangePasswordForm()
+        return render(request, "accounts/change_password.html", {"profile": user_details, "form": password_form})
+
+
+@login_required
+@email_confirmation_required
+def disp_qr_code(request):
+    if not hasattr(request.user, 'moreuserdata'):
+        return render(request, "accounts/invalid_request.html", {
+            "message": "Your Profile is missing some critical information. Please go to your profile and fill out the missing information before registering for the event",
+            "links": ["incomplete_profile"]})
+
+    return render(request, "accounts/qr_code.html", {"secret_string": request.user.moreuserdata.secret_key})
+
+
+@login_required
+@email_confirmation_required
 def maps(request):
     return render(request, "accounts/map.html")
 
@@ -214,4 +340,3 @@ def maps(request):
 @email_confirmation_required
 def calender(request):
     return render(request, "accounts/calender.html")
-
