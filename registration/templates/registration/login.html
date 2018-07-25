@@ -110,7 +110,7 @@
 			<div class="col-md-10">&nbsp &nbsp</div> 
 			<div class="col-md-5 col-md-offset-1">						
 					<a href="{% url 'social:begin' 'google-oauth2' %}">
-						<button class="button button1">
+						<button class="button button1" onclick="location.href = '{% url "social:begin" "google-oauth2" %}'">
 							<i class="fa fa-google-plus-square" style="font-size:30px"></i>
 							<span class="bt_text">Google</span>
 						</button>
@@ -118,7 +118,7 @@
 			</div>
 			<div class="col-md-5">
 					<a href="{% url 'social:begin' 'github' %}">
-						<button class="button button2">
+						<button class="button button2" onclick="location.href = '{% url "social:begin" "github" %}'">
 							<i class="fa fa-github" style="font-size:30px"></i>
 							<span class="bt_text">GitHub</span>
 						</button>
