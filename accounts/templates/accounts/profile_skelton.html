@@ -1,0 +1,182 @@
+{% load static %}
+{% load widget_tweaks %}
+
+{% block load_files %}
+{% endblock load_files %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Title
+        {% endblock title %}
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ profile.profile_pic }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'accounts/css/materialize.min.css' %}" media="screen,projection"/>
+
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+
+    {% block javascript_files %}
+    {% endblock javascript_files %}
+
+    <style media="screen">
+        img {
+            height: 100px;
+            width: 100px;
+        }
+
+        /* .container > div > div:nth-child(odd) {
+            background: #333;
+        }
+        .container > div > div:nth-child(even) {
+            background: #666;
+        } */
+
+        .row1 {
+            margin-top: 20px;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .header {
+            height: 10vh;
+            background-color: red;
+        }
+
+        .footer {
+            height: 10vh;
+            background-color: yellow;
+            width: 100%;
+        }
+
+        .user_fullname {
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        .user_username {
+            font-style: italic;
+        }
+
+        .left_panel_text {
+            font-weight: bold;
+            font-size: 150%;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    {% block style %}
+    {% endblock style %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+</head>
+<body>
+
+{% block header %}
+    <div class="header topnav">
+          <a class="active" href="#">Sample Placeholder Nav Bar</a>
+          <a href="#">Option</a>
+          <a href="#">Option</a>
+          <a href="#">option</a>
+    </div>
+{% endblock header %}
+
+<div class="row flex">
+    {% block left_panel %}
+        <div class="col s12 m3 l3 center first-col black darken-2 red-text">
+            <div class="row">
+                <img src="{{ profile.profile_pic }}" class='circle responsive-img row1' alt="">
+                <div class="user_fullname">
+                    {{ profile.fullname }}
+                </div>
+                <div class="user_username">
+                    @{{ profile.username }}
+                </div>
+            </div>
+            <div class="row card-panel left_panel_text {% if not active_updates %}black darken{% endif %}">
+                <a href="{% url 'accounts:updates' %}" class="{% if active_updates %} black-text {% else %}white-text {% endif %}">
+                    Updates
+                </a>
+            </div>
+            <div class="row card-panel left_panel_text {% if not active_profile %}black darken{% endif %}">
+                <a href="{% url 'accounts:profile_home' %}" class="{% if active_profile %} black-text {% else %}white-text {% endif %}">
+                    My Profile
+                </a>
+            </div>
+            <div class="row card-panel left_panel_text {% if not active_events %}black darken{% endif %}">
+                <a href="{% url 'accounts:myevents' %}" class="{% if active_events %} black-text {% else %}white-text {% endif %}">
+                    My Events
+                </a>
+            </div>
+
+            <div class="row card-panel left_panel_text {% if not active_settings %}black darken{% endif %}">
+                <a href="#" class="{% if active_settings %} black-text {% else %}white-text {% endif %}">
+                    Settings
+                </a>
+            </div>
+        </div>
+    {% endblock left_panel %}
+
+    {% block content %}
+
+    {% endblock content %}
+</div>
+
+{% block footer %}
+    <div class="footer">
+        Space left for footer
+    </div>
+{% endblock footer %}
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'accounts/js/materialize.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-button').dropdown({
+            constrainWidth: false,
+            hover: true,
+            belowOrigin: true,
+            alignment: 'left'
+        });
+
+        // JAVASCRIPT START HERE //
+
+    });
+</script>
+{% block endscripts %}
+{% endblock endscripts %}
+</body>
+
+</html>

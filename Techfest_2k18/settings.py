@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
+    'qr_code'
 ]
 
 MIDDLEWARE = [

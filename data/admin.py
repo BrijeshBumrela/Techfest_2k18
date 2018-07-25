@@ -8,4 +8,5 @@ admin.site.register((models.Event,
                     models.EventCatalogue,
                      models.Committee,
                      models.CommitteeContactInfo,
+                     models.Notification,
                      ))

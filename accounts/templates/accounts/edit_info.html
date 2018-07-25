@@ -1,0 +1,223 @@
+{% extends 'accounts/profile_skelton.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Edit Info
+{% endblock title %}
+
+{% block style %}
+    <style>
+        .story__shape {
+            position: relative;
+        }
+
+        .story__img {
+            transition: all .5s;
+        }
+
+        .story__caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 80%);
+            color: white;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transition: all .5s;
+            backface-visibility: hidden;
+        }
+
+        .story__shape:hover .story__caption {
+            opacity: 1;
+            transform: translate(-50%);
+        }
+
+        .story__shape:hover .story__img {
+            filter: blur(3px) brightness(80%);
+        }
+
+        .remove_text_border {
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .field_error{
+            color: #ff2509;
+            font-size: 110%;
+            font-weight: bold;
+
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="col s12 m9 l9 center purple darken-2">
+        <div class="row">
+            <div class="story" onclick="open_profile_pic_upload_box()">
+                <figure class="story__shape">
+                    {% if profile.is_profile_pic_set %}
+                    <img src="{{ profile.profile_pic }}" class='circle responsive-img row1  story__img' alt="" id="edit_profile_pic">
+                    {% else %}
+                    <img src="{{ profile.edit_profile_pic }}" class='circle responsive-img row1  story__img' alt="" id="edit_profile_pic">
+                    {% endif %}
+                    <a href="#">
+                        <figcaption class="story__caption">Change</figcaption>
+                    </a>
+                </figure>
+            </div>
+            <div class="user_fullname">
+                {{ profile.fullname }}
+            </div>
+            <div class="user_username">
+                @{{ profile.username }}
+            </div>
+        </div>
+
+        <div class="row">
+            <form action="" method="post" id="edit-info-form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s12 m6 l6">
+                            {{ user_data_form.first_name|add_class:"validate" }}
+                            <label for="{{ user_data_form.first_name.id_for_label }}">First Name</label>
+                            <span class="helper-text field_error" data-error="right">{{ user_data_form.first_name.errors }}</span>
+                        </div>
+                        <div class="input-field col s12 m6 l6">
+                            {{ user_data_form.last_name|add_class:"validate" }}
+                            <label for="{{ user_data_form.last_name.id_for_label }}">Last Name</label>
+                            <span class="helper-text field_error" data-error="right">{{ user_data_form.last_name.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ more_user_data_form.college_name|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.college_name.id_for_label }}">College Name : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.college_name.errors }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ more_user_data_form.description|add_class:"validate remove_text_border" }}
+                            <label for="{{ more_user_data_form.description.id_for_label }}">About You : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.description.errors }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col s12 m6 l6">
+
+                            <div class="row">
+                                <div class="input-field col s12 m3 l3" style="width:30%;">
+                                    <label for="{{ more_user_data_form.country_code.id_for_label }}" style="display:none">Country Code for Phone Number:</label>
+                                    {{ more_user_data_form.country_code }}
+                                    <span class="helper-text field_error" data-error="right">{{ more_user_data_form.country_code.errors }}</span>
+                                </div>
+                                <div class="input-field col s12 m9 l9" style="width:70%">
+                                    {{ more_user_data_form.phone_number|add_class:"validate" }}
+                                    <label for="{{ more_user_data_form.phone_number.id_for_label }}">Enter Phone Number</label>
+                                    <span class="helper-text field_error" data-error="right">{{ more_user_data_form.phone_number.errors }}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--
+                          <div class="input-field col s12 m6 l6">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email : </label>
+                          </div>
+                        -->
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12 m6 l6">
+                            {{ more_user_data_form.github_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.github_id.id_for_label }}">GitHub Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.github_id.errors }}</span>
+                        </div>
+                        <div class="input-field col s12 m6 l6">
+                            {{ more_user_data_form.hackerrank_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.hackerrank_id.id_for_label }}">HackerRank Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.hackerrank_id.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m6 l6">
+                            {{ more_user_data_form.codechef_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.codechef_id.id_for_label }}">CodeChef Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.codechef_id.errors }}</span>
+                        </div>
+                        <div class="input-field col s12 m6 l6">
+                            {{ more_user_data_form.codeforces_id|add_class:"validate" }}
+                            <label for="{{ more_user_data_form.codeforces_id.id_for_label }}">CodeForces Username : </label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.codeforces_id.errors }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ more_user_data_form.tshirt_size }}
+                            <label for="{{ more_user_data_form.tshirt_size.id_for_label }}">T-Shirt SIze</label>
+                            <span class="helper-text field_error" data-error="right">{{ more_user_data_form.tshirt_size.errors }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-large" value="Update">
+                </div>
+                <div style="display: none" onchange="update_profile_image()">
+                    {{ more_user_data_form.profile_pic }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block endscripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'accounts/js/materialize.min.js' %}"></script>
+    <script>
+      file_upload_box = document.getElementById('{{ more_user_data_form.profile_pic.id_for_label }}');
+      function open_profile_pic_upload_box() {
+        file_upload_box.click();
+      }
+      profile_image = document.getElementById('edit_profile_pic');
+      profile_image.onclick = open_profile_pic_upload_box();
+
+      function update_profile_image() {
+
+
+        if (file_upload_box.files && file_upload_box.files[0]) {
+          let reader = new FileReader();
+
+          reader.onload = function(e) {
+            profile_image.src = e.target.result;
+          };
+
+          reader.readAsDataURL(file_upload_box.files[0]);
+        }
+      }
+
+      $(document).ready(function () {
+        $('select').material_select();
+
+      });
+    </script>
+{% endblock %}
+
+{% comment %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ user_data_form.as_p }}
+    {{ more_user_data_form.as_p }}
+    <input type="submit" value="Update">
+
+</form>
+{% endcomment %}
