@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/Login.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="{% static 'main_page/images/title-logo.png' %}" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
+	<script>
+		function google_display() 
+		{
+			document.getElementById('google1').style.visibility = "visible";
+		}
+		function google_noDisplay() 
+		{
+			document.getElementById('google1').style.visibility = "hidden";
+		}
+		function git_display() 
+		{
+			document.getElementById('git1').style.visibility = "visible";
+		}
+		function git_noDisplay() 
+		{
+			document.getElementById('git1').style.visibility = "hidden";
+		}
+
+	</script>
+</head>
+<body>
+	<div class="text">
+		<p class="main">TECHNOBOT</p>
+		<hr style="color: yellow;text-align: center;width: 50%;">
+		<p class="child"><span style="color: orange">LOGIN</span>.<span style="color: white">PARTICIPATE</span>.<span style="color: green">WIN</span></p>
+	</div>
+	<div class="container login" style="width: 50%;">
+		<div class="row col-lg-12">
+			<h2 class="login_head">LOGIN</h2>
+		</div>
+		<form action="" method="post">
+			<div class="row">
+				<div class="col-lg-5" style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+				   {% csrf_token %}
+				   {{ form.as_p }}<br>
+				</div>
+				<span class="text1" style="margin-left: 15%;">OR Login with...</span>
+				<div class="col-lg-7 social-login">
+					<button class="button button1">
+					<a href="{% url 'social:begin' 'google-oauth2' %}">
+						<i class="fa fa-google google" style="font-size:40px;color:white"></i><span style="color: white;">Google</span>
+					</a>
+					</button><br>
+					
+				</div>
+			</div>
+			<div class="row"> 
+				<div class="col-lg-5" style="text-align: center;">
+			   		<button class="btn btn-primary btn-lg login_btn" type="submit">LOGIN</button>
+			    </div>
+			    <div class="col-lg-7">
+			    <button class="button button2">
+					<a href="{% url 'social:begin' 'github' %}">
+						<i class="fa fa-github git" style="font-size:40px;color: white"></i><span style="color: white;">GitHub</span>
+					</a><br>
+				</button>
+			</div>
+			</div>
+		</form><br>	
+		<div class="row forgot_pass">
+			<div class="col-lg-5" style="text-align: center;">
+				Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+			</div>
+		</div>
+
+
+
+</body>
+</html>

@@ -1,22 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Events</title>
-</head>
-<body>
-You are registered for the following events. <br>
-<hr>
-{% for event in events %}
-    <div>
-        {% if event.logo %}
-            {{ event.logo }}
-        {% else %}
-            {{ default_logo }}
-        {% endif %}
-        <br>{{ event.name }}
+{% extends 'accounts/profile_skelton.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block load_files %}
+    {% load events_filters %}
+{% endblock %}
+{% block title %}
+    My Events
+{% endblock title %}
+
+{% block style %}
+    <style>
+        .update_heading {
+            font-weight: bolder;
+            font-size: 160%;
+        }
+
+        .update_button {
+            color: black;
+        }
+
+        .update_text {
+            font-style: italic;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="col s12 m9 l9 center red darken-2">
+        <div>
+            {% for event in events %}
+                <div class="card-panel grey darken-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                        <div class="col s2">
+                            {% if event.logo %}
+                            <img src="{{ event.logo }}" alt="" class="circle responsive-img">
+                            {% else %}
+                            <img src="{{ default_logo }}" alt="" class="circle responsive-img">
+                            <!-- notice the "circle" class -->
+                            {% endif %}
+                        </div>
+                        <div class="col s10">
+                            <div class="black-text update_heading">
+                                {{ event.name }}
+                            </div>
+                            <div class="black-text update_text">
+                                {% if event.start_diff %}
+                                    {{ event.start_diff }}
+                                {% elif event.end_diff %}
+                                    Event In Progress <br>
+                                    {{ event.end_diff }}
+                                {% else %}
+                                    Event Concluded
+                                {% endif %}
+                            </div>
+                            {% if not event.end_diff  %}
+                                {% if event.start_diff %}
+                                    <div class="black-text">
+                                        <a href="{% url 'event info' event.name|strtoslug %}"><button class="btn btn-medium update_button">De-Register</button></a>
+                                    </div>
+
+                                {% else %}
+                                    <div class="black-text">
+                                        <a href="{% url 'event info' event.name|strtoslug %}"><button class="btn btn-medium update_button">View Ranklist</button></a>
+                                        <a href="{% url 'event info' event.name|strtoslug %}"><button class="btn btn-medium update_button">View Prizes</button></a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% comment %}<div class="card-panel grey darken-5 z-depth-1">
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img src="{% static 'img/person1.jpg' %}" alt="" class="circle responsive-img">
+                        <!-- notice the "circle" class -->
+                    </div>
+                    <div class="col s10">
+                        <div class="black-text update_heading">
+                            Event 1
+                        </div>
+                        <div class="black-text update_text">
+                            Starts In : 45 minutes
+                        </div>
+                        <div class="black-text ">
+                            <button class="btn btn-medium update_button">De-Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-panel grey darken-5 z-depth-1">
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img src="{% static 'img/person1.jpg' %}" alt="" class="circle responsive-img">
+                        <!-- notice the "circle" class -->
+                    </div>
+                    <div class="col s10">
+                        <div class="black-text update_heading">
+                            Event 2
+                        </div>
+                        <div class="black-text update_text">
+                            Event Concluded
+                        </div>
+                        <div class="black-text">
+                            <div>Your Rank : 2</div>
+                            <div>
+                                <button class="btn btn-medium update_button">View Ranklist</button>
+                            </div>
+                            <div style="margin-top:10px;">
+                                <button class="btn btn-medium update_button">Collect Prize</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endcomment %}
+        </div>
+
     </div>
-    <hr>
-{% endfor %}
-</body>
-</html>
+{% endblock %}

@@ -1,72 +1,263 @@
+@font-face
+{
+	font-family: 'chiller';
+	src:url('CHILLER.TTF') format('truetype');
+}
+@font-face
+{
+  font-family: 'local1';
+  src:url('BRADHITC.TTF') format('truetype');
+}
+@font-face
+{
+  font-family: 'local2';
+  src:url('CHILLER.TTF') format('truetype');
+}
+@font-face
+{
+  font-family: 'local3';
+  src:url('FELIXTI.TTF') format('truetype');
+}
 body
 {
-	background-image: url("../images/back.gif");
+	background-image: url("../images/signup4.jpg");
+	background-size: auto;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center 
+	background-repeat: no-repeat 
+	background-attachment: fixed;
 }
-.text
+
+
+@media (min-width: 900px) {
+    .container-login{
+        max-width: 400px;
+    }
+
+}
+@media (min-width: 500px) {
+    .container-name{
+        max-width: 600px;
+    }
+
+}
+.container-name
 {
-	width: 40%;
-	margin-top: 5%;
-	float: left;
-	text-align: center;
+  float: left;
 }
-.main
+
+.container-login
 {
-	font-size: 80px;	
-	color: white;
-	font-family:Impact, Charcoal, sans-serif;
+  box-shadow: 1px 2px 20px lightblue;
+  border-radius: 25px;
+  margin-top: 3%;
+  background: linear-gradient(to bottom right,black,rgb(34, 6, 102));
 }
-.child
+
+
+@keyframes textAnim {
+  0% {font-size: 80px; fill: white;}
+  10% {font-size: 100px; fill: rgb(123, 0, 255)}
+  40% {font-size: 70px; fill: white;}
+  100% {font-size: 80px; fill: white;}
+}
+
+@-webkit-keyframes textAnim {
+  0% {font-size: 80px; fill: white;}
+  10% {font-size: 100px; fill: rgb(123, 0, 255);}
+  40% {font-size: 70px; fill: rgb(157, 83, 237);}
+  100% {font-size: 80px; fill: white;}
+}
+
+text tspan{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  animation: textAnim 2s ease infinite;
+  -webkit-animation: textAnim 2s ease infinite;
+}
+.sub_name
 {
-	color: white;
+  font-family: "Roboto Slab";
+  font-size: 20px;
+  background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 75%, #5e0522 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.login
+
+h4 {
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+.h4-text
 {
-	width: 30%;
-	float: right;
-	margin-right: 8%;
-	margin-top: 5.5%;
-	background-color: rgb(169, 184, 209);
-	border: 10px solid blue;
-	box-shadow: 2px 5px 25px blue; 
-	text-align: center;
-	border-radius: 5px;
-    padding-bottom: 45px;	
+  font-family: 'local2';
+  color: rgb(7, 249, 19);
+  font-size: 28px;
 }
-.login_head
+
+h4:before,
+h4:after {
+  background-color: white;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 25%;
+}
+
+h4:before {
+  right: 1em;
+  color: white;
+  margin-left: -50%;
+}
+
+h4:after {
+  left: 0.1em;
+  color: white;
+  margin-right: -50%;
+}
+h4
 {
-	font-family: "Comic Sans MS", cursive, sans-serif;
+
 }
-.login_btn:hover
+
+#l2 {
+  animation-delay: .1s;
+  -webkit-animation-delay: .1s;
+}
+#l3 {
+  animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+}
+#l4 {
+  animation-delay: .3s;
+  -webkit-animation-delay: .3s;
+}
+#l5 {
+  animation-delay: .4s;
+  -webkit-animation-delay: .4s;
+}
+
+#l6 {
+  animation-delay: .5s;
+  -webkit-animation-delay: .5s;
+}
+
+#l7 {
+  animation-delay: .6s;
+  -webkit-animation-delay: .6s;
+}
+#l8 {
+  animation-delay: .7s;
+  -webkit-animation-delay: .7s;
+}
+#l9 {
+  animation-delay: .8s;
+  -webkit-animation-delay: .8s;
+}
+
+
+.fields
 {
-	box-shadow: 2px 5px 25px blue;
+  font-family: 'local1';
+  font-size: 20px;
+  color: white;
 }
-.forgot_pass
+
+
+.input-box
 {
-	font-family: "Comic Sans MS", cursive, sans-serif;
-}
-#or
+  display: block;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  padding: 1em;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  color: #78909c;
+  transition: all 0.1s ease-in;
+} 
+
+.input-box:focus
 {
-	font-family: "Lucida Console", Monaco, monospace;
+  border-bottom: 1px solid rgb(123, 0, 255);
 }
-.google:hover
+
+
+.forgot-pass
 {
-	box-shadow: 2px 5px 25px red;		
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
 }
-.git
+
+.button
 {
-	margin-left: 3%;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
 }
-.git:hover
+.button1
 {
-	box-shadow: 2px 5px 25px darkblue;
+  background-color: white; 
+  padding: 15px 30px;
+  width: 100%;
+  color: black; 
+  border: 2px solid #4CAF50;
 }
-#google1
+.button1:hover
 {
-	margin-right: 3%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+  letter-spacing: 3px;
+  background-color: #30082d;
+  color: white;
+  box-shadow: 2px 5px 25px rgb(16, 96, 0);
 }
-#git1
+.button2
 {
-	margin-left: 7%;
-	font-family: Verdana, Geneva, sans-serif;
+  background-color: white; 
+  padding: 15px 30px;
+  width: 100%;
+  color: black; 
+  border: 2px solid #4CAF50;
 }
+.button2:hover
+{
+  letter-spacing: 3px;
+  background-color: #30082d;
+  color: white; 
+  box-shadow: 2px 5px 25px rgb(144, 17, 255);
+}
+.button3
+{
+  width: 100%;
+  background-color: white; 
+  padding: 6px 50px;
+  color: black; 
+  border: 2px solid rgb(113, 56, 193);
+  border-radius: 5px;
+  letter-spacing: 5px;
+}
+.button3:hover
+{
+  background-color: #30082d; 
+  letter-spacing: 5px;
+  color: white;
+  box-shadow: 2px 5px 25px lightblue;
+}
+
+.bt_text
+{
+  font-family: 'local3';
+}
+
+

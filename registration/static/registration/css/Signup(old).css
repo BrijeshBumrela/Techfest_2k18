@@ -1,0 +1,141 @@
+@font-face
+{
+	font-family: 'local';
+	src:url('BRADHITC.TTF') format('truetype');
+}
+body
+{
+	background-image: url("../images/signup4.jpg");
+	background-size: auto;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center 
+	background-repeat: no-repeat 
+	background-attachment: fixed;
+}
+.signup
+{
+
+	margin-top: 5%;
+	width: 50%;
+	/*box-shadow: 2px 5px 25px white;*/
+}
+.fname
+{
+	font-family: 'local';
+	margin-left: 8%;
+	font-size: 20px;
+	color: rgb(255, 0, 170);
+}
+.lname
+{
+	font-family: 'local';
+	font-size: 20px;
+	color: rgb(255, 0, 170);
+}
+.fbox
+{
+	margin-left: 8%;
+}
+.lbox
+{
+	
+}
+.email
+{
+	font-family: 'local';
+	font-size: 20px;
+	margin-left: 8%;
+	color: rgb(255, 0, 170);	
+}
+.e-box
+{
+	margin-left: 8%;
+}
+.uname
+{
+	font-family: 'local';
+	font-size: 20px;
+	margin-left: 8%;
+	color: rgb(255, 0, 170);
+}
+.pass
+{
+	font-family: 'local';
+	font-size: 20px;
+	color: rgb(255, 0, 170);
+}
+.ubox
+{
+	margin-left: 8%;
+}
+.text2
+{
+	text-align: center;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+}
+.input-box
+{
+	caret-color: rgb(255, 0, 170);
+    border: 3px solid rgb(191, 189, 189);
+}
+.input-box:focus
+{
+	border: 3px solid rgb(5, 5, 5);
+}
+.button
+{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.button1
+{
+	margin-left: 18%;
+	background-color: white; 
+	padding: 15px 45px;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.button1:hover
+{
+	background-color: #4CAF50;
+	color: white;
+	box-shadow: 2px 5px 25px rgb(16, 96, 0);
+}
+.button2
+{
+	background-color: white; 
+	padding: 15px 40px;
+    color: black; 
+    border: 2px solid rgb(113, 56, 193);
+}
+.button2:hover
+{
+	background-color: rgb(113, 56, 193); 
+	color: white;
+	box-shadow: 2px 5px 25px rgb(131, 6, 214)
+}
+.button3
+{
+	background-color: white; 
+	margin-left: 32%;
+	padding: 8px 30px;
+    color: black; 
+    border: 2px solid rgb(113, 56, 193);
+    border-radius: 5px;
+}
+.button3:hover
+{
+	background-color: #30082d; 
+	color: white;
+	box-shadow: 2px 5px 25px lightblue;
+}

@@ -1,0 +1,107 @@
+body
+{
+	background-image: url("../images/background.png");
+	background-size: auto;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center 
+	background-repeat: no-repeat 
+	background-attachment: fixed;
+}
+.text
+{
+	margin-top: 3%;
+}
+.main
+{
+	margin-left: 35%;
+	font-size: 80px;	
+	color: white;
+	font-family:Impact, Charcoal, sans-serif;
+}
+.child
+{
+	margin-left: 39%;
+	color: white;
+	font-size: 20px;
+	font-family: Courier New;
+}
+.login
+{
+	background-color: rgb(214, 214, 214);
+	border: 5px solid rgb(40, 0, 99);
+	box-shadow: 2px 5px 25px rgb(142, 142, 142); 
+	border-radius: 5px;
+    padding-bottom: 45px;	
+}
+.login_head
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	text-align: center;
+}
+.login_btn:hover
+{
+	box-shadow: 2px 5px 25px blue;
+}
+.forgot_pass
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.button
+{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.button1
+{
+	background-color: red; 
+	padding: 15px 45px;
+    border: 2px solid red;
+    margin-left: 20%;
+}
+.button1:hover
+{
+	box-shadow: 2px 5px 25px rgb(16, 96, 0);
+}
+.button2
+{
+	background-color: rgb(162, 22, 255); 
+	padding: 15px 46px;
+    border: 2px solid rgb(162, 22, 255);
+    margin-left: 20%;
+}
+.button2:hover
+{
+	box-shadow: 2px 5px 25px rgb(16, 96, 0);
+}
+#or
+{
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
+.git
+{
+	
+}
+.git:hover
+{
+	box-shadow: 2px 5px 25px darkblue;
+}
+#google1
+{
+	
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#git1
+{
+	
+	font-family: Verdana, Geneva, sans-serif;
+}
