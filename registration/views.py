@@ -11,7 +11,7 @@ from data.tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 
 from django.db import connection,IntegrityError
-from data.async import run_in_background
+from data.background_tasks import run_in_background
 
 
 @run_in_background
