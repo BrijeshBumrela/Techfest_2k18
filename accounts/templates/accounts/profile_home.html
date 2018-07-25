@@ -112,7 +112,7 @@
                             <a href="{% url 'accounts:change_password' %}"><button name="button" class="btn">Change Password</button></a>
                         </div>
                         <div class="col s12 m4 l4">
-                            <a href=""><button name="button" class="btn">Download QR Code</button></a>
+                            <a href="{% url 'accounts:disp_qr_code' %}" download><button name="button" class="btn">Download QR Code</button></a>
                         </div>
                     </div>
                 </li>

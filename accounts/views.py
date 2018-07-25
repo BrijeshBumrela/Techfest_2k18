@@ -18,7 +18,7 @@ from . import QRcode
 
 
 secret_string = ''
-# QRgenerator(secret_string)
+
 
 def email_confirmation_required(func):
     """
@@ -86,6 +86,7 @@ def profile_home(request):
         user_details["codechef_id"] = MUD.codechef_id
         user_details["codeforces_id"] = MUD.codeforces_id
 
+    QRcode.QRgenerator(secret_string)
     return render(request, "accounts/profile_home.html", {"active_profile": True, "profile": user_details})
 
 
@@ -312,6 +313,16 @@ def change_password(request):
         return render(request, "accounts/change_password.html", {"profile": user_details,"form":password_form})
 
 
+@login_required
+@email_confirmation_required
+def disp_qr_code(request):
+
+    if not hasattr(request.user, 'moreuserdata'):
+        return render(request, "accounts/invalid_request.html", {
+            "message": "Your Profile is missing some critical information. Please go to your profile and fill out the missing information before registering for the event",
+            "links": ["incomplete_profile"]})
+
+    return render(request, "accounts/qr_code.html", {"secret_string":request.user.moreuserdata.secret_key})
 @login_required
 @email_confirmation_required
 def maps(request):
