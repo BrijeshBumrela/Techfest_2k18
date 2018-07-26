@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'data',
     'main_page',
     'accounts',
-    # 'qr_code',
+    'qr_code',
     'rest_framework',
 
 ]
