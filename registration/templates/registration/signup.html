@@ -13,7 +13,7 @@
 
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
         <script>
         	var x=0;
         	var y=127;
@@ -23,12 +23,12 @@
         	function col()
         	{
         		document.getElementById("head").style.color = 'rgb(' + y + ',' + z + ',' + x + ')';
-        		if (y <= 0) 
-        		{flagy = 0;} 
+        		if (y <= 0)
+        		{flagy = 0;}
         		if(y >= 255)
         		{flagy = 1;}
-        		if (z <= 0) 
-        		{flagz = 0;} 
+        		if (z <= 0)
+        		{flagz = 0;}
         		if(z >= 255)
         		{flagz = 1;}
         		if(flagy == 0)
@@ -68,7 +68,7 @@
                   </text>
                 </svg>
                 </div>
-            
+
                 <div style="text-align: center;" class="col-md-12" >
                     <hr style="width: 70%;">
                 </div>
@@ -78,7 +78,7 @@
                 <span class="sub_name">SIGNUP TO PARTICIPATE</span>
             </div>
             </div>
-        </div>        
+        </div>
         <div class="container container-signup col-md-offset-6">
             <form action="" method="post">
             {% csrf_token %}
@@ -98,16 +98,16 @@
                         </div>
                         <div class="col-md-5">
                             {{ signup_form.last_name | add_class:"input-box"}}
-                        </div>     
-                            
-                            <div class="col-md-10">&nbsp &nbsp</div>            
+                        </div>
+
+                            <div class="col-md-10">&nbsp &nbsp</div>
                         <span>{{ signup_form.first_name.errors }}</span>
                         <span>{{ signup_form.first_name.field.help_text }}</span>
 
                         <span>{{ signup_form.last_name.errors }}</span>
                         <span>{{ signup_form.last_name.field.help_text }}</span>
                         <div class="col-md-5 col-md-offset-1">
-                            <label for="{{ signup_form.email.id_for_label }}" class="fields">Email :</label>             
+                            <label for="{{ signup_form.email.id_for_label }}" class="fields">Email :</label>
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             {{ signup_form.email  | add_class:"input-box" }}
@@ -117,52 +117,52 @@
                             <span style="color: red;">{{ signup_form.email.errors }}</span>
                             <span >{{ signup_form.email.field.help_text }}</span>
                         </div>
-                <div class="col-md-10">&nbsp &nbsp</div> 
+                <div class="col-md-10">&nbsp &nbsp</div>
 
 
- 
+
                     <div class="col-md-5 col-md-offset-1">
                         <label for="{{ signup_form.username.id_for_label }}" class="fields">Username :</label>
                     </div>
                     <div class="col-md-5">
                         <label for="{{ signup_form.password.id_for_label }}" class="fields">Password :</label>
                     </div>
-            
+
                     <div class="col-md-5 col-md-offset-1">
                         {{ signup_form.username | add_class:"input-box"}}
                     </div>
                     <div class="col-md-5">
                         {{ signup_form.password | add_class:"input-box"}}
                     </div>
-                <div class="col-md-10">&nbsp &nbsp</div> 
+                <div class="col-md-10">&nbsp &nbsp</div>
                 <div class="col-md-10 col-md-offset-1" >
                     <span style="color: red;">{{ signup_form.username.errors }}</span>
                 </div>
                     <span style="color: red;">{{ signup_form.password.errors }}</span>
                     <span>{{ signup_form.password.field.help_text }}</span>
-            
+
                     <div class="col-md-10  col-md-offset-1">
                         <button class="button button3" type="submit"><span class="bt_text">Sign Me Up</span></button>
                     </div>
-            
+
             </form>
-            
+
                     <div class="col-md-10 col-md-offset-1 line">
                         <hr style="max-width: 80%;color: rgb(97, 100, 104);">
-                    </div> 
-            
+                    </div>
+
                    <div class="col-md-10 col-md-offset-1 text2"> Or Continue With... </div>
-            
+
                     <div class="col-md-5 col-md-offset-1">
                             <a href="{% url 'social:begin' 'google-oauth2' %}">
-                                <button class="button google">
+                                <button class="button google" onclick="location.href = '{% url "social:begin" "google-oauth2" %}'">
                                     <i class="fa fa-google-plus-square" style="font-size:30px"></i><span class="bt_text">Google</span>
                                 </button>
                             </a>
                     </div>
                     <div class="col-md-5">
                             <a href="{% url 'social:begin' 'github' %}">
-                                <button class="button git">
+                                <button class="button git" onclick="location.href = '{% url "social:begin" "github" %}'">
                                     <i class="fa fa-github" style="font-size:30px"></i><span class="bt_text">GitHub</span>
                                 </button>
                             </a>

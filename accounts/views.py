@@ -167,7 +167,8 @@ def display_user_registered_events(request):
     event_set = request.user.moreuserdata.participating_events.all()
     return_event_set = list()
     localtimezone = pytz.timezone('Asia/Kolkata')
-    cur_datetime = datetime.datetime.now().astimezone(localtimezone)
+    cur_datetime = datetime.datetime.now()
+    cur_datetime = localtimezone.localize(cur_datetime)
     for event in event_set:
         E = {"name": event.name.title(), }
         if event.start_date_time > cur_datetime:
