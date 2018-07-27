@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b+g+2m6(f3#o9hn71b@!u@dn#4@-g%rr32&d+fd1tf%zckt6v1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['coderdude.pythonanywhere.com']
 
 # Application definition
 
