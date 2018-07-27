@@ -1,3 +1,8 @@
+@media (min-width: 100px){
+    .container-page{
+        max-width: 100%;
+    }
+}
 @media (min-width: 900px) {
     .container-signup{
         max-width: 600px;
@@ -6,7 +11,7 @@
 }
 @media (min-width: 500px) {
     .container-name{
-        max-width: 600px;
+        max-width: 100%;
     }
 
 }
@@ -44,7 +49,7 @@ body
 }
 .container-name
 {
-	float: left;
+	
 }
 .name
 {
@@ -55,17 +60,17 @@ body
 
 
 @keyframes textAnim {
-  0% {font-size: 80px; fill: white;}
-  10% {font-size: 100px; fill: rgb(123, 0, 255)}
-  40% {font-size: 70px; fill: white;}
-  100% {font-size: 80px; fill: white;}
+  0% {font-size: 70px; fill: white;}
+  10% {font-size: 90px; fill: rgb(123, 0, 255)}
+  40% {font-size: 60px; fill: white;}
+  100% {font-size: 70px; fill: white;}
 }
 
 @-webkit-keyframes textAnim {
-  0% {font-size: 80px; fill: white;}
-  10% {font-size: 100px; fill: rgb(123, 0, 255);}
-  40% {font-size: 70px; fill: rgb(157, 83, 237);}
-  100% {font-size: 80px; fill: white;}
+  0% {font-size: 70px; fill: white;}
+  10% {font-size: 90px; fill: rgb(123, 0, 255);}
+  40% {font-size: 60px; fill: rgb(157, 83, 237);}
+  100% {font-size: 70px; fill: white;}
 }
 
 text tspan{
@@ -75,6 +80,43 @@ text tspan{
   -webkit-animation: textAnim 2s ease infinite;
 }
 
+
+h4 {
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+.h4-text
+{
+  font-family: 'local3';
+  font-size: 17px;
+  background: linear-gradient(violet,white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h4:before,
+h4:after {
+  background-color: white;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 25%;
+}
+
+h4:before {
+  right: 0.1em;
+  color: white;
+  margin-left: -50%;
+}
+
+h4:after {
+  left: 0.1em;
+  color: white;
+  margin-right: -50%;
+}
 
 #l2 {
   animation-delay: .1s;
@@ -110,9 +152,6 @@ text tspan{
   animation-delay: .8s;
   -webkit-animation-delay: .8s;
 }
-
-
-
 .sub_name
 {
   font-family: "Roboto Slab";
@@ -173,7 +212,6 @@ text tspan{
     margin: 4px 2px;
     cursor: pointer;
     transition: all 0.2s ease-in;
-
 }
 .google
 {
@@ -185,10 +223,10 @@ text tspan{
 }
 .google:hover
 {
-	letter-spacing: 3px;
-	background-color: #30082d;
+	letter-spacing: 2px;
+	background: linear-gradient(100deg, rgb(237, 0, 0),rgb(237, 0, 0),rgb(239, 91, 91));
 	color: white;
-	box-shadow: 2px 5px 25px rgb(16, 96, 0);
+	box-shadow: 0px 3px 10px rgb(239, 91, 91);
 }
 .button3
 {
@@ -218,9 +256,9 @@ text tspan{
 .git:hover
 {
 	letter-spacing: 3px;
-	background-color: #30082d;
+	background: linear-gradient(100deg, rgb(58, 2, 114),rgb(58, 2, 114),rgb(171, 111, 232));
 	color: white; 
-	box-shadow: 2px 5px 25px rgb(144, 17, 255);
+	box-shadow: 0px 3px 10px rgb(171, 111, 232);
 }
 .bt_text
 {
