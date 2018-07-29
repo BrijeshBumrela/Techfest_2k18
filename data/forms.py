@@ -30,7 +30,7 @@ class EditProfileMoreUserDataInfo(forms.ModelForm):
 
 
 class ChangePasswordForm(forms.Form):
-    old_password = forms.CharField(widget=forms.PasswordInput())
+    old_password = forms.CharField(widget=forms.PasswordInput(),required=False)
     new_password = forms.CharField(widget=forms.PasswordInput(), min_length=8)
     confirm_new_password = forms.CharField(widget=forms.PasswordInput(), min_length=8)
 

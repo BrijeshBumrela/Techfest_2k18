@@ -298,7 +298,7 @@ def change_password(request):
     if request.method == "POST":
         password_form = ChangePasswordForm(request.POST)
         if password_form.is_valid():
-            if not request.user.check_password(password_form.cleaned_data["old_password"]):
+            if request.user.has_usable_password() and not request.user.check_password(password_form.cleaned_data["old_password"]):
                 password_form.errors["old_password"] = "Incorrect Current Password"
                 return render(request, "accounts/change_password.html",
                               {"profile": user_details, "form": password_form, })

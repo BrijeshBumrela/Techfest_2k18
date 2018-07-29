@@ -1,0 +1,195 @@
+{% load static %}
+{% load events_filters %}
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<link rel="stylesheet" href="{% static 'main_page/events/css/reset.css' %}"> <!-- CSS reset -->
+
+	<link rel="stylesheet" href="{% static 'main_page/events/css/events-content-style.css' %}">
+	<link rel="stylesheet" href="{% static 'main_page/events/css/events-style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'main_page/events/css/style-menu.css' %}">
+	<script src="{% static 'main_page/events/js/modernizr.js' %}"></script> <!-- Modernizr -->
+  	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<title>TechFesia</title>
+</head>
+<body>
+	<header>
+		<nav class="cd-stretchy-nav">
+			<a class="cd-nav-trigger" href="#0">
+				Menu
+				<span aria-hidden="true"></span>
+			</a>
+
+			<ul>
+				<li><a href="index.html"><span>Home</span></a></li>
+				<li><a href="event.html" class="active"><span>Events</span></a></li>
+				<li><a href="#0"><span>Services</span></a></li>
+				<li><a href="#0"><span>Store</span></a></li>
+				<li><a href="#0"><span>Contact</span></a></li>
+			</ul>
+
+			<span aria-hidden="true" class="stretchy-nav-bg"></span>
+		</nav>
+	</header>
+
+	<main class="cd-main-content">
+		<header class="cd-header">
+			<h1>Events</h1>
+		</header>
+		<div class="cd-tab-filter-wrapper">
+			<div class="cd-tab-filter">
+				<ul class="cd-filters">
+					<li class="placeholder"> 
+						<a data-type="all" href="#0">All</a>
+					</li> 
+					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+					{% for C in catagories %}
+                        <li class="filter" data-filter=".{{ C }}"><a href="#0" data-type="{{ C }}">{{ C}}</a></li>
+					{% endfor %}
+                    {% comment %}<li class="filter" data-filter=".programming"><a href="#0" data-type="programming">Programming</a></li>
+                    <li class="filter" data-filter=".cryptography"><a href="#0" data-type="cryptography">Cryptography</a></li>
+					<li class="filter" data-filter=".ai"><a href="#0" data-type="ai">AI</a></li>
+					<li class="filter" data-filter=".development"><a href="#0" data-type="development">Development</a></li>
+					<li class="filter" data-filter=".designing"><a href="#0" data-type="designing">Designing</a></li>
+					<li class="filter" data-filter=".hackathon"><a href="#0" data-type="hackathon">Hackathon</a></li>
+					<li class="filter" data-filter=".hardware"><a href="#0" data-type="hardware">Hardware</a></li>{% endcomment %}
+				</ul> 
+			</div> 
+		</div> 
+ <!-- .cd-folding-panel -->
+ 	<section id="cd-team" class="cd-gallery">
+		<div class="cd-container">
+			<ul>
+                {% for event in events %}
+                    <li class="mix {% for EC in event.catagories %}{{ EC }} {% endfor %}">
+                        <a href="{% url 'event info' event.name|strtoslug %}">
+                        <figure>
+                            <img src="{{ event.logo }}" alt="{{ event.name }}">
+                            <div class="cd-img-overlay"><span>View Details</span></div>
+                        </figure>
+                        </a>
+                        <div class="cd-member-info">
+                            {{ event.name }} <!-- <span>CEO</span> -->
+                        </div>
+                    </li>
+                {% endfor %}
+				{% comment %}<li class="mix development">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="APPATHON">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						APPATHON <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix cryptography">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="CAPTURE THE FLAG">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						CAPTURE THE FLAG <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix programming">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="REVERSE CODING">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						REVERSE CODING <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix programming">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="ELEKTRA">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						ELEKTRA <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix programming">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="HACK THE CODE">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						HACK THE CODE <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix hackathon">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="HACKATHON">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						Med-Tech HACKATHON <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix designing">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="Pravikarsha">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						Pravikarsha <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix development">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="CASCADER">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						CASCADER <!-- <span>CEO</span> -->
+					</div>
+				</li>
+				<li class="mix hardware">
+					<a href="event-content.html">
+					<figure>
+						<img src="{% static 'main_page/events/img/bot.jpg' %}" alt="CAR RACE">
+						<div class="cd-img-overlay"><span>View Details</span></div>
+					</figure>
+					</a>
+					<div class="cd-member-info">
+						RC CAR EVENT<!-- <span>CEO</span> -->
+					</div>
+				</li>{% endcomment %}
+				
+				<li class="gap"></li>
+				<li class="gap"></li>
+				<li class="gap"></li>
+			</ul>
+			<div class="cd-fail-message">No results found</div>
+		</div>
+		</section> 
+	</main>
+<script src="{% static 'main_page/events/js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'main_page/events/js/main.js' %}"></script> <!-- Resource jQuery -->
+<script src="{% static 'main_page/events/js/jquery.mixitup.min.js' %}"></script>
+<script src="{% static 'main_page/events/js/event-main.js' %}"></script> <!-- Resource jQuery -->
+
+</body>
+</html>

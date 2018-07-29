@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 import data.models
 import data.forms
+import data.defaults
 import datetime
 import pytz
 from .forms import EventRegisterForm
@@ -117,50 +118,101 @@ def redirect_to_index(request):
 
 
 def display_events(request):
+    catagories = [c.name for c in data.models.EventCatagory.objects.all()]
     events = list()
     for i in data.models.Event.objects.all():
-        event = {"out_form": data.forms.BriefEventForm(instance=i)}
-        if str(i.logo) == "":
-            event["logo"] = None
+        event = dict()
+        event["name"] = i.name.title()
+        event["catagories"] = [xx.name for xx in i.catagories.all()]
+        if str(i.logo) is "":
+            event["logo"] = data.defaults.event_logo
         else:
             event["logo"] = i.logo.url
 
         events.append(event)
 
-    return render(request, "main_page/events.html", {"events": events})
+    return render(request, "main_page/events.html", {"events": events, "catagories": catagories})
 
 
 def event_info(request, event_name):
+    event_info_page = 'main_page/K_event_info.html'
     event_name = event_name.lower()
     event_slug = event_name
     event_name = event_name.replace('-', ' ')
 
     event = get_object_or_404(data.models.Event, name=event_name)
+    event_duration = event.end_date_time - event.start_date_time
+    event_duration_string = ""
+    if event_duration.days > 0:
+        event_duration_string += " " + str(event_duration.days) + " Days"
+    if event_duration.seconds//3600 > 0:
+        event_duration_string += " " + str(event_duration.seconds//3600) + " Hours"
+    if (event_duration.seconds % 3600)//60 > 0:
+        event_duration_string += " " + str((event_duration.seconds % 3600)//60) + " Minutes"
+
     event_organisers = event.organisers.all()
-    logo = None
-    if str(event.logo) != "":
-        logo = event.logo.url
+    event_logo = data.defaults.event_logo
+    if str(event.logo):
+        event_logo = event.logo.url
+
+    event_catalogue = list()
+    if hasattr(event, 'eventcatalogue'):
+        if event.eventcatalogue.image1.name:
+            event_catalogue.append(event.eventcatalogue.image1.url)
+
+            if event.eventcatalogue.image2.name:
+                event_catalogue.append(event.eventcatalogue.image2.url)
+
+                if event.eventcatalogue.image3.name:
+                    event_catalogue.append(event.eventcatalogue.image3.url)
+
+                    if event.eventcatalogue.image4.name:
+                        event_catalogue.append(event.eventcatalogue.image4.url)
+
+                        if event.eventcatalogue.image5.name:
+                            event_catalogue.append(event.eventcatalogue.image5.url)
+
+                            if event.eventcatalogue.image6.name:
+                                event_catalogue.append(event.eventcatalogue.image6.url)
+
+        else:
+            event_catalogue.append(data.defaults.event_prime_catalogue)
+    else:
+        event_catalogue.append(data.defaults.event_prime_catalogue)
 
     if request.user.is_authenticated:
         registerform = EventRegisterForm({"username": request.user.username, "event": event_name})
         if hasattr(request.user, "moreuserdata"):
             if event.participants.all().filter(pk=request.user.moreuserdata.user_id).exists():
-                return render(request, "main_page/temp_event_info.html",
-                              {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+                return render(request, event_info_page,
+                              {"event": event, "organisers": event_organisers, "logo": event_logo,
+                               "catalogue": event_catalogue,
+                               "duration": event_duration_string,
+                               "authenticated": True,
                                "registerform": registerform, "event_slug": event_slug, "registered": True})
 
             else:
-                return render(request, "main_page/temp_event_info.html",
-                              {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+                return render(request, event_info_page,
+                              {"event": event, "organisers": event_organisers, "logo": event_logo,
+                               "catalogue": event_catalogue,
+                               "duration": event_duration_string,
+                               "authenticated": True,
                                "registerform": registerform, "event_slug": event_slug, "registered": False})
 
-        return render(request, "main_page/temp_event_info.html",
-                      {"event": event, "organisers": event_organisers, "logo": logo, "authenticated": True,
+        return render(request, event_info_page,
+                      {"event": event, "organisers": event_organisers, "logo": event_logo,
+                       "catalogue": event_catalogue,
+                       "duration": event_duration_string,
+                       "authenticated": True,
                        "registerform": registerform, "event_slug": event_slug})
 
     else:
-        return render(request, "main_page/temp_event_info.html",
-                      {"event": event, "organisers": event_organisers, "logo": logo})
+        return render(request, event_info_page,
+                      {"event": event, "organisers": event_organisers,
+                       "logo": event_logo,
+                       "duration": event_duration_string,
+                       "catalogue": event_catalogue,
+                       })
 
 
 def contact_us(request):

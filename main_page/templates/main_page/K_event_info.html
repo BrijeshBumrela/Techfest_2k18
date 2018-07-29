@@ -1,0 +1,366 @@
+{% load static %}
+{% load events_filters %}
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'main_page/events/css/style-menu.css' %}">
+    <link rel="stylesheet" href="{% static 'main_page/events/css/reset.css' %}"> <!-- CSS reset -->
+    <link rel="stylesheet" href="{% static 'main_page/events/css/events-content-style.css' %}"> <!-- Gem style -->
+    <script src="{% static 'main_page/events/js/event-content-modernizr.js' %}"></script> <!-- Modernizr -->
+
+    <script src="{% static 'main_page/events/js/modernizr.js' %}"></script> <!-- Modernizr -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="http://fonts.googleapis.com/css?family=Atomic%20Age" data-generated="http://enjoycss.com"
+          rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        .cd-stretchy-nav ul a {
+            font-size: 0.85rem;
+        }
+
+        .neon-text {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            border: none;
+            font: normal normal bold 72px/normal "Atomic Age", Helvetica, sans-serif;
+            color: rgb(64, 126, 196);
+            text-align: center;
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            text-shadow: 1px 1px 0 rgb(77, 162, 252), -1px -1px 0 rgb(77, 162, 252), 1px -1px 0 rgb(77, 162, 252), -1px 1px 0 rgb(77, 162, 252), 4px 4px 8px rgb(44, 88, 137), -4px 4px 8px rgb(44, 88, 137), 4px -4px 8px rgb(44, 88, 137), -4px -4px 8px rgb(44, 88, 137);
+            -webkit-transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+
+        }
+
+        .neon-text:hover {
+            text-shadow: 1px 1px 0 rgb(77, 162, 252), -1px -1px 0 rgb(77, 162, 252), 1px -1px 0 rgb(77, 162, 252), -1px 1px 0 rgb(77, 162, 252);
+            -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+        }
+
+        .highlight_text {
+            color: rgb(64, 126, 196);
+            text-shadow: 1px 1px 0 rgb(77, 162, 252), -1px -1px 0 rgb(77, 162, 252), 1px -1px 0 rgb(77, 162, 252), -1px 1px 0 rgb(77, 162, 252), 4px 4px 8px rgb(44, 88, 137), -4px 4px 8px rgb(44, 88, 137), 4px -4px 8px rgb(44, 88, 137), -4px -4px 8px rgb(44, 88, 137);
+        }
+
+        .card_title_jq {
+
+        }
+
+        .wrap {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .register-button {
+            display: inline-block;
+            margin: 0.3em;
+            padding: 1.2em 5em;
+            overflow: hidden;
+            position: relative;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 3px;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border: none;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .register-button:hover {
+            box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .register-green {
+            background-color: #38d539;
+            color: white;
+        }
+
+        .register-red {
+            background-color: #F44336;
+            color: white;
+        }
+
+        .register-blue {
+            background-color: #03A9F4;
+            color: white;
+        }
+
+        .register-ripple {
+            position: absolute;
+            background: rgba(0, 0, 0, .25);
+            border-radius: 100%;
+            transform: scale(0.2);
+            opacity: 0;
+            pointer-events: none;
+            -webkit-animation: ripple .75s ease-out;
+            -moz-animation: ripple .75s ease-out;
+            animation: ripple .75s ease-out;
+        }
+
+        @-webkit-keyframes ripple {
+            from {
+                opacity: 1;
+            }
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes ripple {
+            from {
+                opacity: 1;
+            }
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ripple {
+            from {
+                opacity: 1;
+            }
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+
+    </style>
+    <title>Event Content</title>
+</head>
+<body>
+<main>
+    <header>
+        <nav class="cd-stretchy-nav">
+            <a class="cd-nav-trigger" href="#0">
+                Menu
+                <span aria-hidden="true"></span>
+            </a>
+
+            <ul>
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="event.html" class="active"><span>Events</span></a></li>
+                <li><a href="#0"><span>Services</span></a></li>
+                <li><a href="#0"><span>Store</span></a></li>
+                <li><a href="#0"><span>Contact</span></a></li>
+            </ul>
+
+            <span aria-hidden="true" class="stretchy-nav-bg"></span>
+        </nav>
+    </header>
+    <header style="background-image: url('{{ catalogue.0 }}');background-size: cover;background-repeat: no-repeat;
+            background-position: center;">
+        <div class="cd-section" style="background-color: rgba(0,0,0,0.7);">
+            <div class="cd-container">
+                <h1 class="neon-text">{{ event.name }}</h1>
+            </div>
+            <div class="cd-container">
+                <h3 class="neon-text" style="font-size: 180%">{{ event.start_date_time }}<br><span
+                        style="font-size: 80%">{{ duration }}</span></h3>
+            </div>
+            <div class="cd-container">
+                <a href="#registration_section"><h2 class="neon-text" style="font-size: 150%"><br>Register Now!!!</h2></a>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- <section class="cd-section cd-placeholder-1">
+        <div class="cd-container">
+            <h2>Just a section</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, dicta, iure, excepturi nulla odio deserunt nihil rem ut earum hic adipisci minus sequi minima accusamus error tenetur quis aliquam sed.</p>
+        </div>
+    </section>
+
+    <section class="cd-section cd-placeholder-2">
+        <div class="cd-container">
+            <h2>Just a section</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, dicta, iure, excepturi nulla odio deserunt nihil rem ut earum hic adipisci minus sequi minima accusamus error tenetur quis aliquam sed.</p>
+        </div>
+    </section> -->
+
+    <section id="cd-team" class="cd-section"
+             style="background-image: url('{% static "main_page/events/img/bg/signup4.jpg" %}');background-size: cover;background-repeat: no-repeat;background-position: center;">
+        <div class="cd-container">
+            <div>
+                <h2 class="neon-text" style="font-size: 200%">About The Event</h2>
+            </div>
+
+            <ul>
+
+                <li>
+                    <a href="#0" data-type="member-1">
+                        <figure>
+                            <img src="{% static 'main_page/events/img/team-member-1.jpg' %}" alt="Team member 1"
+                                 style="opacity: 0.9">
+                            <div class="cd-img-overlay" style="background-color: rgba(0,0,0,0.6)"><span
+                                    style="color: white;font-size: 150%">View Details</span></div>
+                        </figure>
+
+                        <div class="cd-member-info card_title_jq"
+                             style="background-color: rgba(0,0,0,0.6);color:#19b6dc;">
+                            Description <!-- <span>CEO</span> -->
+                        </div> <!-- cd-member-info -->
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#0" data-type="member-2">
+                        <figure>
+                            <img src="{% static 'main_page/events/img/team-member-2.jpg' %}" alt="Rules"
+                                 style="opacity: 0.9">
+                            <div class="cd-img-overlay" style="background-color: rgba(0,0,0,0.6)"><span
+                                    style="color: white;font-size: 150%">View Details</span></div>
+                        </figure>
+
+                        <div class="cd-member-info" style="background-color: rgba(0,0,0,0.6);color:#19b6dc;">
+                            Rules<!-- <span>Marketing</span> -->
+                        </div> <!-- cd-member-info -->
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#0" data-type="member-3">
+                        <figure>
+                            <img src="{% static 'main_page/events/img/team-member-3.jpg' %}" alt="Prizes"
+                                 style="opacity: 0.9">
+                            <div class="cd-img-overlay" style="background-color: rgba(0,0,0,0.6)"><span
+                                    style="color: white;font-size: 150%">View Details</span></div>
+                        </figure>
+
+                        <div class="cd-member-info" style="background-color: rgba(0,0,0,0.6);color:#19b6dc;">
+                            Prizes <!-- <span>Web Design</span> -->
+                        </div> <!-- cd-member-info -->
+                    </a>
+                </li>
+            </ul>
+            <br><br>
+            <div class="cd-section">
+                <h2 class="neon-text" style="font-size: 200%" id="registration_section">Registration</h2>
+                {% if not registered %}<span style="font-size: 110%;color: #07e2ff">Registrations open until {{ event.registration_end_date_time }}</span>
+                <br><br>
+                {% endif %}
+                {% if not authenticated %}
+                    <a href="{% url 'registration:login' %}" class="register-button register-green" style="color: black" id="register_button">Log-In</a>
+                    <br><span style="color: #07e2ff;">You need to login to be able to register</span>
+                {% else %}
+                    {% if registered %}
+                        <a href="#registration_section" class="register-button register-green" style="color: black" onclick="document.getElementById('event_register_form').submit()">De-Register</a>
+                        <br><span style="color: #07e2ff;">You are already registered for this event.<br>Click to De-Register</span>
+                    {% else %}
+                        <a href="#registration_section" class="register-button register-green" style="color: black" onclick="document.getElementById('event_register_form').submit()">Register</a>
+                    {% endif %}
+                {% endif %}
+
+                {% if authenticated %}
+                    {% if registered %}
+                        <form action="{% url 'accounts:un_register_for_event' event.name|strtoslug %}" method="post" style="display: none" id="event_register_form">
+                            {% csrf_token %}
+                            {{ registerform }}
+                            <input type="submit" value="submit">
+                        </form>
+                    {% else %}
+                        <form action="{% url 'accounts:register_for_event' event.name|strtoslug %}" method="post" style="display: none" id="event_register_form">
+                            {% csrf_token %}
+                            {{ registerform }}
+                            <input type="submit" value="submit">
+                        </form>
+                    {% endif %}
+                {% endif %}
+
+
+
+            </div>
+        </div> <!-- cd-container -->
+
+    </section> <!-- cd-team -->
+
+    <div class="cd-overlay"></div>
+</main>
+
+<div class="cd-member-bio member-1">
+    <div class="cd-member-bio-pict">
+        <img src="{% static 'main_page/events/img/member-bio-img-1.jpg' %}" alt="Member Bio image">
+    </div> <!-- cd-member-bio-pict -->
+
+    <div class="cd-bio-content">
+        <h1>Description</h1>
+        <p> {{ event.description }}</p>
+        <h1>Format</h1>
+        <p> {{ event.format }}</p>
+        <h1>Pre-Requisites</h1>
+        <p>{{ event.prerequisites }}</p>
+        <h1>Resources</h1>
+        <p>{{ event.resources }}</p>
+    </div> <!-- cd-bio-content -->
+</div> <!-- cd-member-bio -->
+
+<div class="cd-member-bio member-2">
+    <div class="cd-member-bio-pict">
+        <img src="{% static 'main_page/events/img/member-bio-img-2.jpg' %}" alt="Member Bio image">
+    </div> <!-- cd-member-bio-pict -->
+
+    <div class="cd-bio-content">
+        <h1>Rules</h1>
+        <p>{{ event.rules }}</p>
+    </div> <!-- cd-bio-content -->
+</div> <!-- cd-member-bio -->
+
+<div class="cd-member-bio member-3">
+    <div class="cd-member-bio-pict">
+        <img src="{% static 'main_page/events/img/member-bio-img-3.jpg' %}" alt="Member Bio image">
+    </div> <!-- cd-member-bio-pict -->
+
+    <div class="cd-bio-content">
+        <h1>Prizes</h1>
+        <p>{{ event.prize }}</p>
+        {% comment %}<p><i class="fas fa-award"></i> 1st Prize: <i class="fas fa-rupee-sign">5000</i></p>
+        <p><i class="fas fa-award"></i> 2nd Prize: <i class="fas fa-rupee-sign">4000</i></p>
+        <p><i class="fas fa-award"></i> 3rd Prize: <i class="fas fa-rupee-sign">3000</i></p>{% endcomment %}
+    </div> <!-- cd-bio-content -->
+</div> <!-- cd-member-bio -->
+<a href="#0" class="cd-member-bio-close">Close</a> <!-- close the author bio section -->
+<script src="{% static 'main_page/events/js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'main_page/events/js/main.js' %}"></script> <!-- Resource jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'main_page/events/js/event-content-main.js' %}"></script> <!-- Gem jQuery -->
+<script>
+    $('.register-button').mousedown(function (e) {
+        var target = e.target;
+        var rect = target.getBoundingClientRect();
+        var ripple = target.querySelector('.register-ripple');
+        $(ripple).remove();
+        ripple = document.createElement('span');
+        ripple.className = 'register-ripple';
+        ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
+        target.appendChild(ripple);
+        var top = e.pageY - rect.top - ripple.offsetHeight / 2 -  document.body.scrollTop;
+        var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
+        ripple.style.top = top + 'px';
+        ripple.style.left = left + 'px';
+        return false;
+    });
+
+</script>
+</body>
+</html>
