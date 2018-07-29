@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ logo }}" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css'>
 
@@ -304,14 +305,12 @@
     </div> <!-- cd-member-bio-pict -->
 
     <div class="cd-bio-content">
-        <h1>Description</h1>
-        <p> {{ event.description }}</p>
-        <h1>Format</h1>
-        <p> {{ event.format }}</p>
-        <h1>Pre-Requisites</h1>
-        <p>{{ event.prerequisites }}</p>
-        <h1>Resources</h1>
-        <p>{{ event.resources }}</p>
+        {% autoescape off %}
+        {{ event.description }}
+        {{ event.format }}
+        {{ event.prerequisites }}
+        {{ event.resources }}
+        {% endautoescape %}
     </div> <!-- cd-bio-content -->
 </div> <!-- cd-member-bio -->
 
@@ -321,8 +320,9 @@
     </div> <!-- cd-member-bio-pict -->
 
     <div class="cd-bio-content">
-        <h1>Rules</h1>
-        <p>{{ event.rules }}</p>
+        {% autoescape off %}
+        {{ event.rules }}
+        {% endautoescape %}
     </div> <!-- cd-bio-content -->
 </div> <!-- cd-member-bio -->
 
@@ -332,8 +332,9 @@
     </div> <!-- cd-member-bio-pict -->
 
     <div class="cd-bio-content">
-        <h1>Prizes</h1>
-        <p>{{ event.prize }}</p>
+        {% autoescape off %}
+        {{ event.prize }}
+        {% endautoescape %}
         {% comment %}<p><i class="fas fa-award"></i> 1st Prize: <i class="fas fa-rupee-sign">5000</i></p>
         <p><i class="fas fa-award"></i> 2nd Prize: <i class="fas fa-rupee-sign">4000</i></p>
         <p><i class="fas fa-award"></i> 3rd Prize: <i class="fas fa-rupee-sign">3000</i></p>{% endcomment %}

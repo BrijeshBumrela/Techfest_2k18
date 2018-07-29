@@ -115,12 +115,22 @@ class Event(models.Model):
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
     description = models.TextField(verbose_name="Description", blank=True, max_length=1500,
-                                   help_text="Formatting Enabled. Seperate different sections using '***'. Encase headings between ___Heading___ . Seperate different lines using '&#92;n'")
-    format = models.TextField(verbose_name="Format", blank=True, max_length=1500)
-    rules = models.TextField(verbose_name="Contest Rules", blank=True, max_length=1500)
-    prize = models.TextField(verbose_name="Prize Description", blank=True, max_length=1000)
-    prerequisites = models.TextField(verbose_name="Pre-Requisites", blank=True, max_length=1000)
-    resources = models.TextField(verbose_name="Resources", blank=True, max_length=1500)
+                                   help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; ")
+    format = models.TextField(verbose_name="Format", blank=True, max_length=1500,
+                              help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; "
+                              )
+    rules = models.TextField(verbose_name="Contest Rules", blank=True, max_length=1500,
+                             help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; "
+                             )
+    prize = models.TextField(verbose_name="Prize Description", blank=True, max_length=1000,
+                             help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; "
+                             )
+    prerequisites = models.TextField(verbose_name="Pre-Requisites", blank=True, max_length=1000,
+                                     help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; "
+                                     )
+    resources = models.TextField(verbose_name="Resources", blank=True, max_length=1500,
+                                 help_text="Partial HTML formatting supported (Only &lt;h1&gt; , &lt;br&gt; and &lt;p&gt; tag). Enclose headings in &lt;h1&gt; tag. Enclose content in &lt;p&gt; tag. List elements should also be enclosed in &lt;p&gt; rather that &lt;li&gt;. DO NOT LEAVE ANY CONTENT OUTSIDE &lt;h1&gt; or &lt;p&gt; "
+                                 )
     organisers = models.ManyToManyField(to=MoreUserData, related_name="organising_events", blank=True,
                                         help_text="Please Select 1 or more users as Organisers")
     participants = models.ManyToManyField(to=MoreUserData, related_name="participating_events", blank=True, )
