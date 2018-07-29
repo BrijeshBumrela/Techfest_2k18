@@ -1,0 +1,292 @@
+html {
+  box-sizing: border-box;
+}
+
+
+@font-face{
+	font-family:myfont;
+	src:url('BRADHITC.TTF') format('truetype');
+	}
+
+@font-face{
+	font-family:headingFont;
+	src:url('Carson.OTF') format('opentype');
+	}
+
+
+@font-face{
+	font-family:local;
+	src:url('pirulen.TTF') format('opentype');
+	}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  
+}
+
+html {
+  background: #0e1a25;
+  font-size: 0.625em;
+}
+
+.soc {
+  display: block;
+  font-size: 0;
+  list-style: none;
+  margin: 0;
+  padding: 48px;
+  padding: 4.8rem;
+  text-align: center;
+}
+.soc li {
+  display: inline-block;
+  margin: 12px;
+  margin: 1.6rem;
+}
+.soc a, .soc svg {
+  display: block;
+  
+}
+.soc a {
+  position: relative;
+  height: 96px;
+  height: 9.6rem;
+  width: 96px;
+  width: 9.6rem;
+}
+.soc svg {
+  height: 60%;
+  width: 60%;
+}
+
+.icon-10:hover, .icon-26:hover, .icon-28:hover {
+  border-radius: 100%;
+  color: #0e1a25;
+  fill: #0e1a25;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+  transition: background-color 0.5s, -webkit-transform 0.5s ease-out;
+  transition: background-color 0.5s, transform 0.5s ease-out;
+  transition: background-color 0.5s, transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+}
+
+
+.icon-10 {
+  color: #4867aa;
+  fill:#4867aa;
+}
+.icon-10:hover {
+  background: #4867aa;
+}
+
+
+.icon-26 {
+  color: #55acef;
+  fill: #55acef;
+}
+.icon-26:hover {
+  background: #55acef;
+}
+
+
+.icon-28 {
+  color: #f00;
+  fill: #f00;
+}
+.icon-28:hover {
+  background: #f00;
+}
+
+
+
+.social-media{
+	font-size:2rem;
+	z-index:3;
+    position: fixed;
+    top:0%;
+    transform: translate(-50%, -50%);
+	min-height:100px;
+	width:5%;
+	border-radius:0px 10px 10px 0px;
+	background-color:transparent;
+}
+
+
+
+/* Animation */
+.anim-typewriter{
+  width:0;
+  /*animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;*/
+}
+
+
+
+
+
+
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 20.18em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-box-sizing:content-box;
+    box-sizing:content-box;
+}
+
+svg:hover #social-cover{
+	display:none;
+}
+
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);	
+}
+
+.centered-2{
+	position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centered-3{
+	position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.home {
+	z-index:1;
+	width: 100%;
+	height:100vh;
+	overflow: hidden;
+	margin:0px;
+	
+
+}
+
+
+
+.heading
+	{
+		color:#fff;
+		font-weight:1000;
+		font-size:8vw!important;
+		font-family:myfont;
+	}
+	
+
+.credential
+	{
+		color:#fff;
+		font-weight:strong;
+		font-size:3.7vw;
+		letter-spacing:5px;
+		margin:50px;
+	
+	}
+		
+
+	
+.caption-text
+{
+	color:#fff;
+	font-weight:250;
+	font-size:1.3vw;
+	letter-spacing:5px;
+	
+	font-family: headingFont;	
+	
+}
+	
+	
+#icon
+	{
+		width:48;
+		height:48;
+	}
+	
+	
+#icon:hover
+	{
+		transform: scale(1.5);	
+	}
+	
+
+
+.bottom-page {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+	border-radius: 10px;
+	background-color: #FFF;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #D62929;
+	background-image: -webkit-linear-gradient(90deg,
+											  transparent,
+											  rgba(0, 0, 0, 0.4) 50%,
+											  transparent,
+											  transparent)
+}
+
+body {
+  background-color: black;
+}
+
+
+.logo { margin: auto;
+		top:40%;	
+		}
+.vert { transform-origin: center bottom; }
+.hori { transform-origin: 0% 50%; }
+.diag-left { transform-origin: 100% 100%; }
+.diag-right { transform-origin: 100% 0%; }
+
+.stripes path,
+.text-fills path,
+.katakana path,
+.line {
+  opacity: 0
+}
+
+
+
+.logo-heading{
+  position: absolute;
+ 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+   
+}

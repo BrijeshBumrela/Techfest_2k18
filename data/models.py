@@ -114,7 +114,8 @@ class Event(models.Model):
     registration_end_date_time = models.DateTimeField(verbose_name="Registration Ends On (IST) ", )
     start_date_time = models.DateTimeField(verbose_name="Event Starts On (IST) ", )
     end_date_time = models.DateTimeField(verbose_name="Event Concludes On (IST)")
-    description = models.TextField(verbose_name="Description", blank=True, max_length=1500)
+    description = models.TextField(verbose_name="Description", blank=True, max_length=1500,
+                                   help_text="Formatting Enabled. Seperate different sections using '***'. Encase headings between ___Heading___ . Seperate different lines using '&#92;n'")
     format = models.TextField(verbose_name="Format", blank=True, max_length=1500)
     rules = models.TextField(verbose_name="Contest Rules", blank=True, max_length=1500)
     prize = models.TextField(verbose_name="Prize Description", blank=True, max_length=1000)
