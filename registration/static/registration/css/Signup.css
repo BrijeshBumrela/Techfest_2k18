@@ -38,6 +38,8 @@
 
 body
 {
+	background: radial-gradient(circle, blue, rgb(34, 1, 51));
+	/*
 	background-image: url("../images/signup4.jpg");
 	background-size: auto;
 	background-repeat: no-repeat;
@@ -45,7 +47,7 @@ body
 	background-size: cover;
 	background-position: top center ;
 	background-repeat: no-repeat ;
-	background-attachment: fixed;
+	background-attachment: fixed;*/
 }
 .container-name
 {
@@ -156,15 +158,14 @@ h4:after {
 {
   font-family: "Roboto Slab";
   font-size: 20px;
-  background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 75%, #5e0522 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #52e0e0
 }
 .fields
 {
-	font-family: 'local1';
-	font-size: 20px;
+	font-family: 'local3';
+	font-size: 15px;
 	color: white;
+	letter-spacing: 2px;
 }
 .container-signup
 {
@@ -190,7 +191,7 @@ h4:after {
 
 .input-box:focus
 {
-	border-bottom: 1px solid rgb(123, 0, 255);
+	border-bottom: 1px solid yellow;
 }
 .line
 {
