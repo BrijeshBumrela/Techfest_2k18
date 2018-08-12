@@ -59,7 +59,7 @@ class MoreUserData(models.Model):
     secret_key_min_length = MinLengthValidator(secret_key_length)
     secret_key = models.CharField(verbose_name="Secret Key", max_length=secret_key_length,
                                   validators=[secret_key_min_length], blank=True)
-    profile_pic = models.ImageField(verbose_name="Profile Picture", upload_to=get_profilepic_upload_url, blank=True,
+    profile_pic = models.ImageField(verbose_name="Profile Picture", upload_to=get_profilepic_upload_url, blank=True, null=True,
                                     help_text="Please upload a Profile Picture")
     country_code = models.CharField(verbose_name="Country Code for Phone Number", max_length=4,
                                     choices=COUNTRY_CODE_CHOICES,
@@ -75,6 +75,8 @@ class MoreUserData(models.Model):
     hackerrank_id = models.CharField(verbose_name="Hackerrank Username", max_length=50, blank=True)
     codechef_id = models.CharField(verbose_name="Codechef Username", max_length=50, blank=True)
     codeforces_id = models.CharField(verbose_name="Codeforces Username", max_length=50, blank=True)
+    google_id = models.CharField(max_length=1000, null=True, blank=True)
+    google_salt = models.CharField(max_length=1000, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
